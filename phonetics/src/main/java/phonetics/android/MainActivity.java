@@ -2,8 +2,15 @@ package phonetics.android;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.List;
+import java.util.Map;
+
+import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.utils.AssetsUtil;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +19,34 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PhoneticsEntity entity = AssetsUtil.readAssets(MainActivity.this);
+
+        List<PhoneticsEntity.SymbolEty> list = entity.getAdvanced();
+        Log.i("LSD", "---------------* = advanced");
+        for (PhoneticsEntity.SymbolEty ety : list) {
+            Log.i("LSD", ety.getTitle());
+            Log.i("LSD", ety.getDescribe());
+            List<PhoneticsEntity.VoiceEty> voiceEtys = ety.getVoices();
+            for (PhoneticsEntity.VoiceEty vEty : voiceEtys) {
+                Log.i("LSD", "******* = VoiceEty");
+                Log.i("LSD", vEty.getName());
+                Log.i("LSD", vEty.getDescribe());
+            }
+        }
+        List<PhoneticsEntity.SymbolEty> list1 = entity.getAdvanced();
+        Log.i("LSD", "---------------* = basics");
+        for (PhoneticsEntity.SymbolEty ety : list) {
+            Log.i("LSD", ety.getTitle());
+            Log.i("LSD", ety.getDescribe());
+            List<PhoneticsEntity.VoiceEty> voiceEtys = ety.getVoices();
+            for (PhoneticsEntity.VoiceEty vEty : voiceEtys) {
+                Log.i("LSD", "******* = VoiceEty");
+                Log.i("LSD", vEty.getName());
+                Log.i("LSD", vEty.getDescribe());
+            }
+        }
+
     }
 
     @Override
