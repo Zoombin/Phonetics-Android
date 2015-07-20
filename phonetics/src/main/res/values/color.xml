@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#ffffff</color>
+    <color name="white_level1">#ffffff</color>
+    <color name="white_level2">#f5f5f5</color>
+    <!-- 半透明-->
+    <color name="white_level3">#80ffffff</color>
     <color name="black">#000000</color>
+    <color name="blue">#76bcf7</color>
+    <color name="green">#40dc65</color>
     <color name="gray_level1">#e2dfdb</color>
     <color name="gray_level2">#aaaaaa</color>
 </resources>

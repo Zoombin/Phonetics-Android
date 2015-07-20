@@ -2,4 +2,11 @@
 <resources>
     <string name="phonetics_title">英语音标</string>
     <string name="action_settings">设置</string>
+    <string name="bt_left_txt">基础技巧</string>
+    <string name="bt_right_txt">高级技巧</string>
+    <string name="tv_name">英语音标</string>
+    <string name="tv_ver">ver.1.0</string>
+    <string name="tv_item_compare">音标对比</string>
+    <string name="tv_item_share">分享到朋友圈</string>
+    <string name="tv_close">关闭</string>
 </resources>
