@@ -48,26 +48,26 @@
                 android:id="@+id/bt_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bt_left_selector"
+                android:background="@drawable/bt_txtleft_selector"
                 android:paddingBottom="4dp"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:paddingTop="4dp"
                 android:text="@string/bt_left_txt"
-                android:textColor="@drawable/bt_txt_selector"
+                android:textColor="@drawable/bt_txt_color"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/bt_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bt_right_selector"
+                android:background="@drawable/bt_txtright_selector"
                 android:paddingBottom="4dp"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:paddingTop="4dp"
                 android:text="@string/bt_right_txt"
-                android:textColor="@drawable/bt_txt_selector"
+                android:textColor="@drawable/bt_txt_color"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -77,11 +77,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="#00000000"
-            android:divider="@color/gray_level2"
+            android:divider="@color/gray_level3"
             android:dividerHeight="1px"
             android:listSelector="#00000000"></ListView>
-
-
     </LinearLayout>
 
 </LinearLayout>

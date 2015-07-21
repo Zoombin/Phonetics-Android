@@ -1,4 +1,4 @@
-package phonetics.android.widght;
+package phonetics.android.widget;
 
 import android.app.Dialog;
 import android.content.Context;

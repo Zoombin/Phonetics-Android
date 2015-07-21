@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.widget.TextView;
 
 
@@ -67,6 +68,11 @@ public class PhoneticsAdapter extends BaseAdapter {
         if (ety != null) {
             viewHodler.iv_name.setText(ety.getTitle());
             viewHodler.iv_description.setText(ety.getDescribe());
+
+            viewHodler.recyclerview.setLayoutManager(new LinearLayoutManager(parent.getContext(), LinearLayoutManager.HORIZONTAL, false));
+            RecyclerViewHAdapter adapter = new RecyclerViewHAdapter();
+            viewHodler.recyclerview.setAdapter(adapter);
+            adapter.setData(ety.getVoices());
         }
         return convertView;
     }

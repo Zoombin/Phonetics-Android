@@ -9,4 +9,6 @@
     <string name="tv_item_compare">音标对比</string>
     <string name="tv_item_share">分享到朋友圈</string>
     <string name="tv_close">关闭</string>
+    <string name="bt_txt_front">正面</string>
+    <string name="bt_txt_side">侧面</string>
 </resources>

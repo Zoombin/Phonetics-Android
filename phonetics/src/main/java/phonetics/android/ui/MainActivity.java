@@ -1,7 +1,6 @@
 package phonetics.android.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,15 +8,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
-
 import phonetics.android.BaseActivity;
 import phonetics.android.R;
 import phonetics.android.adapter.PhoneticsAdapter;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
-import phonetics.android.utils.AssetsUtil;
-import phonetics.android.widght.CustomDialog;
+import phonetics.android.widget.CustomDialog;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
     TextView bt_left, bt_right;

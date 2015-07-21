@@ -93,7 +93,7 @@
                     "img": "symbol_NS",
                     "step_voices": "",
                     "step_pics": "",
-                    "examples_pics": "w1,w2,w3,w4,1ʌ,2ʌ,3ʌ,4ʌ,t1,t2,t3,t4,s1,s2,s3,s4,s5,s6"
+                    "examples_pics": "w1,w2,w3,w4,ʌ1,ʌ2,ʌ3,ʌ4,t1,t2,t3,t4,s1,s2,s3,s4,s5,s6"
                 },
                 {
                     "examples_yb_name": "t ε n (加入t) ʃ ə n",
@@ -285,7 +285,7 @@
                     "img": "symbol_PR",
                     "step_voices": "",
                     "step_pics": "",
-                    "examples_pics": ""
+                    "examples_pics": "p1,p2,p3,p4,p4,p4,p4,p4,eɪ1,eɪ2,eɪ3,eɪ4,eɪ5,eɪ6"
                 },
                 {
                     "examples_yb_name": "k （r→喷气） aɪ",
@@ -409,7 +409,7 @@
                     "img": "symbol_B",
                     "step_voices": "",
                     "step_pics": "",
-                    "examples_pics": "dʒ1,dʒ2,dʒ3,dʒ4,ɑ1,ɑ2,ɑ3,ɑ4,p1,p2,p3,p4,p5,p6"
+                    "examples_pics": "dʒ1,dʒ2,dʒ3,dʒ4,α1,α2,α3,α4,p1,p2,p3,p4,p5,p6"
                 },
                 {
                     "examples_yb_name": "æ n （d→t）",
@@ -570,7 +570,7 @@
                     "img": "symbol_T",
                     "step_voices": "",
                     "step_pics": "",
-                    "examples_pics": "aʊ1,aʊ2,aʊ3,aʊ4,t1,t2,t3,p1,p2,p3,p4,ʊ1,ʊ2,ʊ3,ʊ4,t1,t2,t3,t4,t5,t6"
+                    "examples_pics": "aυ1,aυ2,aυ3,aυ4,t1,t2,t3,p1,p2,p3,p4,ʊ1,ʊ2,ʊ3,ʊ4,t1,t2,t3,t4,t5,t6"
                 },
                 {
                     "examples_yb_name": "f i: （d→不喷气的d） b æ k",
@@ -1282,7 +1282,7 @@
                     "img": "symbol_UW",
                     "step_voices": "",
                     "step_pics": "",
-                    "examples_pics": "g1,g2,g3,g4,oʊ1,oʊ2,oʊ3,oʊ4,t1,t2,t3,t4,ə1,ə2,ə3,ə4,ə5,ə6"
+                    "examples_pics": "g1,g2,g3,g4,oυ1,oυ2,oυ3,oυ4,t1,t2,t3,t4,ə1,ə2,ə3,ə4,ə5,ə6"
                 },
                 {
                     "examples_yb_name": "l æ s t f （ɔ:r→ə）",
@@ -1600,9 +1600,9 @@
                     "long_male": "0.201",
                     "etime_male": "0:08.451",
                     "stime_male": "0:08.250",
-                    "long_female": "0.261",
-                    "stime_female": "0:49.250",
-                    "etime_female": "0:49.511",
+                    "long_female": "0.268",
+                    "stime_female": "0:49.248",
+                    "etime_female": "0:49.516",
                     "img": "symbol_G",
                     "step_voices": "0:0,0,0:0,0&&0:48.243,0.228,0:07.248,0.209&&0:49.248,0.268,0:08.250,0.201",
                     "step_pics": "g1,g2,g3,k4&&k4,k5,k6&&g1,g2,g3,g4,g5,g6",
