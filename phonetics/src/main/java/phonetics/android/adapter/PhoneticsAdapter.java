@@ -3,6 +3,7 @@ package phonetics.android.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,12 @@ import phonetics.android.R;
 import phonetics.android.entity.PhoneticsEntity;
 
 public class PhoneticsAdapter extends BaseAdapter {
+    private Context context;
     List<PhoneticsEntity.SymbolEty> list;
+
+    public PhoneticsAdapter(Context context){
+        this.context = context;
+    }
 
     public void addData(List<PhoneticsEntity.SymbolEty> list) {
         if (this.list == null) {
@@ -55,7 +61,7 @@ public class PhoneticsAdapter extends BaseAdapter {
         ViewHodler viewHodler = null;
         if (convertView == null) {
             viewHodler = new ViewHodler();
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_phonetics_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_phonetics_item, null);
             viewHodler.iv_name = (TextView)convertView.findViewById(R.id.iv_name);
             viewHodler.iv_description = (TextView)convertView.findViewById(R.id.iv_description);
             viewHodler.recyclerview = (RecyclerView) convertView.findViewById(R.id.recyclerview);
@@ -69,8 +75,8 @@ public class PhoneticsAdapter extends BaseAdapter {
             viewHodler.iv_name.setText(ety.getTitle());
             viewHodler.iv_description.setText(ety.getDescribe());
 
-            viewHodler.recyclerview.setLayoutManager(new LinearLayoutManager(parent.getContext(), LinearLayoutManager.HORIZONTAL, false));
-            RecyclerViewHAdapter adapter = new RecyclerViewHAdapter();
+            viewHodler.recyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            RecyclerViewHAdapter adapter = new RecyclerViewHAdapter(context);
             viewHodler.recyclerview.setAdapter(adapter);
             adapter.setData(ety.getVoices());
         }

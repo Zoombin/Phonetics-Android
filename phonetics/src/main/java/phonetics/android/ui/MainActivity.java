@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         (bt_right = (TextView) findViewById(R.id.bt_right)).setOnClickListener(this);
         (iv_menu = (ImageView) findViewById(R.id.iv_menu)).setOnClickListener(this);
         listView = (ListView)findViewById(R.id.listview);
-        listView.setAdapter(adapter = new PhoneticsAdapter());
+        listView.setAdapter(adapter = new PhoneticsAdapter(mActivity));
     }
 
     private void tabSelect(View v) {

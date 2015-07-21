@@ -26,6 +26,7 @@ public class CurrentPhonetics {
     }
 
     public PhoneticsEntity entity;
+    public PhoneticsEntity.VoiceEty curVoice;
 
     public void loadData(Context context) {
         entity = AssetsUtil.readAssets(context);
