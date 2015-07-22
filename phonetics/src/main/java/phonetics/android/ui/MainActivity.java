@@ -27,16 +27,17 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         initView();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
         if (CurrentPhonetics.instance().entity == null) {
             CurrentPhonetics.instance().loadData(mActivity);
         }
 
         setData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void initView() {

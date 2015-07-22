@@ -9,16 +9,18 @@
         android:id="@+id/tv_similar_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="example" />
+        android:layout_gravity="center_horizontal"
+        android:text="example"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/similar_recyclerview"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:minWidth="50dp"
-        android:scrollbarStyle="insideOverlay"
-        android:scrollbars="horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="2dp"
+        android:scrollbars="none" />
 
     <ListView
         android:id="@+id/similar_listview"
@@ -26,8 +28,6 @@
         android:layout_height="wrap_content"
         android:cacheColorHint="#00000000"
         android:divider="@color/white_level1"
-        android:dividerHeight="1px"
-        android:listSelector="#00000000"
         android:paddingBottom="2dp"></ListView>
 
 

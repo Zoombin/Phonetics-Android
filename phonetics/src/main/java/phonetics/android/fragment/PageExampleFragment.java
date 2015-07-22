@@ -99,11 +99,11 @@ public class PageExampleFragment extends BaseFragment {
             String[] Example_array = null;
             if (exampleCount > 1) {
                 Examples_yb_array = Examples_yb.split("&&");
-                Example_array = Examples.split("&&");
+                Example_array = Examples.split(",");
                 if (Examples_yb_array != null && Example_array != null) {
                     for (int i = 0; i < exampleCount; i++) {
                         String yb = Examples_yb_array[i].replace(",", " ");
-                        list.add(Example_array + " /" + yb + "/");
+                        list.add(Example_array[i] + " /" + yb + "/");
                     }
                 }
             } else {

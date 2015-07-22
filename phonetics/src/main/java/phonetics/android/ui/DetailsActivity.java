@@ -46,6 +46,7 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 
         initView();
         initFragment();
+        initPageStatus();
     }
 
     @Override
@@ -70,21 +71,48 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         (iv_back = (ImageView) findViewById(R.id.iv_back)).setOnClickListener(this);
 
         (tv_basic = (TextView) findViewById(R.id.tv_basic)).setOnClickListener(this);
-        tv_basic.setSelected(true);
         (tv_typejp = (TextView) findViewById(R.id.tv_typejp)).setOnClickListener(this);
         (tv_example = (TextView) findViewById(R.id.tv_example)).setOnClickListener(this);
         (tv_similar = (TextView) findViewById(R.id.tv_similar)).setOnClickListener(this);
     }
 
+    /***
+     * 初始化Fragment
+     */
     private void initFragment() {
         fragments = new Fragment[4];
         fragments[0] = baseFragment = new PageBasicFragment();
         fragments[1] = describeFragment = new PageDescribeFragment();
         fragments[2] = exampleFragment = new PageExampleFragment();
         fragments[3] = similarFragment = new PageSimilarFragment();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, fragments[0]).show(fragments[0])
-                .commit();
+    }
+
+    /***
+     * 设置基础与高级的显示
+     */
+    private void initPageStatus(){
+        if (CurrentPhonetics.VoiceType.BASIC == CurrentPhonetics.instance().voiceType){
+            //基础
+            index = 0;
+            currentTabIndex =0;
+            tv_basic.setSelected(true);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, fragments[0]).show(fragments[0])
+                    .commit();
+        }else{
+            //高级
+            index = 1;
+            currentTabIndex = 1;
+            tv_basic.setVisibility(View.GONE);
+            tv_similar.setVisibility(View.GONE);
+            tv_typejp.setText(R.string.bt_txt_describe);
+            tv_typejp.setSelected(true);
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, fragments[1]).show(fragments[1])
+                    .commit();
+        }
+
     }
 
     private void setData() {
@@ -94,10 +122,16 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         setFaceData();
     }
 
+    /**
+     * 音标数据
+     */
     private void setImgData() {
         ImageLoader.getInstance().displayImage("assets://symbol/" + ety.getImg() + ".png", iv_img);
     }
 
+    /**
+     * 脸型数据
+     */
     private void setFaceData() {
         String pics = ety.getExamples_pics();
         String[] pic = pics.split(",");
