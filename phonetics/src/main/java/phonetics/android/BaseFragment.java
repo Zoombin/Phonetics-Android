@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
  * Created by lsd on 15/7/22.
  */
 public class BaseFragment extends Fragment {
-    Activity mActivity;
+    public Activity mActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

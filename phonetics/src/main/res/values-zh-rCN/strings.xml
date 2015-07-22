@@ -13,6 +13,7 @@
     <string name="bt_txt_side">侧面</string>
     <string name="bt_txt_base">基础</string>
     <string name="bt_txt_typejp">日式</string>
+    <string name="bt_txt_describe">描述</string>
     <string name="bt_txt_example">举例</string>
     <string name="bt_txt_similar">相似</string>
 </resources>

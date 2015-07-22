@@ -57,9 +57,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         PhoneticsEntity entity = CurrentPhonetics.instance().entity;
         switch (v.getId()) {
             case R.id.bt_left:
+                CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.BASIC;//当前类型 基本
                 adapter.setData(entity.getBasics());
                 break;
             case R.id.bt_right:
+                CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.ADVANCE;//当前类型 高级
                 adapter.setData(entity.getAdvanced());
                 break;
         }

@@ -3,26 +3,22 @@ package phonetics.android.ui;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import phonetics.android.BaseActivity;
 import phonetics.android.R;
-import phonetics.android.adapter.PhoneticsAdapter;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
-import phonetics.android.fragment.PageBaseFragment;
+import phonetics.android.fragment.PageBasicFragment;
 import phonetics.android.fragment.PageExampleFragment;
 import phonetics.android.fragment.PageSimilarFragment;
-import phonetics.android.fragment.PageTypejpFragment;
-import phonetics.android.widget.CustomDialog;
+import phonetics.android.fragment.PageDescribeFragment;
 
 public class DetailsActivity extends BaseActivity implements OnClickListener {
     PhoneticsEntity.VoiceEty ety;
@@ -32,11 +28,16 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 
     ImageView iv_front, iv_side;
     ImageView iv_back;
-    TextView tv_base, tv_typejp, tv_example, tv_similar;
+    TextView tv_basic, tv_typejp, tv_example, tv_similar;
 
     int currentTabIndex;
     Fragment[] fragments;
     int index;
+
+    PageBasicFragment baseFragment;
+    PageDescribeFragment describeFragment;
+    PageExampleFragment exampleFragment;
+    PageSimilarFragment similarFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,18 +69,19 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         (iv_side = (ImageView) findViewById(R.id.iv_side)).setOnClickListener(this);
         (iv_back = (ImageView) findViewById(R.id.iv_back)).setOnClickListener(this);
 
-        (tv_base = (TextView) findViewById(R.id.tv_base)).setOnClickListener(this);
-        tv_base.setSelected(true);
+        (tv_basic = (TextView) findViewById(R.id.tv_basic)).setOnClickListener(this);
+        tv_basic.setSelected(true);
         (tv_typejp = (TextView) findViewById(R.id.tv_typejp)).setOnClickListener(this);
         (tv_example = (TextView) findViewById(R.id.tv_example)).setOnClickListener(this);
         (tv_similar = (TextView) findViewById(R.id.tv_similar)).setOnClickListener(this);
     }
 
     private void initFragment() {
-        fragments[0] = new PageBaseFragment();
-        fragments[1] = new PageTypejpFragment();
-        fragments[2] = new PageExampleFragment();
-        fragments[3] = new PageSimilarFragment();
+        fragments = new Fragment[4];
+        fragments[0] = baseFragment = new PageBasicFragment();
+        fragments[1] = describeFragment = new PageDescribeFragment();
+        fragments[2] = exampleFragment = new PageExampleFragment();
+        fragments[3] = similarFragment = new PageSimilarFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragments[0]).show(fragments[0])
                 .commit();
@@ -101,8 +103,8 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         String[] pic = pics.split(",");
 
         if (pic != null && pic.length > 0) {
-            ImageLoader.getInstance().displayImage("assets://voicepic/" + "U026a6" + ".jpg", iv_front);
-            ImageLoader.getInstance().displayImage("assets://voicepic/" + "U014b1" + ".jpg", iv_side);
+            ImageLoader.getInstance().displayImage("assets://voicepic/" + pic[0] + ".jpg", iv_front);
+            ImageLoader.getInstance().displayImage("assets://voicepic/" + "c" + pic[0] + ".jpg", iv_side);
         }
     }
 
@@ -126,27 +128,30 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
     }
 
     private void pageSelect(View v) {
-        tv_base.setSelected(false);
+        tv_basic.setSelected(false);
         tv_typejp.setSelected(false);
         tv_example.setSelected(false);
         tv_similar.setSelected(false);
         v.setSelected(true);
 
         switch (v.getId()) {
-            case R.id.tv_base:
+            case R.id.tv_basic:
                 index = 0;
+                pageChange();
                 break;
             case R.id.tv_typejp:
                 index = 1;
+                pageChange();
                 break;
             case R.id.tv_example:
                 index = 2;
+                pageChange();
                 break;
             case R.id.tv_similar:
                 index = 3;
+                pageChange();
                 break;
         }
-        pageChange();
     }
 
     private void pageChange() {
@@ -157,7 +162,7 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
             if (!fragments[index].isAdded()) {
                 transaction.add(R.id.fragment_container, fragments[index]);
             }
-            transaction.show(fragments[index]).commitAllowingStateLoss();
+            transaction.show(fragments[index]).commit();
         }
         currentTabIndex = index;
     }
@@ -170,7 +175,7 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
             case R.id.bt_side:
                 tabSelect(v);
                 break;
-            case R.id.tv_base:
+            case R.id.tv_basic:
             case R.id.tv_typejp:
             case R.id.tv_example:
             case R.id.tv_similar:

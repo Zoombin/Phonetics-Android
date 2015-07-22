@@ -2,11 +2,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
-        android:text="similar"
+        android:id="@+id/tv_similar_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="example" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/similar_recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:minWidth="50dp"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="horizontal" />
+
+    <ListView
+        android:id="@+id/similar_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/white_level1"
+        android:dividerHeight="1px"
+        android:listSelector="#00000000"
+        android:paddingBottom="2dp"></ListView>
+
 
 </LinearLayout>
