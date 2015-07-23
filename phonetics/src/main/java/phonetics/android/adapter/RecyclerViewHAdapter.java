@@ -46,7 +46,7 @@ class RecyclerViewHAdapter extends RecyclerView.Adapter<RecyclerViewHAdapter.MVi
                 @Override
                 public void onClick(View v) {
                     //跳转
-                    CurrentPhonetics.instance().curVoice = ety;
+                    CurrentPhonetics.instance().setCurrentVoice(ety);
                     context.startActivity(new Intent(context, DetailsActivity.class));
                 }
             });

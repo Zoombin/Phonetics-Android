@@ -36,13 +36,17 @@ public class CurrentPhonetics {
 
     public VoiceType voiceType = VoiceType.BASIC;
     public PhoneticsEntity entity;
-    public PhoneticsEntity.VoiceEty curVoice;
+    private PhoneticsEntity.VoiceEty curVoice;
+    public int curIndex = 0;
+    public boolean canNext = true;
+    public boolean canForward = false;
     public List<PhoneticsEntity.VoiceEty> basicsVoiceList;
     public List<PhoneticsEntity.VoiceEty> advancedVoiceList;
     private List<PhoneticsEntity.VoiceEty> curVoiceList;
 
-    /***
+    /**
      * 加载数据
+     *
      * @param context
      */
     public void loadData(Context context) {
@@ -63,8 +67,9 @@ public class CurrentPhonetics {
         }
     }
 
-    /***
+    /**
      * 获取当前语音列表
+     *
      * @return
      */
     public List<PhoneticsEntity.VoiceEty> getCurrentVoiceList() {
@@ -72,6 +77,115 @@ public class CurrentPhonetics {
             return basicsVoiceList;
         } else {
             return advancedVoiceList;
+        }
+    }
+
+    /**
+     * 操作当前的语言
+     *
+     * @param voice
+     */
+    public void setCurrentVoice(PhoneticsEntity.VoiceEty voice) {
+        this.curVoice = voice;
+        setCurrentIndex();
+    }
+
+    public PhoneticsEntity.VoiceEty getCurrentVoice() {
+        return curVoice;
+    }
+
+    //下一个
+    public PhoneticsEntity.VoiceEty getNextVoice() {
+        if (voiceType == VoiceType.BASIC) {
+            if (curIndex < basicsVoiceList.size() - 1) {
+                curIndex = curIndex + 1;
+                setCanForward();
+                setCanNextB();
+                return curVoice = basicsVoiceList.get(curIndex);
+            }
+        } else {
+            if (curIndex < advancedVoiceList.size() - 1) {
+                curIndex = curIndex + 1;
+                setCanForward();
+                setCanNextA();
+                return curVoice = advancedVoiceList.get(curIndex);
+            }
+        }
+        return null;
+    }
+
+    //上一个
+    public PhoneticsEntity.VoiceEty getForwardVoice() {
+        if (voiceType == VoiceType.BASIC) {
+            if (curIndex > 1) {
+                curIndex = curIndex - 1;
+                setCanForward();
+                setCanNextB();
+                return curVoice = basicsVoiceList.get(curIndex);
+            }
+        } else {
+            if (curIndex > 1) {
+                curIndex = curIndex - 1;
+                setCanForward();
+                setCanNextA();
+                return curVoice = advancedVoiceList.get(curIndex);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 当前语音的位置
+     */
+    public void setCurrentIndex() {
+        if (voiceType == VoiceType.BASIC) {
+            if (curVoice != null && basicsVoiceList != null) {
+                for (int i = 0; i < basicsVoiceList.size(); i++) {
+                    PhoneticsEntity.VoiceEty ety = basicsVoiceList.get(i);
+                    if (curVoice.getName().equals(ety.getName())) {
+                        curIndex = i;
+                        setCanNextB();
+                        break;
+                    }
+                }
+            }
+        } else {
+            if (curVoice != null && advancedVoiceList != null) {
+                for (int i = 0; i < advancedVoiceList.size(); i++) {
+                    PhoneticsEntity.VoiceEty ety = advancedVoiceList.get(i);
+                    if (curVoice.getName().equals(ety.getName())) {
+                        curIndex = i;
+                        setCanNextA();
+                        break;
+                    }
+                }
+            }
+        }
+        setCanForward();
+    }
+
+    private void setCanNextB(){
+        //计算是否可以下一个
+        if (curIndex < basicsVoiceList.size()-1){
+            canNext = true;
+        }else {
+            canNext = false;
+        }
+    }
+    private void setCanNextA(){
+        //计算是否可以下一个
+        if (curIndex < advancedVoiceList.size()-1){
+            canNext = true;
+        }else {
+            canNext = false;
+        }
+    }
+
+    private void setCanForward(){
+        if (curIndex >1){
+            canForward = true;
+        }else {
+            canForward = false;
         }
     }
 

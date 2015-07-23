@@ -40,7 +40,7 @@ public class PageSimilarFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
 
         initView();
-        setData(CurrentPhonetics.instance().curVoice);
+        setData(CurrentPhonetics.instance().getCurrentVoice());
     }
 
     private void initView() {

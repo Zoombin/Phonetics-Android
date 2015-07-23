@@ -1,15 +1,22 @@
 package phonetics.android.ui;
 
+import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.util.HashMap;
 
 import phonetics.android.BaseActivity;
 import phonetics.android.R;
@@ -19,6 +26,7 @@ import phonetics.android.fragment.PageBasicFragment;
 import phonetics.android.fragment.PageExampleFragment;
 import phonetics.android.fragment.PageSimilarFragment;
 import phonetics.android.fragment.PageDescribeFragment;
+import phonetics.android.utils.AnimationUtil;
 
 public class DetailsActivity extends BaseActivity implements OnClickListener {
     PhoneticsEntity.VoiceEty ety;
@@ -27,7 +35,7 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
     Button bt_voice;
 
     ImageView iv_front, iv_side;
-    ImageView iv_back;
+    ImageView iv_back,iv_forward,iv_next;
     TextView tv_basic, tv_typejp, tv_example, tv_similar;
 
     int currentTabIndex;
@@ -46,6 +54,7 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
 
         initView();
         initFragment();
+        initButtonStatus();
         initPageStatus();
     }
 
@@ -69,6 +78,8 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         iv_front.setVisibility(View.GONE);
         (iv_side = (ImageView) findViewById(R.id.iv_side)).setOnClickListener(this);
         (iv_back = (ImageView) findViewById(R.id.iv_back)).setOnClickListener(this);
+        (iv_forward = (ImageView) findViewById(R.id.iv_forward)).setOnClickListener(this);
+        (iv_next = (ImageView) findViewById(R.id.iv_next)).setOnClickListener(this);
 
         (tv_basic = (TextView) findViewById(R.id.tv_basic)).setOnClickListener(this);
         (tv_typejp = (TextView) findViewById(R.id.tv_typejp)).setOnClickListener(this);
@@ -85,6 +96,20 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         fragments[1] = describeFragment = new PageDescribeFragment();
         fragments[2] = exampleFragment = new PageExampleFragment();
         fragments[3] = similarFragment = new PageSimilarFragment();
+    }
+
+    /***
+     * 初始化底部按钮的状态
+     */
+    private void initButtonStatus(){
+        if(!CurrentPhonetics.instance().canForward)
+            iv_forward.setVisibility(View.INVISIBLE);
+        else
+            iv_forward.setVisibility(View.VISIBLE);
+        if (!CurrentPhonetics.instance().canNext)
+            iv_next.setVisibility(View.INVISIBLE);
+        else
+            iv_next.setVisibility(View.VISIBLE);
     }
 
     /***
@@ -116,11 +141,12 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
     }
 
     private void setData() {
-        ety = CurrentPhonetics.instance().curVoice;
+        ety = CurrentPhonetics.instance().getCurrentVoice();
 
         setImgData();
         setFaceData();
     }
+
 
     /**
      * 音标数据
@@ -137,11 +163,15 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         String[] pic = pics.split(",");
 
         if (pic != null && pic.length > 0) {
-            ImageLoader.getInstance().displayImage("assets://voicepic/" + pic[0] + ".jpg", iv_front);
-            ImageLoader.getInstance().displayImage("assets://voicepic/" + "c" + pic[0] + ".jpg", iv_side);
+            ImageLoader.getInstance().displayImage("assets://voicepic/" + "n0" + ".jpg", iv_front);
+            ImageLoader.getInstance().displayImage("assets://voicepic/" + "c" + "e1" + ".jpg", iv_side);
         }
     }
 
+    /***
+     * 正面/侧面切换
+     * @param v
+     */
     private void tabSelect(View v) {
         bt_front.setSelected(false);
         bt_side.setSelected(false);
@@ -161,6 +191,10 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         }
     }
 
+    /***
+     * 选择fragment
+     * @param v
+     */
     private void pageSelect(View v) {
         tv_basic.setSelected(false);
         tv_typejp.setSelected(false);
@@ -171,23 +205,71 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
         switch (v.getId()) {
             case R.id.tv_basic:
                 index = 0;
-                pageChange();
                 break;
             case R.id.tv_typejp:
                 index = 1;
-                pageChange();
                 break;
             case R.id.tv_example:
                 index = 2;
-                pageChange();
                 break;
             case R.id.tv_similar:
                 index = 3;
-                pageChange();
+                break;
+        }
+        pageChange();
+    }
+
+    /***
+     * 刷新数据
+     * @param v
+     */
+    private void reLoadData(View v){
+        PhoneticsEntity.VoiceEty ety = null;
+        switch (v.getId()) {
+            case R.id.iv_forward:
+                //上一个
+                ety = CurrentPhonetics.instance().getForwardVoice();
+                break;
+            case R.id.iv_next:
+                //下一个
+                ety = CurrentPhonetics.instance().getNextVoice();
+                break;
+        }
+        if(ety != null){
+            pageSelect(tv_basic);
+
+            setData();
+
+            baseFragment.refrashData(ety);
+            describeFragment.refrashData(ety);
+            exampleFragment.refrashData(ety);
+            similarFragment.refrashData(ety);
+
+            initButtonStatus();
+        }
+    }
+
+
+    /**
+     * 图片点击 播放动画
+     * @param v
+     */
+    private void faceClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_front:
+                String[] resouce = new String[]{"n0","n1","n2","n3","n4","n5","n6"};
+                AnimationUtil.startAnimation(mActivity,(ImageView)v,resouce,400);
+                break;
+            case R.id.iv_side:
+                String[] resouce1 = new String[]{"ce1","ce2","ce3","ce4","ce5","ce6"};
+                AnimationUtil.startAnimation(mActivity,(ImageView)v,resouce1,400);
                 break;
         }
     }
 
+    /***
+     * fragment切换
+     */
     private void pageChange() {
         if (currentTabIndex != index) {
             FragmentTransaction transaction = getSupportFragmentManager()
@@ -216,6 +298,14 @@ public class DetailsActivity extends BaseActivity implements OnClickListener {
                 pageSelect(v);
                 break;
             case R.id.iv_img:
+                break;
+            case R.id.iv_front:
+            case R.id.iv_side:
+                faceClick(v);
+                break;
+            case R.id.iv_forward:
+            case R.id.iv_next:
+                reLoadData(v);
                 break;
             case R.id.iv_back:
                 finish();

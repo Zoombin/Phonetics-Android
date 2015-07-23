@@ -151,13 +151,35 @@
         android:id="@+id/ad_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_above="@+id/iv_back"
+        android:layout_above="@+id/bottom_layout"
         android:orientation="horizontal"></LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_go_home" />
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/iv_forward"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/iv_next"
+            android:src="@drawable/ic_forward" />
+
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_next" />
+    </RelativeLayout>
+
 </RelativeLayout>
