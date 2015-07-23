@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Phonetics-Android.iml" filepath="$PROJECT_DIR$/Phonetics-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/phonetics/phonetics.iml" filepath="$PROJECT_DIR$/phonetics/phonetics.iml" />
-      <module fileurl="file://$PROJECT_DIR$/phonetics-android.iml" filepath="$PROJECT_DIR$/phonetics-android.iml" />
     </modules>
   </component>
 </project>
