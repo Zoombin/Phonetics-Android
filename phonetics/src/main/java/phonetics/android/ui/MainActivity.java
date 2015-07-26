@@ -1,6 +1,9 @@
 package phonetics.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -8,11 +11,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
+
 import phonetics.android.BaseActivity;
+import phonetics.android.BaseApplication;
 import phonetics.android.R;
 import phonetics.android.adapter.PhoneticsAdapter;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.utils.MediaPlayerUtil;
+import phonetics.android.view.ShareDialog;
 import phonetics.android.widget.CustomDialog;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
@@ -46,7 +54,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
         (bt_right = (TextView) findViewById(R.id.bt_right)).setOnClickListener(this);
         (iv_menu = (ImageView) findViewById(R.id.iv_menu)).setOnClickListener(this);
-        listView = (ListView)findViewById(R.id.listview);
+        listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter = new PhoneticsAdapter(mActivity));
     }
 
@@ -68,9 +76,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         }
     }
 
-    private void showMenuDialog(){
-        final CustomDialog dialog = CustomDialog.create(mActivity,R.style.customDialogOne);
-        View view = LayoutInflater.from(mActivity).inflate(R.layout.layout_menu_dialog,null);
+    private void showMenuDialog() {
+        final CustomDialog dialog = CustomDialog.create(mActivity, R.style.customDialogOne);
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.layout_menu_dialog, null);
         view.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,20 +94,22 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         view.findViewById(R.id.tv_item_compare).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(mActivity, CompareActivity.class));
+                dialog.dismiss();
             }
         });
         view.findViewById(R.id.tv_item_share).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new ShareDialog(mActivity);
+                dialog.dismiss();
             }
         });
         dialog.setContentVw(view);
         dialog.show();
     }
 
-    private void setData(){
+    private void setData() {
         PhoneticsEntity entity = CurrentPhonetics.instance().entity;
         adapter.setData(entity.getBasics());
     }
@@ -117,5 +127,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 showMenuDialog();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        BaseApplication.instance().onTerminate();
+        super.onDestroy();
     }
 }

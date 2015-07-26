@@ -9,10 +9,13 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import phonetics.android.config.Config;
+
 /**
  * Created by lsd on 15/7/23.
  */
 public class AnimationUtil {
+
     /**
      * @param imageView
      * @param resouce   资源
@@ -25,7 +28,10 @@ public class AnimationUtil {
             int durtion = time / count;
             AnimationDrawable animationDrawable = new AnimationDrawable();
             for (int i = 0; i < count; i++) {
-                animationDrawable.addFrame(new BitmapDrawable(context.getResources(), loader.loadImageSync("assets://voicepic/" + resouce[i] + ".jpg")), durtion);
+                int resource_ID = context.getResources().getIdentifier(resouce[i], "drawable", "phonetics.android");
+                Drawable drawable = context.getResources().getDrawable(resource_ID);
+                //animationDrawable.addFrame(new BitmapDrawable(context.getResources(), loader.loadImageSync(Config.VOCIEPIC_BASE_PATH + resouce[i] + Config.IMG_TYPE_JPG)), durtion);
+                animationDrawable.addFrame(drawable,durtion);
             }
             imageView.setImageDrawable(animationDrawable);
             animationDrawable.setOneShot(true);

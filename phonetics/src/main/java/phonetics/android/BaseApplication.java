@@ -14,7 +14,9 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import java.io.File;
 
+import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.tools.StorageUtils;
+import phonetics.android.utils.MediaPlayerUtil;
 
 /**
  * Created by LSD on 2015/7/20.
@@ -27,7 +29,10 @@ public class BaseApplication extends Application {
         super.onCreate();
         app = this;
 
-        initImageLoader(this);
+        initImageLoader(this);//初始化图片加载
+
+        CurrentPhonetics.instance().loadData(this);//加载配置文件
+        MediaPlayerUtil.create(this);//准备音乐文件
     }
 
     public static Application instance() {
@@ -63,5 +68,14 @@ public class BaseApplication extends Application {
                 .build();
 
         ImageLoader.getInstance().init(config);
+    }
+
+    @Override
+    public void onTerminate() {
+        MediaPlayerUtil.release();//释放音乐文件
+        CurrentPhonetics.instance().clean();//清除配置数据
+        ImageLoader.getInstance().clearMemoryCache();//清除图片缓存
+
+        super.onTerminate();
     }
 }

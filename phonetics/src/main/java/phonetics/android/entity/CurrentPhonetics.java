@@ -182,7 +182,7 @@ public class CurrentPhonetics {
     }
 
     private void setCanForward(){
-        if (curIndex >1){
+        if (curIndex >0){
             canForward = true;
         }else {
             canForward = false;
@@ -192,9 +192,6 @@ public class CurrentPhonetics {
     public void clean() {
         if (cClass != null) {
             cClass = null;
-        }
-        if (entity != null) {
-            entity = null;
         }
     }
 }

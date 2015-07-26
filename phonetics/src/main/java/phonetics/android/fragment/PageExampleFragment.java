@@ -14,21 +14,24 @@ import java.util.List;
 
 import phonetics.android.BaseFragment;
 import phonetics.android.R;
-import phonetics.android.adapter.DetailsExampleAdapter;
 import phonetics.android.adapter.DetailsRecyclerViewHAdapter;
+import phonetics.android.adapter.DetailsGeneralAdapter;
 import phonetics.android.entity.CurrentPhonetics;
+import phonetics.android.entity.GeneralEntity;
 import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.utils.PlayUtil;
 
 /**
  * Created by lsd on 15/7/22.
  */
-public class PageExampleFragment extends BaseFragment {
+public class PageExampleFragment extends BaseFragment implements DetailsGeneralAdapter.OnItemClick {
     TextView tv_example_name;
     RecyclerView example_recyclerview;
     ListView example_listview;
 
-    DetailsExampleAdapter adapter;
+    DetailsGeneralAdapter adapter;
     DetailsRecyclerViewHAdapter rAdapter;
+    PhoneticsEntity.VoiceEty thisEty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +56,8 @@ public class PageExampleFragment extends BaseFragment {
 
         //ListView
         example_listview = (ListView) mActivity.findViewById(R.id.example_listview);
-        example_listview.setAdapter(adapter = new DetailsExampleAdapter(mActivity));
+        example_listview.setAdapter(adapter = new DetailsGeneralAdapter(mActivity));
+        adapter.setOnItemClick(this);
     }
 
     public void refrashData(PhoneticsEntity.VoiceEty ety) {
@@ -69,48 +73,71 @@ public class PageExampleFragment extends BaseFragment {
      */
     private void setData(PhoneticsEntity.VoiceEty ety) {
         if (ety != null) {
-            //名称
-            tv_example_name.setText(ety.getExamples());
+            //计算数据
+            List<GeneralEntity> list = new ArrayList<>();
+            int count = Integer.parseInt(ety.getExamples_count());
+            if (count > 1) {
+                String[] exs = ety.getExamples().split(",");
+                String[] reads = ety.getExamples_read().split("&&");
+                String[] slow_reads = ety.getExamples_slow_read().split("&&");
+                String[] ybs = ety.getExamples_yb().split("&&");
+                String[] yb_names = ety.getExamples_yb_name().split("&&");
 
-            //例子
-            String Examples_yb_name = ety.getExamples_yb_name();
-            List<PhoneticsEntity.VoiceEty> vList = new ArrayList<PhoneticsEntity.VoiceEty>();
-            String[] Examples_yb_name_array = Examples_yb_name.split(",");
-            if (Examples_yb_name_array != null && Examples_yb_name_array.length > 0) {
-                List<PhoneticsEntity.VoiceEty> list =  CurrentPhonetics.instance().getCurrentVoiceList();
-                for (String string : Examples_yb_name_array){
-                    for (PhoneticsEntity.VoiceEty vEty : list){
-                        if (string.equals(vEty.getName())){
-                            vList.add(vEty);
-                            break;
-                        }
+                for (int i = 0; i < count; i++) {
+                    GeneralEntity entity = PlayUtil.getGeneralEntity(exs[i], reads[i], slow_reads[i], ybs[i], yb_names[i]);
+                    //test
+                    if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
+                        entity.setAdvanced_pic(ety.getExamples_pics());
                     }
-                }
-                rAdapter.setData(vList);
-            }
-
-            //步骤
-            int exampleCount = Integer.parseInt(ety.getExamples_count());
-            String Examples_yb = ety.getExamples_yb();
-            String Examples = ety.getExamples();
-
-            List<String> list = new ArrayList<String>();
-            String[] Examples_yb_array = null;
-            String[] Example_array = null;
-            if (exampleCount > 1) {
-                Examples_yb_array = Examples_yb.split("&&");
-                Example_array = Examples.split(",");
-                if (Examples_yb_array != null && Example_array != null) {
-                    for (int i = 0; i < exampleCount; i++) {
-                        String yb = Examples_yb_array[i].replace(",", " ");
-                        list.add(Example_array[i] + " /" + yb + "/");
-                    }
+                    list.add(entity);
                 }
             } else {
-                String yb = Examples_yb.replace(",", " ");
-                list.add(Examples + " /" + yb + "/");
+                GeneralEntity entity = PlayUtil.getGeneralEntity(ety.getExamples(), ety.getExamples_read(), ety.getExamples_slow_read(), ety.getExamples_yb(), ety.getExamples_yb_name());
+                //test
+                if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
+                    entity.setAdvanced_pic(ety.getExamples_pics());
+                }
+                list.add(entity);
             }
-            adapter.setData(list);
+
+
+            if (list.size() > 0) {
+                GeneralEntity eEty = list.get(0);
+                //名称
+                tv_example_name.setText(eEty.getName());
+
+                //步骤列表
+                adapter.setData(list);
+
+                //关联音标
+                List<PhoneticsEntity.VoiceEty> vList = eEty.getvList();
+                if (vList.size() > 0) {
+                    example_recyclerview.setVisibility(View.VISIBLE);
+                    rAdapter.setData(vList);
+                } else {
+                    example_recyclerview.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+
+    //处理点击回调
+    @Override
+    public void click(int postion, View v) {
+        GeneralEntity eEty = (GeneralEntity) adapter.getItem(postion);
+        tv_example_name.setText(eEty.getName());//重新设置名称
+        rAdapter.setData(eEty.getvList());//重新设置关联音标
+
+        switch (v.getId()) {
+            case R.id.content_layout:
+                //条目点击
+                PlayUtil.playMergeMedia(mActivity,0,eEty);
+                break;
+            case R.id.iv_pic:
+                //慢放点击
+                PlayUtil.playMergeMedia(mActivity,1,eEty);
+                break;
         }
     }
 }

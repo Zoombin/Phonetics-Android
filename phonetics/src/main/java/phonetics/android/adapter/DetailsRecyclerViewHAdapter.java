@@ -14,26 +14,28 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
 import phonetics.android.R;
+import phonetics.android.config.Config;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
 import phonetics.android.ui.DetailsActivity;
+import phonetics.android.utils.PlayUtil;
 
 public class DetailsRecyclerViewHAdapter extends RecyclerView.Adapter<DetailsRecyclerViewHAdapter.MViewHolder> {
     private Context context;
     private List<PhoneticsEntity.VoiceEty> list;
 
-   public DetailsRecyclerViewHAdapter(Context context){
+    public DetailsRecyclerViewHAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(List<PhoneticsEntity.VoiceEty> list){
+    public void setData(List<PhoneticsEntity.VoiceEty> list) {
         this.list = list;
         this.notifyDataSetChanged();
     }
 
     @Override
     public MViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MViewHolder holder = new MViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_recyclerview_hitem, parent,false));
+        MViewHolder holder = new MViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_recyclerview_hitem, parent, false));
         return holder;
     }
 
@@ -41,10 +43,18 @@ public class DetailsRecyclerViewHAdapter extends RecyclerView.Adapter<DetailsRec
     public void onBindViewHolder(MViewHolder holder, final int position) {
         final PhoneticsEntity.VoiceEty ety = (PhoneticsEntity.VoiceEty) getItem(position);
         if (ety != null) {
-            ImageLoader.getInstance().displayImage("assets://symbol/" + ety.getImg()+".png", holder.iv_img);
+            ImageLoader.getInstance().displayImage(Config.SYMBOLPIC_BASE_PATH + ety.getImg() + Config.IMG_TYPE_PNG, holder.iv_img);
             holder.item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (DetailsActivity.faceSide == 0) {
+                        PlayUtil.playAnimation(context, DetailsActivity.faceSide, DetailsActivity.iv_front, ety);
+                        PlayUtil.playMedia(DetailsActivity.voice,ety);
+                    }
+                    if (DetailsActivity.faceSide == 1) {
+                        PlayUtil.playAnimation(context, DetailsActivity.faceSide, DetailsActivity.iv_side, ety);
+                        PlayUtil.playMedia(DetailsActivity.voice, ety);
+                    }
                 }
             });
         }

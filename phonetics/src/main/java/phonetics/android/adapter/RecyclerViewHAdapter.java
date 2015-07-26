@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import phonetics.android.R;
+import phonetics.android.config.Config;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
 import phonetics.android.ui.DetailsActivity;
@@ -41,7 +42,7 @@ class RecyclerViewHAdapter extends RecyclerView.Adapter<RecyclerViewHAdapter.MVi
     public void onBindViewHolder(MViewHolder holder, final int position) {
         final PhoneticsEntity.VoiceEty ety = (PhoneticsEntity.VoiceEty) getItem(position);
         if (ety != null) {
-            ImageLoader.getInstance().displayImage("assets://symbol/" + ety.getImg()+".png", holder.iv_img);
+            ImageLoader.getInstance().displayImage(Config.SYMBOLPIC_BASE_PATH + ety.getImg()+Config.IMG_TYPE_PNG, holder.iv_img);
             holder.item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

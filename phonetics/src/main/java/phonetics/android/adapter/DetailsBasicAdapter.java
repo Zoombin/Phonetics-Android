@@ -10,21 +10,29 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import phonetics.android.R;
 import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.entity.StepEntity;
+import phonetics.android.ui.DetailsActivity;
+import phonetics.android.utils.AnimationUtil;
+import phonetics.android.utils.FileNameUtil;
+import phonetics.android.utils.MediaPlayerUtil;
+import phonetics.android.utils.PlayUtil;
 
 public class DetailsBasicAdapter extends BaseAdapter {
     private Context context;
-    String[] list;
+    List<StepEntity>  list;
 
     public DetailsBasicAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(String[] list) {
+    public void setData(List<StepEntity>  list) {
         this.list = list;
         this.notifyDataSetChanged();
     }
@@ -32,13 +40,13 @@ public class DetailsBasicAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return list == null ? 0 : list.length;
+        return list == null ? 0 : list.size();
     }
 
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        return list == null ? null : list[position];
+        return list == null ? null : list.get(position);
     }
 
     @Override
@@ -61,7 +69,7 @@ public class DetailsBasicAdapter extends BaseAdapter {
             viewHodler = (ViewHodler) convertView.getTag();
         }
 
-        String  ety = (String) getItem(position);
+        final StepEntity  ety = (StepEntity) getItem(position);
         if (ety != null) {
             if(position == 0){
                 viewHodler.iv_pic.setImageResource(R.drawable.ic_step_1);
@@ -72,7 +80,42 @@ public class DetailsBasicAdapter extends BaseAdapter {
             if(position == 2){
                 viewHodler.iv_pic.setImageResource(R.drawable.ic_step_3);
             }
-            viewHodler.tv_content.setText(ety);
+            viewHodler.tv_content.setText(ety.getDescribes());
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String stepVoices = ety.getVoices();
+
+                    int[] data = PlayUtil.getStepVoicesData(stepVoices);
+
+                    int start_time = data[0];
+                    int delay_time = data[1];
+
+                    //播放动画
+                    String pics = ety.getPics();
+                    String[] picArray = pics.split(",");
+                    String resouce[] = null;
+                    if (picArray != null && picArray.length > 0) {
+                        resouce = new String[picArray.length];
+                        if (DetailsActivity.faceSide == 0){
+                            for (int i = 0;i<picArray.length;i++){
+                                resouce[i] = FileNameUtil.replace(picArray[i]);
+                            }
+                            AnimationUtil.startAnimation(context, DetailsActivity.iv_front, resouce, delay_time);
+                        }else{
+                            for (int i = 0;i<picArray.length;i++){
+                                resouce[i] = "c"+FileNameUtil.replace(picArray[i]);
+                            }
+                            AnimationUtil.startAnimation(context, DetailsActivity.iv_side, resouce, delay_time);
+                        }
+
+                        //播放音乐
+                        MediaPlayerUtil.start(start_time,delay_time);
+
+                    }
+                }
+            });
         }
         return convertView;
     }
