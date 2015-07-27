@@ -10,4 +10,6 @@
     <color name="gray_level1">#e2dfdb</color>
     <color name="gray_level2">#c4c4c4</color>
     <color name="gray_level3">#aaaaaa</color>
+
+    <color name="gold">#ffd700</color>
 </resources>

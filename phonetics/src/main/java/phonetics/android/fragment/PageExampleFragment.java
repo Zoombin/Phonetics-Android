@@ -85,7 +85,7 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
 
                 for (int i = 0; i < count; i++) {
                     GeneralEntity entity = PlayUtil.getGeneralEntity(exs[i], reads[i], slow_reads[i], ybs[i], yb_names[i]);
-                    //test
+                    //advanced
                     if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
                         entity.setAdvanced_pic(ety.getExamples_pics());
                     }
@@ -93,7 +93,7 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
                 }
             } else {
                 GeneralEntity entity = PlayUtil.getGeneralEntity(ety.getExamples(), ety.getExamples_read(), ety.getExamples_slow_read(), ety.getExamples_yb(), ety.getExamples_yb_name());
-                //test
+                //advanced
                 if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
                     entity.setAdvanced_pic(ety.getExamples_pics());
                 }

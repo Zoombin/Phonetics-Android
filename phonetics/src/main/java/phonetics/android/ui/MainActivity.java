@@ -2,8 +2,6 @@ package phonetics.android.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,15 +9,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.File;
-
+import cn.sharesdk.framework.ShareSDK;
 import phonetics.android.BaseActivity;
 import phonetics.android.BaseApplication;
 import phonetics.android.R;
 import phonetics.android.adapter.PhoneticsAdapter;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
-import phonetics.android.utils.MediaPlayerUtil;
 import phonetics.android.view.ShareDialog;
 import phonetics.android.widget.CustomDialog;
 
@@ -41,6 +37,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         }
 
         setData();
+
+        ShareSDK.initSDK(mActivity);
     }
 
     @Override

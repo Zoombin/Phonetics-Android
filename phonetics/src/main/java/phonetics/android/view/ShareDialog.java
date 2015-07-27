@@ -1,6 +1,7 @@
 package phonetics.android.view;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,7 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.wechat.moments.WechatMoments;
 import phonetics.android.R;
 
 /**
@@ -62,11 +68,41 @@ public class ShareDialog implements OnClickListener {
                 // 微信分享必须设置targetURL，需要为http链接格式
                 // 微信朋友圈只能显示title，并且过长会被微信截取部分内容
                 // 设置微信朋友圈分享内容
-
+                showShare();
                 break;
             default:
                 break;
         }
+    }
+
+    private void showShare(){
+        Platform.ShareParams sp = new Platform.ShareParams();
+        sp.setTitle("测试分享的标题");
+        sp.setTitleUrl("http://sharesdk.cn"); // 标题的超链接
+        sp.setText("测试分享的文本");
+        sp.setImageUrl("http://www.someserver.com/测试图片网络地址.jpg");
+        sp.setSite("发布分享的网站名称");
+        sp.setSiteUrl("发布分享网站的地址");
+
+        Platform qzone = ShareSDK.getPlatform (WechatMoments.NAME);
+        qzone. setPlatformActionListener(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                Toast.makeText(context, "分享成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+                Toast.makeText(context,"分享失败",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+                Toast.makeText(context,"分享取消",Toast.LENGTH_SHORT).show();
+            }
+        }); // 设置分享事件回调
+        // 执行图文分享
+        qzone.share(sp);
     }
 
 
@@ -83,10 +119,7 @@ public class ShareDialog implements OnClickListener {
      * @功能描述 : 添加微信平台分享
      */
     private void addWXPlatform() {
-        // 注意：在微信授权的时候，必须传递appSecret
-        // wx967daebe835fbeac是你在微信开发平台注册应用的AppID, 这里需要替换成你注册的AppID
-        String appId = "wx501bd7cea77cc83a";
-        String appSecret = "89f629c822b71cabfe761f96265b4f71";
-        // 添加微信平台
+        String appId = "wxf1ce482aa1ad2023";
+        String appSecret = "1af038971efee027911b4c2e622eab74";
     }
 }

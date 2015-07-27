@@ -35,7 +35,7 @@ public class AssetsUtil {
             StringBuffer sBuffer = new StringBuffer();
             int len =0;
             while (-1 != (len = inputStream.read(buffer))){
-                String string = new String(buffer,0,len,"utf-8");
+                String string = new String(buffer,0,len,"UTF-8");
                 sBuffer.append(string);
             }
             Gson gson = new Gson();

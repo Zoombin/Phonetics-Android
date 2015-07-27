@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DevInfor>
+    <ShareSDK 
+        AppKey = "330bf065e354"/> <!-- 修改成你在sharesdk后台注册的应用的appkey"-->
+    
+    <WechatMoments
+        Id="1"
+        SortId="1"
+        AppId="wxc43c2c004120810f"
+        AppSecret="96306e148dc901d44fedb897566f7a6d"
+        BypassApproval="false"
+        Enable="true" />
+
+</DevInfor>

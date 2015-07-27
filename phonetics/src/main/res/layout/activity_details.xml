@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_level2"
+    android:background="@color/gray_level3"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -31,7 +31,7 @@
             android:layout_height="60dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
-            android:background="@color/gray_level3" />
+            android:background="@drawable/detail_voice_bg" />
 
         <Button
             android:id="@+id/bt_voice"
@@ -58,8 +58,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtfront_selector"
                 android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="17dp"
+                android:paddingRight="17dp"
                 android:paddingTop="6dp"
                 android:text="@string/bt_txt_front"
                 android:textColor="@drawable/bt_view_color"
@@ -71,8 +71,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtside_selector"
                 android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="17dp"
+                android:paddingRight="17dp"
                 android:paddingTop="6dp"
                 android:text="@string/bt_txt_side"
                 android:textColor="@drawable/bt_view_color"

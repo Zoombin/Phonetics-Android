@@ -27,6 +27,7 @@ dependencies {
     compile files('ShareSDK-Wechat-Favorite-2.6.1.jar')
     compile files('ShareSDK-Wechat-Moments-2.6.1.jar')
     compile files('ShareSDK-Core-2.6.1.jar')
+    compile files('MobLogCollector.jar')
     compile files('MobTools.jar')
 
 

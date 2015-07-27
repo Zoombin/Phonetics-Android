@@ -18,7 +18,7 @@ import phonetics.android.ui.DetailsActivity;
  */
 public class PlayUtil {
 
-    /***
+    /**
      * 播放动画
      *
      * @param context
@@ -26,7 +26,7 @@ public class PlayUtil {
      * @param imageView
      * @param ety
      */
-    public static void playAnimation(Context context,int faceSide,ImageView imageView,PhoneticsEntity.VoiceEty ety) {
+    public static void playAnimation(Context context, int faceSide, ImageView imageView, PhoneticsEntity.VoiceEty ety) {
         String pics = null;
         if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE) {
             //高级
@@ -65,11 +65,11 @@ public class PlayUtil {
     /**
      * 播放音频
      */
-    public static void playMedia(int voice,PhoneticsEntity.VoiceEty ety) {
+    public static void playMedia(int voice, PhoneticsEntity.VoiceEty ety) {
         int stime = 0;
         int long_time = 0;
 
-        if (voice == 0){
+        if (voice == 0) {
             //男声
             String stime_male = ety.getStime_male();
             String long_male = ety.getLong_male();
@@ -93,7 +93,7 @@ public class PlayUtil {
             } catch (Exception e) {
             }
         }
-        if (voice == 1){
+        if (voice == 1) {
             //女声
             String stime_fmale = ety.getStime_female();
             String long_fmale = ety.getLong_female();
@@ -131,7 +131,8 @@ public class PlayUtil {
      */
     public static int[] getStepVoicesData(String stepVoices) {
         //0:45.245,0.223,0:04.286,0.157
-        String[] temp = stepVoices.split(",");
+        //17:58.247,0.630, 9:35.248,0.435",
+        String[] temp = stepVoices.trim().split(",");
         int start_time = 0;
         int delay_time = 0;
         if (temp != null && temp.length == 4) {
@@ -194,6 +195,34 @@ public class PlayUtil {
 
 
     /***
+     *  获取播放动画的图片资源
+     *
+     * @param pics
+     * @return
+     */
+    public String[] get(String pics) {
+        String[] picArray = pics.split(",");
+        String[] resouce = null;
+        if (picArray != null && picArray.length > 0) {
+            resouce = new String[picArray.length];
+            if (DetailsActivity.faceSide == 0) {
+                //播放动画
+                for (int i = 0; i < picArray.length; i++) {
+                    resouce[i] = FileNameUtil.replace(picArray[i]);
+                }
+            }
+            if (DetailsActivity.faceSide == 1) {
+                //播放动画
+                for (int i = 0; i < picArray.length; i++) {
+                    resouce[i] = "c" + FileNameUtil.replace(picArray[i]);
+                }
+            }
+        }
+        return resouce;
+    }
+
+
+    /**
      * 拼接通用的实体
      *
      * @param name
@@ -239,20 +268,20 @@ public class PlayUtil {
      * @param type 0:正常  1：慢速
      * @param eEty
      */
-    public static void playMergeMedia(Context context,int type, GeneralEntity eEty) {
+    public static void playMergeMedia(Context context, int type, GeneralEntity eEty) {
         List<PhoneticsEntity.VoiceEty> list = eEty.getvList();
         StringBuffer pics = new StringBuffer();
         if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE) {
             //高级
-             pics.append(eEty.getAdvanced_pic() + ",");
+            pics.append(eEty.getAdvanced_pic() + ",");
         } else {
             //基础
             for (PhoneticsEntity.VoiceEty ety : list) {
                 pics.append(ety.getPics_front() + ",");
             }
         }
-        String picsStr ="";
-        if (pics != null && pics.length()>1){
+        String picsStr = "";
+        if (pics != null && pics.length() > 1) {
             picsStr = pics.toString().substring(0, pics.length() - 1);
         }
         String[] picArray = picsStr.split(",");
