@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 
+import phonetics.android.Constants;
 import phonetics.android.R;
 
 /**
@@ -24,16 +25,21 @@ public class MediaPlayerUtil {
     }
 
     public static void start(int startTime, final int delayTime) {
+        if (Constants.isPlaying){
+            return;
+        }
         if (startTime > 0) {
             player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
                 @Override
                 public void onSeekComplete(MediaPlayer mp) {
+                    Constants.isPlaying = true;
                     mp.start();
                     delay(delayTime);
                 }
             });
             player.seekTo(startTime);
         } else {
+            Constants.isPlaying = true;
             player.start();
             delay(delayTime);
         }
@@ -44,6 +50,7 @@ public class MediaPlayerUtil {
         TimerUtil tUtil = new TimerUtil(new Handler() {
             @Override
             public void handleMessage(Message msg) {
+                Constants.isPlaying = false;
                 player.pause();
             }
         });

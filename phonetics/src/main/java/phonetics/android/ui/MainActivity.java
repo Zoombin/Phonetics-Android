@@ -130,6 +130,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onDestroy() {
         BaseApplication.instance().onTerminate();
+        ShareSDK.stopSDK(this);
         super.onDestroy();
     }
 }

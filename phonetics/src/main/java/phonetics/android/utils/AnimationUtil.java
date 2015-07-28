@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import phonetics.android.Constants;
 import phonetics.android.config.Config;
 
 /**
@@ -22,6 +23,9 @@ public class AnimationUtil {
      * @param time      毫秒
      */
     public static void startAnimation(Context context, ImageView imageView, String[] resouce, int time) {
+        if (Constants.isPlaying){
+            return;
+        }
         ImageLoader loader = ImageLoader.getInstance();
         if (imageView != null && resouce != null) {
             int count = resouce.length;

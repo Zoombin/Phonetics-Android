@@ -9,8 +9,10 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
@@ -42,8 +44,24 @@ public class AssetsUtil {
             entity = gson.fromJson(sBuffer.toString().trim(),PhoneticsEntity.class);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("LSD",e.getMessage());
         }
         return entity;
+
+
+        /*PhoneticsEntity entity = null;
+        try {
+            InputStreamReader inputReader = new InputStreamReader( context.getAssets().open("voiceinfo.json") );
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            String Result="";
+            while((line = bufReader.readLine()) != null)
+                Result += line;
+
+            Gson gson = new Gson();
+            entity = gson.fromJson(Result,PhoneticsEntity.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return entity;*/
     }
 }

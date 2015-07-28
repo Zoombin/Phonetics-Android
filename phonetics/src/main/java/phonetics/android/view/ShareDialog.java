@@ -6,6 +6,8 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,9 +30,11 @@ public class ShareDialog implements OnClickListener {
 
     private Dialog dialog;
     private Context context;
+    Handler handler;
 
     public ShareDialog(Context context) {
         this.context = context;
+        handler = new Handler();
 
         addCustomPlatforms();
 
@@ -84,21 +88,40 @@ public class ShareDialog implements OnClickListener {
         sp.setSite("发布分享的网站名称");
         sp.setSiteUrl("发布分享网站的地址");
 
+        Log.i("LSD","share WechatMoments");
+
         Platform qzone = ShareSDK.getPlatform (WechatMoments.NAME);
         qzone. setPlatformActionListener(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                Toast.makeText(context, "分享成功", Toast.LENGTH_SHORT).show();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, "分享成功", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-                Toast.makeText(context,"分享失败",Toast.LENGTH_SHORT).show();
+                Log.e("LSD","i = "+i);
+                throwable.printStackTrace();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, "分享失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
             public void onCancel(Platform platform, int i) {
-                Toast.makeText(context,"分享取消",Toast.LENGTH_SHORT).show();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, "分享取消", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }); // 设置分享事件回调
         // 执行图文分享

@@ -8,29 +8,31 @@ import android.util.Log;
 public class FileNameUtil {
     public static String replace(String name){
         String newName = name
-                .replace("æ", "ian")
-                .replace("aɪ", "ai")
-                .replace("aυ", "au")
-                .replace("υ", "ev")
-                .replace("ð", "th")
-                .replace("dʒ", "gh")
-                .replace("eɪ", "ei")
-                .replace("ə", "er")
-                .replace("ɚc", "erc")
-                .replace("ɪ", "i")
                 .replace("ɔɪ", "oui")
                 .replace("ɔi", "our")
                 .replace("oυ", "ou")
+                .replace("aɪ", "ai")
+                .replace("aυ", "au")
+                .replace("tʃ", "tsh")
+                .replace("dʒ", "gh")
+                .replace("eɪ", "ei")
+                .replace("ɔc", "ouc")
+                .replace("ə", "er")
+                .replace("ɚc", "erc")
+                .replace("æ", "ian")
+                .replace("ɪ", "i")
                 .replace("ʊ", "u")
                 .replace("ʃ", "sh")
-                .replace("tʃ", "tsh")
+                .replace("υ", "ev")
                 .replace("α", "a")
-                .replace("ɔc", "ouc")
+                .replace("ð", "th")
                 .replace("θ", "zh")
                 .replace("ʒ", "rh")
                 .replace("ε", "ah")
                 .replace("ʌ", "ar")
-                .replace("ŋ", "ng");
+                .replace("ŋ", "ng")
+                .replace("ɫ", "ii");
+
         return  newName;
     }
 

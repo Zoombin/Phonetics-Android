@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="1_MobTools">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/phonetics/MobTools.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -43,6 +43,7 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
         super.onActivityCreated(savedInstanceState);
 
         initView();
+        setViewStatu();
         setData(CurrentPhonetics.instance().getCurrentVoice());
     }
 
@@ -58,6 +59,14 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
         example_listview = (ListView) mActivity.findViewById(R.id.example_listview);
         example_listview.setAdapter(adapter = new DetailsGeneralAdapter(mActivity));
         adapter.setOnItemClick(this);
+    }
+
+    private void setViewStatu(){
+        if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
+            tv_example_name.setVisibility(View.GONE);
+        }else {
+            tv_example_name.setVisibility(View.VISIBLE);
+        }
     }
 
     public void refrashData(PhoneticsEntity.VoiceEty ety) {

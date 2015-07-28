@@ -154,6 +154,7 @@
         android:id="@+id/ad_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:background="@color/blue"
         android:layout_above="@+id/bottom_layout"
         android:orientation="horizontal"></LinearLayout>
 
