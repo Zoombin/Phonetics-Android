@@ -21,7 +21,7 @@ public class FileNameUtil {
                 .replace("ɚc", "erc")
                 .replace("æ", "ian")
                 .replace("ɪ", "i")
-                .replace("ʊ", "u")
+                .replace("ʊ", "eu")
                 .replace("ʃ", "sh")
                 .replace("υ", "ev")
                 .replace("α", "a")

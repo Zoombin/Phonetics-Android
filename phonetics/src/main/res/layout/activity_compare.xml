@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/top_iv_side"
@@ -60,8 +61,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtfront_selector"
                 android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
                 android:paddingTop="6dp"
                 android:text="@string/bt_txt_front"
                 android:textColor="@drawable/bt_view_color"
@@ -73,8 +74,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtside_selector"
                 android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
                 android:paddingTop="6dp"
                 android:text="@string/bt_txt_side"
                 android:textColor="@drawable/bt_view_color"
@@ -95,7 +96,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/bottom_iv_side"
@@ -138,8 +140,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtfront_selector"
                 android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
                 android:paddingTop="6dp"
                 android:text="@string/bt_txt_front"
                 android:textColor="@drawable/bt_view_color"
@@ -151,13 +153,40 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtside_selector"
                 android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
                 android:paddingTop="6dp"
                 android:text="@string/bt_txt_side"
                 android:textColor="@drawable/bt_view_color"
                 android:textSize="14sp" />
 
         </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/iv_forward"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/iv_next"
+            android:src="@drawable/ic_forward" />
+
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_next" />
     </RelativeLayout>
 </LinearLayout>

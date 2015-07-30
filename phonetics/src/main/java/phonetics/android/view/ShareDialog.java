@@ -82,13 +82,11 @@ public class ShareDialog implements OnClickListener {
     private void showShare(){
         Platform.ShareParams sp = new Platform.ShareParams();
         sp.setTitle("测试分享的标题");
-        sp.setTitleUrl("http://sharesdk.cn"); // 标题的超链接
+        //sp.setTitleUrl("http://sharesdk.cn"); // 标题的超链接
         sp.setText("测试分享的文本");
-        sp.setImageUrl("http://www.someserver.com/测试图片网络地址.jpg");
+        //sp.setImageUrl("http://www.someserver.com/测试图片网络地址.jpg");
         sp.setSite("发布分享的网站名称");
-        sp.setSiteUrl("发布分享网站的地址");
-
-        Log.i("LSD","share WechatMoments");
+        //sp.setSiteUrl("发布分享网站的地址");
 
         Platform qzone = ShareSDK.getPlatform (WechatMoments.NAME);
         qzone. setPlatformActionListener(new PlatformActionListener() {

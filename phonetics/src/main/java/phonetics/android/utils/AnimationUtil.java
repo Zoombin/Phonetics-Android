@@ -33,9 +33,11 @@ public class AnimationUtil {
             AnimationDrawable animationDrawable = new AnimationDrawable();
             for (int i = 0; i < count; i++) {
                 int resource_ID = context.getResources().getIdentifier(resouce[i], "drawable", "phonetics.android");
-                Drawable drawable = context.getResources().getDrawable(resource_ID);
+                if(resource_ID != 0){
+                    Drawable drawable = context.getResources().getDrawable(resource_ID);
+                    animationDrawable.addFrame(drawable,durtion);
+                }
                 //animationDrawable.addFrame(new BitmapDrawable(context.getResources(), loader.loadImageSync(Config.VOCIEPIC_BASE_PATH + resouce[i] + Config.IMG_TYPE_JPG)), durtion);
-                animationDrawable.addFrame(drawable,durtion);
             }
             imageView.setImageDrawable(animationDrawable);
             animationDrawable.setOneShot(true);

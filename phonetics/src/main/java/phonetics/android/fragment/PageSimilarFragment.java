@@ -1,11 +1,13 @@
 package phonetics.android.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -90,7 +92,7 @@ public class PageSimilarFragment extends BaseFragment implements DetailsGeneralA
                     GeneralEntity entity = PlayUtil.getGeneralEntity(exs[i], reads[i], slow_reads[i], ybs[i], yb_names[i]);
                     list.add(entity);
                 }
-            } else {
+            } else if (count == 1) {
                 GeneralEntity entity = PlayUtil.getGeneralEntity(ety.getSimilar(), ety.getSimilar_read(), ety.getSimilar_slow_read(), ety.getSimilar_yb(), ety.getSimilar_yb_name());
                 list.add(entity);
             }
@@ -114,6 +116,24 @@ public class PageSimilarFragment extends BaseFragment implements DetailsGeneralA
                 }
             }
         }
+    }
+
+    private void setRecyclerViewLayoutPamas(){
+       final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) similar_recyclerview.getLayoutParams();
+        View view = adapter.getView(0, null, null);
+        int hight = view.getHeight();
+        int width = 0;
+        for (int i = 0;i<adapter.getCount();i++){
+            width+= view.getWidth();
+        }
+        params.width = width;
+        params.height = hight;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                similar_recyclerview.setLayoutParams(params);
+            }
+        },200);
     }
 
 

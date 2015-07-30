@@ -1,5 +1,6 @@
 package phonetics.android.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +58,7 @@ public class PhoneticsEntity {
     }
 
 
-    public static class VoiceEty {
+    public static class VoiceEty implements Serializable{
         private String examples_yb_name;//举列的音标名称，这个是在界面上显示的，不同单词用&&隔开
         private String similar_yb_name;//相似的音标名称，这个是在界面上显示的，不同单词用&&隔开
         private String similar_slow_read;//相似单词的慢速读音,不同单词用&&隔开，同一个单词，是这样的女开始时间,持续时间,男开始时间,持续时间

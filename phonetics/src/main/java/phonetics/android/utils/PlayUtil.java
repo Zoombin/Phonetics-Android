@@ -1,6 +1,7 @@
 package phonetics.android.utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;

@@ -100,7 +100,7 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
                     }
                     list.add(entity);
                 }
-            } else {
+            } else if (count == 1) {
                 GeneralEntity entity = PlayUtil.getGeneralEntity(ety.getExamples(), ety.getExamples_read(), ety.getExamples_slow_read(), ety.getExamples_yb(), ety.getExamples_yb_name());
                 //advanced
                 if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
