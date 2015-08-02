@@ -92,6 +92,25 @@ public class DB_Base {
 		return settings.getLong(key, defaultStr);
 	}
 
+
+	public void setSaveInt(String key, int value) {
+		if (settings == null) {
+			settings = getSettings();
+		}
+		settings.edit().putInt(key, value).commit();
+	}
+
+	public int getSaveInt(String key, int defaultStr) {
+		if (settings == null) {
+			settings = getSettings();
+		}
+		if (!settings.contains(key)) {
+			return defaultStr;
+		}
+
+		return settings.getInt(key, defaultStr);
+	}
+
 	public void setSaveMode(String key, Object value) {
 		String valueStr = null;
 		// 创建字节输出流

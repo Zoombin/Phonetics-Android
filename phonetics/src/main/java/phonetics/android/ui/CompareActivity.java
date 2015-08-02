@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import phonetics.android.BaseActivity;
@@ -34,6 +35,9 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
     public int topRequstCode = 100;
     public int bottomRequstCode = 200;
 
+    boolean selectBack = false;
+    boolean isNew = false;
+    public int etyIndex = 0;
     public List<ComparEntity> comparEntities;
     public ComparEntity comparEntity;
     public PhoneticsEntity.VoiceEty topVoiceEty;//顶部音标
@@ -64,7 +68,7 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_compare);
         initView();
         setViewStatus();
-        setData();
+        loadData();
     }
 
     private void initView() {
@@ -108,18 +112,26 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
         bottomFaceSide = 1;
     }
 
-    private void setData() {
-        Intent intent = getIntent();
+    private void loadData() {
         comparEntities = new DB_Data(mActivity).getComparEntities();
         if (comparEntities != null && comparEntities.size() > 0) {
-            comparEntity = comparEntities.get(0);
+            etyIndex = 0;
+            comparEntity = comparEntities.get(etyIndex);
             topVoiceEty = comparEntity.getTopEty();
             bottomVoiceEty = comparEntity.getBottomEty();
-            setTopData();
-            setBottomData();
-        }else{
+
+            setData();
+        } else {
+            isNew = true;
+            comparEntities = new ArrayList<>();
             comparEntity = new ComparEntity();
         }
+    }
+
+
+    private void setData() {
+        setTopData();
+        setBottomData();
     }
 
 
@@ -151,6 +163,41 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
 
             ImageLoader.getInstance().displayImage(Config.SYMBOLPIC_BASE_PATH + bottomVoiceEty.getImg() + Config.IMG_TYPE_PNG, bottom_iv_img);
         }
+    }
+
+    /***
+     *
+     */
+    private void cleanData() {
+        setContentView(R.layout.activity_compare);
+        initView();
+        setViewStatus();
+
+        isNew = true;
+        topVoiceEty = null;
+        bottomVoiceEty = null;
+    }
+
+
+    private void saveData(){
+        if (isNew){
+            if (topVoiceEty != null && bottomVoiceEty != null) {
+                comparEntity.setBottomEty(bottomVoiceEty);
+                comparEntity.setTopEty(topVoiceEty);
+                comparEntities.add(comparEntity);
+                new DB_Data(mActivity).setComparEntitie(comparEntity);
+            }
+        }else{
+            if (selectBack){
+                comparEntity.setBottomEty(bottomVoiceEty);
+                comparEntity.setTopEty(topVoiceEty);
+                comparEntities.set(etyIndex,comparEntity);
+                new DB_Data(mActivity).changeComparEntitie(etyIndex, comparEntity);
+            }
+        }
+
+        isNew = false;
+        selectBack = false;
     }
 
 
@@ -272,12 +319,39 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
                 }
                 break;
             case R.id.iv_back:
+                saveData();
                 finish();
                 break;
             case R.id.iv_forward:
+                saveData();
+                if (comparEntities != null && comparEntities.size() > 0) {
+                    if (etyIndex > 0) {
+                        etyIndex = etyIndex - 1;
+                    }
+                    comparEntity = comparEntities.get(etyIndex);
+                    topVoiceEty = comparEntity.getTopEty();
+                    bottomVoiceEty = comparEntity.getBottomEty();
+
+                    setData();
+                }
                 break;
             case R.id.iv_next:
-                startActivity(new Intent(mActivity, CompareActivity.class));
+                saveData();
+                if (comparEntities != null && comparEntities.size() > 0) {
+                    if (etyIndex < comparEntities.size()- 1){
+                        etyIndex = etyIndex + 1;
+
+                        comparEntity = comparEntities.get(etyIndex);
+                        topVoiceEty = comparEntity.getTopEty();
+                        bottomVoiceEty = comparEntity.getBottomEty();
+
+                        setData();
+                    }else{
+                        cleanData();
+                    }
+                } else {
+                    cleanData();
+                }
                 break;
         }
 
@@ -288,6 +362,7 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
         if (resultCode != RESULT_OK) {
             return;
         }
+        selectBack = true;
         if (requestCode == topRequstCode) {
             //顶部选择回来
             topVoiceEty = (PhoneticsEntity.VoiceEty) data.getSerializableExtra("ety");

@@ -16,6 +16,7 @@ import java.io.File;
 
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.tools.StorageUtils;
+import phonetics.android.utils.AdClickUtil;
 import phonetics.android.utils.MediaPlayerUtil;
 
 /**
@@ -33,6 +34,7 @@ public class BaseApplication extends Application {
 
         CurrentPhonetics.instance().loadData(this);//加载配置文件
         MediaPlayerUtil.create(this);//准备音乐文件
+        AdClickUtil.clean(this);//是否需要清除数据
     }
 
     public static Application instance() {

@@ -2,6 +2,7 @@ package phonetics.android.db;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import phonetics.android.entity.ComparEntity;
@@ -21,6 +22,9 @@ public class DB_Data extends DB_Base {
 
     public void setComparEntitie(ComparEntity ety) {
         List<ComparEntity> list = getComparEntities();
+        if (list == null){
+            list = new ArrayList<>();
+        }
         list.add(ety);
         setSaveMode("etys", list);
     }
@@ -29,6 +33,14 @@ public class DB_Data extends DB_Base {
         List<ComparEntity> list = getComparEntities();
         list.set(position, ety);
         setSaveMode("etys", list);
+    }
+
+    public boolean isFirstLogin(){
+        return getSaveBoolean("isFirst",true);
+    }
+
+    public void setFirstLogin(boolean first){
+        setSaveBoolean("isFirst",first);
     }
 
 }

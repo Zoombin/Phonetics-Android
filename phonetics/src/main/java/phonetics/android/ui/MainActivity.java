@@ -18,8 +18,11 @@ import phonetics.android.BaseActivity;
 import phonetics.android.BaseApplication;
 import phonetics.android.R;
 import phonetics.android.adapter.PhoneticsAdapter;
+import phonetics.android.db.DB_Data;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.utils.AdClickUtil;
+import phonetics.android.view.GuideDialog;
 import phonetics.android.view.ShareDialog;
 import phonetics.android.widget.CustomDialog;
 
@@ -41,6 +44,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         }
 
         setData();
+        isFirstLogin();
     }
 
     @Override
@@ -76,9 +80,18 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         }
     }
 
+
     private void showMenuDialog() {
         final CustomDialog dialog = CustomDialog.create(mActivity, R.style.customDialogOne);
         View view = LayoutInflater.from(mActivity).inflate(R.layout.layout_menu_dialog, null);
+        TextView tv_click = (TextView) view.findViewById(R.id.tv_click);
+        int count = AdClickUtil.getCount(mActivity);
+        if (count > 0){
+            tv_click.setVisibility(View.VISIBLE);
+            tv_click.setText(count+"");
+        }else{
+            tv_click.setVisibility(View.GONE);
+        }
         view.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +123,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         dialog.show();
     }
 
+
+
     private void setData() {
         PhoneticsEntity entity = CurrentPhonetics.instance().entity;
         adapter.setData(entity.getBasics());
@@ -125,6 +140,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         //oks.setUrl(url);
         oks.setImagePath(getResources().getAssets().toString()+"ic_logo");
         oks.show(this);
+    }
+
+    public void isFirstLogin(){
+        if(new DB_Data(mActivity).isFirstLogin()){
+            GuideDialog.Step1(mActivity);
+        }
     }
 
     @Override
