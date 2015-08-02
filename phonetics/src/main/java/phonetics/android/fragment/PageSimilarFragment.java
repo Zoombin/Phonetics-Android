@@ -26,17 +26,19 @@ import phonetics.android.utils.AnimationUtil;
 import phonetics.android.utils.FileNameUtil;
 import phonetics.android.utils.MediaPlayerUtil;
 import phonetics.android.utils.PlayUtil;
+import phonetics.android.widget.HorizontalLinearLayout;
 
 /**
  * Created by lsd on 15/7/22.
  */
 public class PageSimilarFragment extends BaseFragment implements DetailsGeneralAdapter.OnItemClick {
     TextView tv_similar_name;
-    RecyclerView similar_recyclerview;
+    HorizontalLinearLayout similar_h_layout;
     ListView similar_listview;
 
     DetailsGeneralAdapter adapter;
-    DetailsRecyclerViewHAdapter rAdapter;
+    //RecyclerView similar_recyclerview;
+    //DetailsRecyclerViewHAdapter rAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,9 +57,10 @@ public class PageSimilarFragment extends BaseFragment implements DetailsGeneralA
         tv_similar_name = (TextView) mActivity.findViewById(R.id.tv_similar_name);
 
         //RecyclerView
-        similar_recyclerview = (RecyclerView) mActivity.findViewById(R.id.similar_recyclerview);
-        similar_recyclerview.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
-        similar_recyclerview.setAdapter(rAdapter = new DetailsRecyclerViewHAdapter(mActivity));
+        //similar_recyclerview = (RecyclerView) mActivity.findViewById(R.id.similar_recyclerview);
+        //similar_recyclerview.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
+        //similar_recyclerview.setAdapter(rAdapter = new DetailsRecyclerViewHAdapter(mActivity));
+        similar_h_layout = (HorizontalLinearLayout) mActivity.findViewById(R.id.similar_h_layout);
 
         //ListView
         similar_listview = (ListView) mActivity.findViewById(R.id.similar_listview);
@@ -109,31 +112,16 @@ public class PageSimilarFragment extends BaseFragment implements DetailsGeneralA
                 //关联音标
                 List<PhoneticsEntity.VoiceEty> vList = gEty.getvList();
                 if (vList.size() > 0) {
-                    similar_recyclerview.setVisibility(View.VISIBLE);
-                    rAdapter.setData(vList);
+                    //similar_recyclerview.setVisibility(View.VISIBLE);
+                    //rAdapter.setData(vList);
+                    similar_h_layout.setVisibility(View.VISIBLE);
+                    similar_h_layout.setData(vList);
                 } else {
-                    similar_recyclerview.setVisibility(View.GONE);
+                    similar_h_layout.setVisibility(View.GONE);
+                    //similar_recyclerview.setVisibility(View.GONE);
                 }
             }
         }
-    }
-
-    private void setRecyclerViewLayoutPamas(){
-       final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) similar_recyclerview.getLayoutParams();
-        View view = adapter.getView(0, null, null);
-        int hight = view.getHeight();
-        int width = 0;
-        for (int i = 0;i<adapter.getCount();i++){
-            width+= view.getWidth();
-        }
-        params.width = width;
-        params.height = hight;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                similar_recyclerview.setLayoutParams(params);
-            }
-        },200);
     }
 
 
@@ -142,7 +130,8 @@ public class PageSimilarFragment extends BaseFragment implements DetailsGeneralA
     public void click(int postion, View v) {
         GeneralEntity gEty = (GeneralEntity) adapter.getItem(postion);
         tv_similar_name.setText(gEty.getName());//重新设置名称
-        rAdapter.setData(gEty.getvList());//重新设置关联音标
+        //rAdapter.setData(gEty.getvList());//重新设置关联音标
+        similar_h_layout.setData(gEty.getvList());
 
         switch (v.getId()) {
             case R.id.content_layout:

@@ -131,6 +131,7 @@ public class ShareDialog implements OnClickListener {
      * 添加所有的平台</br>
      */
     private void addCustomPlatforms() {
+        ShareSDK.initSDK(context);
         // 添加微信平台
         addWXPlatform();
     }

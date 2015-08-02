@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,18 +21,20 @@ import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.GeneralEntity;
 import phonetics.android.entity.PhoneticsEntity;
 import phonetics.android.utils.PlayUtil;
+import phonetics.android.widget.HorizontalLinearLayout;
 
 /**
  * Created by lsd on 15/7/22.
  */
 public class PageExampleFragment extends BaseFragment implements DetailsGeneralAdapter.OnItemClick {
     TextView tv_example_name;
-    RecyclerView example_recyclerview;
+    HorizontalLinearLayout example_h_layout;
     ListView example_listview;
 
     DetailsGeneralAdapter adapter;
-    DetailsRecyclerViewHAdapter rAdapter;
-    PhoneticsEntity.VoiceEty thisEty;
+
+    //RecyclerView example_recyclerview;
+    //DetailsRecyclerViewHAdapter rAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,9 +54,10 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
         tv_example_name = (TextView) mActivity.findViewById(R.id.tv_example_name);
 
         //RecyclerView
-        example_recyclerview = (RecyclerView) mActivity.findViewById(R.id.example_recyclerview);
-        example_recyclerview.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
-        example_recyclerview.setAdapter(rAdapter = new DetailsRecyclerViewHAdapter(mActivity));
+        //example_recyclerview = (RecyclerView) mActivity.findViewById(R.id.example_recyclerview);
+        //example_recyclerview.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
+        //example_recyclerview.setAdapter(rAdapter = new DetailsRecyclerViewHAdapter(mActivity));
+        example_h_layout = (HorizontalLinearLayout) mActivity.findViewById(R.id.example_h_layout);
 
         //ListView
         example_listview = (ListView) mActivity.findViewById(R.id.example_listview);
@@ -121,10 +125,13 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
                 //关联音标
                 List<PhoneticsEntity.VoiceEty> vList = eEty.getvList();
                 if (vList.size() > 0) {
-                    example_recyclerview.setVisibility(View.VISIBLE);
-                    rAdapter.setData(vList);
+                    //example_recyclerview.setVisibility(View.VISIBLE);
+                    //rAdapter.setData(vList);
+                    example_h_layout.setVisibility(View.VISIBLE);
+                    example_h_layout.setData(vList);
                 } else {
-                    example_recyclerview.setVisibility(View.GONE);
+                    //example_recyclerview.setVisibility(View.GONE);
+                    example_h_layout.setVisibility(View.GONE);
                 }
             }
         }
@@ -136,7 +143,8 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
     public void click(int postion, View v) {
         GeneralEntity eEty = (GeneralEntity) adapter.getItem(postion);
         tv_example_name.setText(eEty.getName());//重新设置名称
-        rAdapter.setData(eEty.getvList());//重新设置关联音标
+        //rAdapter.setData(eEty.getvList());//重新设置关联音标
+        example_h_layout.setData(eEty.getvList());
 
         switch (v.getId()) {
             case R.id.content_layout:
@@ -149,4 +157,5 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
                 break;
         }
     }
+
 }

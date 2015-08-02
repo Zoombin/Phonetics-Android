@@ -14,13 +14,21 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <android.support.v7.widget.RecyclerView
+
+    <!--<android.support.v7.widget.RecyclerView
         android:id="@+id/example_recyclerview"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="2dp"
-        android:scrollbars="none" />
+        android:scrollbars="none" />-->
+
+    <phonetics.android.widget.HorizontalLinearLayout
+        android:id="@+id/example_h_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"></phonetics.android.widget.HorizontalLinearLayout>
 
     <ListView
         android:id="@+id/example_listview"

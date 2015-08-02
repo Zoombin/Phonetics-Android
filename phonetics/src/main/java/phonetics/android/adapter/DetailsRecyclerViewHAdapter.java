@@ -35,7 +35,7 @@ public class DetailsRecyclerViewHAdapter extends RecyclerView.Adapter<DetailsRec
 
     @Override
     public MViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MViewHolder holder = new MViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_recyclerview_hitem, parent, false));
+        MViewHolder holder = new MViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_recyclerview_hitem, null));
         return holder;
     }
 
@@ -69,7 +69,7 @@ public class DetailsRecyclerViewHAdapter extends RecyclerView.Adapter<DetailsRec
         return list == null ? null : list.get(position);
     }
 
-    class MViewHolder extends RecyclerView.ViewHolder {
+    public class MViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout item_layout;
         ImageView iv_img;
 

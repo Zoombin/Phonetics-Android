@@ -33,11 +33,11 @@ public class AssetsUtil {
         PhoneticsEntity entity = null;
         try {
            InputStream inputStream =  context.getAssets().open("voiceinfo.json");
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[1024*10];
             StringBuffer sBuffer = new StringBuffer();
             int len =0;
             while (-1 != (len = inputStream.read(buffer))){
-                String string = new String(buffer,0,len,"UTF-8");
+                String string = new String(buffer,0,len);
                 sBuffer.append(string);
             }
             Gson gson = new Gson();

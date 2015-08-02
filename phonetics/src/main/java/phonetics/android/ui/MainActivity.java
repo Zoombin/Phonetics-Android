@@ -1,7 +1,10 @@
 package phonetics.android.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import phonetics.android.BaseActivity;
 import phonetics.android.BaseApplication;
 import phonetics.android.R;
@@ -37,8 +41,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         }
 
         setData();
-
-        ShareSDK.initSDK(mActivity);
     }
 
     @Override
@@ -99,7 +101,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         view.findViewById(R.id.tv_item_share).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                new ShareDialog(mActivity);
+                //new ShareDialog(mActivity);
+                showShare();
                 dialog.dismiss();
             }
         });
@@ -110,6 +113,18 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     private void setData() {
         PhoneticsEntity entity = CurrentPhonetics.instance().entity;
         adapter.setData(entity.getBasics());
+    }
+
+    public void showShare() {
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+        oks.setTitle("金版国际音标");
+        oks.setText("金版国际音标");
+        //oks.setUrl(url);
+        oks.setImagePath(getResources().getAssets().toString()+"ic_logo");
+        oks.show(this);
     }
 
     @Override

@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import phonetics.android.BaseActivity;
 import phonetics.android.R;
 import phonetics.android.adapter.PickSymbolAdapter;
@@ -31,7 +34,35 @@ public class PickSymbolActivity extends BaseActivity implements View.OnClickList
 
         listView = (ExpandableListView) findViewById(R.id.listView);
         listView.setAdapter(adapter = new PickSymbolAdapter(mActivity));
-        adapter.setData(CurrentPhonetics.instance().entity.getBasics());
+
+        //添加日本音
+        List<PhoneticsEntity.VoiceEty>  voices = CurrentPhonetics.instance().basicsVoiceList;
+        List<PhoneticsEntity.VoiceEty> jpVoice = new ArrayList<>();
+        for (PhoneticsEntity.VoiceEty voice: voices){
+            if ("ɑ".equals(voice.getName())){
+                jpVoice.add(changeVoice("ア","symbol_JPA",voice));
+            }
+            if ("j".equals(voice.getName())){
+                jpVoice.add(changeVoice("イ","symbol_JPJ",voice));
+            }
+            if ("ʊ".equals(voice.getName())){
+                jpVoice.add(changeVoice("ウ","symbol_JPU1",voice));
+
+                jpVoice.add(changeVoice("オ","symbol_JPU2",voice));
+            }
+            if ("æ".equals(voice.getName())){
+                jpVoice.add(changeVoice("エ","symbol_JPUAE",voice));
+            }
+        }
+
+        PhoneticsEntity.SymbolEty symbolEty = new PhoneticsEntity.SymbolEty();
+        symbolEty.setTitle("日本发音");
+        symbolEty.setVoices(jpVoice);
+
+        List<PhoneticsEntity.SymbolEty> basics= CurrentPhonetics.instance().entity.getBasics();
+        basics.add(symbolEty);
+
+        adapter.setData(basics);
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
@@ -52,6 +83,22 @@ public class PickSymbolActivity extends BaseActivity implements View.OnClickList
         for (int i=0;i<adapter.getGroupCount();i++){
             listView.expandGroup(i);
         }
+    }
+
+
+    private PhoneticsEntity.VoiceEty changeVoice(String nama,String pic,PhoneticsEntity.VoiceEty ety){
+        PhoneticsEntity.VoiceEty newEty = new PhoneticsEntity.VoiceEty();
+        newEty.setName(nama);
+        newEty.setImg(pic);
+        newEty.setPics_front(ety.getPics_front());
+        newEty.setLong_female(ety.getLong_female());
+        newEty.setLong_male(ety.getLong_male());
+        newEty.setEtime_female(ety.getEtime_female());
+        newEty.setEtime_male(ety.getEtime_male());
+        newEty.setStime_female(ety.getStime_female());
+        newEty.setStime_male(ety.getStime_male());
+
+        return newEty;
     }
 
 
