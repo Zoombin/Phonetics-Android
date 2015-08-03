@@ -25,5 +25,8 @@
     <string name="guide_step1_text">首先烦请点按钮上点蓝色的按钮</string>
     <string name="guide_step2_text">这个页面使用3D模型向您介绍发音技巧。</string>
     <string name="guide_step3_text">1.舌的位置\n2.气息\n3.喉咙是否震动（蓝色八角星=震动）可以单独点击每一步查阅相应动作。</string>
+    <string name="guide_step4_text">下一步我们来看一个单词，烦请点击下面的\"举例\"标签。</string>
+    <string name="guide_step5_text">烦请点击模型，听一下发音。</string>
+    <string name="guide_step6_text">点击\"正面\"或\"侧面\"按钮可以改变模型角度。</string>
     <string name="guide_step_next">下一步</string>
 </resources>
