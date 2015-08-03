@@ -7,13 +7,12 @@
 
 
     <LinearLayout
-        android:layout_width="260dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:background="@drawable/ic_tutorial_dlg_bg"
-        android:minHeight="200dp"
-        android:minWidth="260dp"
+        android:minHeight="150dp"
         android:orientation="vertical"
         android:padding="24dp">
 
@@ -42,15 +41,43 @@
     </LinearLayout>
 
 
-    <ImageView
-        android:id="@+id/indicator_tap"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="80dp"
-        android:src="@drawable/ic_tutorial_indicator_tap" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/indicator_tap"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_tutorial_indicator_tap" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></View>
+    </LinearLayout>
 
 
 </RelativeLayout>

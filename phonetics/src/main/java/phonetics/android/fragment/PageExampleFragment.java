@@ -20,6 +20,7 @@ import phonetics.android.adapter.DetailsGeneralAdapter;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.GeneralEntity;
 import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.ui.DetailsActivity;
 import phonetics.android.utils.PlayUtil;
 import phonetics.android.widget.HorizontalLinearLayout;
 
@@ -147,6 +148,55 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
         example_h_layout.setData(eEty.getvList());
 
         switch (v.getId()) {
+            case R.id.content_layout:
+                //条目点击
+                PlayUtil.playMergeMedia(mActivity,0,eEty);
+                break;
+            case R.id.iv_pic:
+                //慢放点击
+                PlayUtil.playMergeMedia(mActivity,1,eEty);
+                break;
+        }
+    }
+
+
+    public void guideForItem(){
+        click(0, R.id.content_layout);
+    }
+
+    public void guideForSlow(){
+        click(0,R.id.iv_pic);
+    }
+
+    public void guideForExample(){
+        List<PhoneticsEntity.VoiceEty> list = example_h_layout.getData();
+        if (list != null && list.size()>0){
+            PhoneticsEntity.VoiceEty ety = list.get(0);
+            if (DetailsActivity.faceSide == 0) {
+                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_front, ety);
+                PlayUtil.playMedia(DetailsActivity.voice, ety);
+            }
+            if (DetailsActivity.faceSide == 1) {
+                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_side, ety);
+                PlayUtil.playMedia(DetailsActivity.voice, ety);
+            }
+        }
+    }
+
+    /***
+     *
+     * 特殊引导的时候用
+     *
+     * @param postion
+     * @param id
+     */
+    public void click(int postion, int id) {
+        GeneralEntity eEty = (GeneralEntity) adapter.getItem(postion);
+        tv_example_name.setText(eEty.getName());//重新设置名称
+        //rAdapter.setData(eEty.getvList());//重新设置关联音标
+        example_h_layout.setData(eEty.getvList());
+
+        switch (id) {
             case R.id.content_layout:
                 //条目点击
                 PlayUtil.playMergeMedia(mActivity,0,eEty);

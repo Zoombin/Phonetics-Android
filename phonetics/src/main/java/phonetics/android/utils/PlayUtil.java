@@ -119,6 +119,10 @@ public class PlayUtil {
             }
         }
 
+        Log.i("LSD","stime = "+stime);
+        Log.i("LSD","long_time = "+long_time);
+
+
         if (long_time > 0) {
             MediaPlayerUtil.start(stime, long_time);
         }

@@ -9,6 +9,7 @@
     <string name="tv_ver">ver.1.0</string>
     <string name="tv_item_compare">音标对比</string>
     <string name="tv_item_share">分享到朋友圈</string>
+    <string name="tv_item_guide">新手引导</string>
     <string name="tv_close">关闭</string>
     <string name="bt_txt_front">正面</string>
     <string name="bt_txt_side">侧面</string>
@@ -28,5 +29,10 @@
     <string name="guide_step4_text">下一步我们来看一个单词，烦请点击下面的\"举例\"标签。</string>
     <string name="guide_step5_text">烦请点击模型，听一下发音。</string>
     <string name="guide_step6_text">点击\"正面\"或\"侧面\"按钮可以改变模型角度。</string>
+    <string name="guide_step7_text">烦请点击单词，听一下发音。</string>
+    <string name="guide_step8_text">烦请点击\"音标按钮\"，听一下发音。</string>
+    <string name="guide_step9_text">烦请点击\"SLOW\"按钮可以听到慢放的发音。</string>
+    <string name="guide_step10_text">点击左下角回退按钮，可以返回主界面。</string>
+    <string name="guide_step11_text">新手说明结束。金版发音图谱，每日点击广告1次（连续点击无效），单月累计点击广告28次的用户朋友圈凭含”广告计数页面的截图“和”微信朋友圈分享此活动内容的截图“参与每月的”返20元大抽奖“，每人每月有一次机会。参与者可将上述截图和领奖微信号发送至：hanakagomi@outlook.com -- 花华组</string>
     <string name="guide_step_next">下一步</string>
 </resources>

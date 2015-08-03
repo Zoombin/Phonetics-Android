@@ -6,12 +6,16 @@
     android:orientation="vertical">
 
 
+    <View
+        android:id="@+id/hoder_veiw"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"></View>
+
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/ic_tutorial_dlg_bg"
         android:minHeight="150dp"
         android:orientation="vertical"
@@ -21,29 +25,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/guide_step2_text"
+            android:text="@string/guide_step9_text"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_next"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:text="@string/guide_step_next"
-            android:textColor="@color/blue"
-            android:textSize="15dp" />
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_tutorial_icon_tap" />
 
         <TextView
             android:id="@+id/tv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="@string/tv_close"
             android:textColor="@color/blue"
             android:textSize="15dp" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/indicator_tap"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/hoder_veiw"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_tutorial_indicator_tap" />
 
 
 </RelativeLayout>

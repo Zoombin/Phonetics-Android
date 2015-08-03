@@ -33,6 +33,10 @@ public class HorizontalLinearLayout extends LinearLayout {
         this.context = context;
     }
 
+    public List<PhoneticsEntity.VoiceEty> getData(){
+        return list;
+    }
+
     public void setData(List<PhoneticsEntity.VoiceEty> list) {
         this.list = list;
 

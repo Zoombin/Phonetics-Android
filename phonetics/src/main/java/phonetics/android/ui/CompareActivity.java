@@ -191,8 +191,13 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
             if (selectBack){
                 comparEntity.setBottomEty(bottomVoiceEty);
                 comparEntity.setTopEty(topVoiceEty);
-                comparEntities.set(etyIndex,comparEntity);
-                new DB_Data(mActivity).changeComparEntitie(etyIndex, comparEntity);
+                if(etyIndex >0){
+                    comparEntities.set(etyIndex,comparEntity);
+                    new DB_Data(mActivity).changeComparEntitie(etyIndex, comparEntity);
+                }else{
+                    comparEntities.add(comparEntity);
+                    new DB_Data(mActivity).setComparEntitie(comparEntity);
+                }
             }
         }
 

@@ -86,10 +86,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         View view = LayoutInflater.from(mActivity).inflate(R.layout.layout_menu_dialog, null);
         TextView tv_click = (TextView) view.findViewById(R.id.tv_click);
         int count = AdClickUtil.getCount(mActivity);
-        if (count > 0){
+        if (count > 0) {
             tv_click.setVisibility(View.VISIBLE);
-            tv_click.setText(count+"");
-        }else{
+            tv_click.setText(count + "");
+        } else {
             tv_click.setVisibility(View.GONE);
         }
         view.setOnClickListener(new OnClickListener() {
@@ -119,10 +119,17 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 dialog.dismiss();
             }
         });
+        view.findViewById(R.id.tv_item_guide).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DB_Data(mActivity).setGuideMode(true);
+                new GuideDialog().Step1(mActivity);
+                dialog.dismiss();
+            }
+        });
         dialog.setContentVw(view);
         dialog.show();
     }
-
 
 
     private void setData() {
@@ -138,13 +145,16 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         oks.setTitle("金版国际音标");
         oks.setText("金版国际音标");
         //oks.setUrl(url);
-        oks.setImagePath(getResources().getAssets().toString()+"ic_logo");
+        oks.setImagePath(getResources().getAssets().toString() + "ic_logo");
         oks.show(this);
     }
 
-    public void isFirstLogin(){
-        if(new DB_Data(mActivity).isFirstLogin()){
-            GuideDialog.Step1(mActivity);
+    /**
+     * 引导
+     */
+    public void isFirstLogin() {
+        if (new DB_Data(mActivity).isGuideMode()) {
+            new GuideDialog().Step1(mActivity);
         }
     }
 

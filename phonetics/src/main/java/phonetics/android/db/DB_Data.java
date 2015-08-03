@@ -35,12 +35,12 @@ public class DB_Data extends DB_Base {
         setSaveMode("etys", list);
     }
 
-    public boolean isFirstLogin(){
-        return getSaveBoolean("isFirst",true);
+    public boolean isGuideMode(){
+        return getSaveBoolean("isGuideMode",true);
     }
 
-    public void setFirstLogin(boolean first){
-        setSaveBoolean("isFirst",first);
+    public void setGuideMode(boolean first){
+        setSaveBoolean("isGuideMode",first);
     }
 
 }
