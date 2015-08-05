@@ -22,6 +22,7 @@ import android.graphics.Bitmap;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -478,7 +479,6 @@ public class OnekeyShare implements PlatformActionListener, Callback {
 
 	public void onError(Platform platform, int action, Throwable t) {
 		t.printStackTrace();
-
 		Message msg = new Message();
 		msg.what = MSG_ACTION_CCALLBACK;
 		msg.arg1 = 2;

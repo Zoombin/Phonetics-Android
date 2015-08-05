@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">国际音标</string>
+    <string name="app_name">金版音标图谱™试用版</string>
     <string name="phonetics_title">英语音标</string>
     <string name="action_settings">设置</string>
     <string name="bt_left_txt">基础技巧</string>
@@ -35,4 +35,10 @@
     <string name="guide_step10_text">点击左下角回退按钮，可以返回主界面。</string>
     <string name="guide_step11_text">新手说明结束。金版发音图谱，每日点击广告1次（连续点击无效），单月累计点击广告28次的用户朋友圈凭含”广告计数页面的截图“和”微信朋友圈分享此活动内容的截图“参与每月的”返20元大抽奖“，每人每月有一次机会。参与者可将上述截图和领奖微信号发送至：hanakagomi@outlook.com -- 花华组</string>
     <string name="guide_step_next">下一步</string>
+
+    <string name="share_title">金版音标图谱™</string>
+    <string name="share_success">分享成功</string>
+    <string name="share_fail">分享失败</string>
+    <string name="share_cancel">分享取消</string>
+    <string name="share_content">推荐：花华组基于国外著名大学研究成果，结合世界级美工特效，打造出的全球最精细的音标学习软件。关注官方公众号：hanakagumi花华组主页：http://hanaka.5858.com官方邮箱地址：hanakagumi@outlook.com 金版音标图谱下载地址：http://t.cn/RLirgVF</string>
 </resources>

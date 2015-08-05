@@ -11,6 +11,7 @@ import java.util.List;
 import phonetics.android.BaseActivity;
 import phonetics.android.R;
 import phonetics.android.adapter.PickSymbolAdapter;
+import phonetics.android.db.DB_Data;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
 
@@ -59,7 +60,7 @@ public class PickSymbolActivity extends BaseActivity implements View.OnClickList
         symbolEty.setTitle("日本发音");
         symbolEty.setVoices(jpVoice);
 
-        List<PhoneticsEntity.SymbolEty> basics= CurrentPhonetics.instance().entity.getBasics();
+        List<PhoneticsEntity.SymbolEty> basics= new DB_Data(mActivity).getPhonetics().getBasics();
         basics.add(symbolEty);
 
         adapter.setData(basics);

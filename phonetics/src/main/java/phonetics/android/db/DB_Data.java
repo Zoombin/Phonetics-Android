@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import phonetics.android.entity.ComparEntity;
+import phonetics.android.entity.PhoneticsEntity;
 
 public class DB_Data extends DB_Base {
     public DB_Data(Context context) {
@@ -41,6 +42,15 @@ public class DB_Data extends DB_Base {
 
     public void setGuideMode(boolean first){
         setSaveBoolean("isGuideMode",first);
+    }
+
+
+    public void setPhonetics(PhoneticsEntity entity){
+        setSaveMode("Phonetics", entity);
+    }
+
+    public PhoneticsEntity getPhonetics(){
+        return (PhoneticsEntity) getSaveMode("Phonetics",null);
     }
 
 }

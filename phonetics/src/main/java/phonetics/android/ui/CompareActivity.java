@@ -299,28 +299,28 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
                 //顶部正面图片
                 if (topVoiceEty != null) {
                     PlayUtil.playAnimation(mActivity, topFaceSide, top_iv_front, topVoiceEty);
-                    PlayUtil.playMedia(topVoiceType, topVoiceEty);
+                    //PlayUtil.playMedia(topVoiceType, topVoiceEty);
                 }
                 break;
             case R.id.top_iv_side:
                 //顶部侧面图片
                 if (topVoiceEty != null) {
                     PlayUtil.playAnimation(mActivity, topFaceSide, top_iv_side, topVoiceEty);
-                    PlayUtil.playMedia(topVoiceType, topVoiceEty);
+                    //PlayUtil.playMedia(topVoiceType, topVoiceEty);
                 }
                 break;
             case R.id.bottom_iv_front:
                 //底部正面图片
                 if (bottomVoiceEty != null) {
                     PlayUtil.playAnimation(mActivity, bottomFaceSide, bottom_iv_front, bottomVoiceEty);
-                    PlayUtil.playMedia(bottomVoiceType, bottomVoiceEty);
+                    //PlayUtil.playMedia(bottomVoiceType, bottomVoiceEty);
                 }
                 break;
             case R.id.bottom_iv_side:
                 //底部侧面图片
                 if (bottomVoiceEty != null) {
                     PlayUtil.playAnimation(mActivity, bottomFaceSide, bottom_iv_side, bottomVoiceEty);
-                    PlayUtil.playMedia(bottomVoiceType, bottomVoiceEty);
+                    //PlayUtil.playMedia(bottomVoiceType, bottomVoiceEty);
                 }
                 break;
             case R.id.iv_back:

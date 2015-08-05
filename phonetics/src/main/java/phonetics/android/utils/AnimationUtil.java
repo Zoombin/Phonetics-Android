@@ -37,6 +37,7 @@ public class AnimationUtil {
                     Drawable drawable = context.getResources().getDrawable(resource_ID);
                     animationDrawable.addFrame(drawable,durtion);
                 }
+                //loader.getMemoryCache().get(Config.VOCIEPIC_BASE_PATH + resouce[i] + Config.IMG_TYPE_JPG);
                 //animationDrawable.addFrame(new BitmapDrawable(context.getResources(), loader.loadImageSync(Config.VOCIEPIC_BASE_PATH + resouce[i] + Config.IMG_TYPE_JPG)), durtion);
             }
             imageView.setImageDrawable(animationDrawable);

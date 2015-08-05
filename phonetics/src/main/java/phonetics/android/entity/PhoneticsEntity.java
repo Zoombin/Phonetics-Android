@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Created by LSD on 2015/7/17.
  */
-public class PhoneticsEntity {
+public class PhoneticsEntity implements Serializable{
     private List<SymbolEty> advanced;
     private List<SymbolEty> basics;
 
@@ -27,7 +27,7 @@ public class PhoneticsEntity {
         this.basics = basics;
     }
 
-    public static class SymbolEty {
+    public static class SymbolEty implements Serializable{
         private String title;
         private String describe;
         private List<VoiceEty> voices;

@@ -1,5 +1,6 @@
 package phonetics.android.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,20 +12,30 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.List;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.PlatformListFakeActivity;
 import phonetics.android.BaseActivity;
 import phonetics.android.BaseApplication;
 import phonetics.android.R;
 import phonetics.android.adapter.PhoneticsAdapter;
 import phonetics.android.db.DB_Data;
+import phonetics.android.db.DB_Share;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
 import phonetics.android.utils.AdClickUtil;
 import phonetics.android.view.GuideDialog;
 import phonetics.android.view.ShareDialog;
 import phonetics.android.widget.CustomDialog;
+
+import static com.mob.tools.utils.R.getStringRes;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
     TextView bt_left, bt_right;
@@ -74,6 +85,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 adapter.setData(entity.getBasics());
                 break;
             case R.id.bt_right:
+                if (!new DB_Share(mActivity).getShareResult()) {
+                    showShare();
+                    return;
+                }
                 CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.ADVANCE;//当前类型 高级
                 adapter.setData(entity.getAdvanced());
                 break;
@@ -107,6 +122,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         view.findViewById(R.id.tv_item_compare).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!new DB_Share(mActivity).getShareResult()) {
+                    showShare();
+                    dialog.dismiss();
+                    return;
+                }
                 startActivity(new Intent(mActivity, CompareActivity.class));
                 dialog.dismiss();
             }
@@ -142,11 +162,35 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        oks.setTitle("金版国际音标");
-        oks.setText("金版国际音标");
+        oks.setTitle(getString(R.string.share_title));
+        oks.setText(getString(R.string.share_content));
         //oks.setUrl(url);
         oks.setImagePath(getResources().getAssets().toString() + "ic_logo");
         oks.show(this);
+        /*oks.setCallback(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                Toast.makeText(mActivity, R.string.share_success, Toast.LENGTH_SHORT).show();
+                new DB_Share(mActivity).setShareResult(true);
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+                String expName = throwable.getClass().getSimpleName();
+                if ("WechatClientNotExistException".equals(expName)
+                        || "WechatTimelineNotSupportedException".equals(expName)
+                        || "WechatFavoriteNotSupportedException".equals(expName)) {
+                    new AlertDialog.Builder(mActivity).setTitle("提示").setMessage("您未安装微信").setNegativeButton("关闭", null).show();
+                } else {
+                    Toast.makeText(mActivity, R.string.share_fail, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+                Toast.makeText(mActivity,R.string.share_cancel, Toast.LENGTH_SHORT).show();
+            }
+        });*/
     }
 
     /**

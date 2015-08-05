@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import phonetics.android.db.DB_Data;
 import phonetics.android.utils.AssetsUtil;
 
 /**
@@ -51,6 +52,7 @@ public class CurrentPhonetics {
      */
     public void loadData(Context context) {
         entity = AssetsUtil.readAssets(context);
+        new DB_Data(context).setPhonetics(entity);
 
         if (entity != null) {
             List<PhoneticsEntity.SymbolEty> basicSymbols = entity.getBasics();

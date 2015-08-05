@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:gravity="center">
 
-            <ImageView
+            <phonetics.android.widget.MImageView
                 android:id="@+id/indicator_tap"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
