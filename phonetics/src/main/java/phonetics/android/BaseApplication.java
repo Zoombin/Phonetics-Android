@@ -17,6 +17,7 @@ import net.youmi.android.AdManager;
 
 import java.io.File;
 
+import cn.sharesdk.framework.ShareSDK;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.tools.StorageUtils;
 import phonetics.android.utils.AdClickUtil;
@@ -33,14 +34,17 @@ public class BaseApplication extends Application {
         super.onCreate();
         app = this;
 
-        initImageLoader(this);//初始化图片加载
-
         CurrentPhonetics.instance().loadData(this);//加载配置文件
         MediaPlayerUtil.create(this);//准备音乐文件
         AdClickUtil.clean(this);//是否需要清除数据
 
         //有米初始化
         AdManager.getInstance(this).init("7903c4ec230be820", "d6d134031fa3f5bd", Constants.DEBUG);
+
+        //ShareSDK初始化
+        ShareSDK.initSDK(this);
+
+        initImageLoader(this);//初始化图片加载
     }
 
     public static Application instance() {

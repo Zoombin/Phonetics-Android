@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/black">
+        android:background="@drawable/layout_gold_stroke_black_bg"
+        android:padding="2dp">
 
         <ImageView
             android:id="@+id/top_iv_front"
@@ -89,7 +90,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/black">
+        android:background="@drawable/layout_gold_stroke_black_bg"
+        android:padding="2dp">
 
         <ImageView
             android:id="@+id/bottom_iv_front"
@@ -162,6 +164,7 @@
 
         </LinearLayout>
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"

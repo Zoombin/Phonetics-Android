@@ -27,7 +27,11 @@ public class PlayUtil {
      * @param imageView
      * @param ety
      */
+
     public static void playAnimation(Context context, int faceSide, ImageView imageView, PhoneticsEntity.VoiceEty ety) {
+        playAnimation(context, faceSide, imageView, ety, false);
+    }
+    public static void playAnimation(Context context, int faceSide, ImageView imageView, PhoneticsEntity.VoiceEty ety,boolean isCut) {
         String pics = null;
         if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE) {
             //高级
@@ -36,10 +40,16 @@ public class PlayUtil {
             //基础
             pics = ety.getPics_front();
         }
+
+        int startIndex = 0;
+        if (isCut){
+            startIndex = 3;
+        }
+
         String[] picArray = pics.split(",");
         String[] resouce = null;
         if (picArray != null && picArray.length > 0) {
-            resouce = new String[picArray.length];
+            resouce = new String[picArray.length-startIndex];
         }
         int long_time = 0;
         try {
@@ -49,15 +59,19 @@ public class PlayUtil {
         }
         if (faceSide == 0) {
             //播放动画
-            for (int i = 0; i < picArray.length; i++) {
-                resouce[i] = FileNameUtil.replace(picArray[i]);
+            int j =0;
+            for (int i = startIndex; i < picArray.length; i++) {
+                resouce[j] = FileNameUtil.replace(picArray[i]);
+                j++;
             }
             AnimationUtil.startAnimation(context, imageView, resouce, long_time);
         }
         if (faceSide == 1) {
             //播放动画
-            for (int i = 0; i < picArray.length; i++) {
-                resouce[i] = "c" + FileNameUtil.replace(picArray[i]);
+            int j=0;
+            for (int i = startIndex; i < picArray.length; i++) {
+                resouce[j] = "c" + FileNameUtil.replace(picArray[i]);
+                j++;
             }
             AnimationUtil.startAnimation(context, imageView, resouce, long_time);
         }

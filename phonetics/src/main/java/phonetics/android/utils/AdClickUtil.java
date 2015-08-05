@@ -12,29 +12,39 @@ import phonetics.android.db.DB_Click;
 public class AdClickUtil {
 
     public static void adClick(Context context) {
-        int count = new DB_Click(context).getClickCount();
+        int count = new DB_Click(context).getCount();
 
-        long time = new DB_Click(context).getClickTime();
-        long curTime = System.currentTimeMillis();
-        if ((curTime - time) > 14 * 60 * 1000) {
+        int day = new DB_Click(context).getDay();
+        Calendar calendar = Calendar.getInstance();
+        int curDay = calendar.get(Calendar.DAY_OF_MONTH);
+        if (curDay != day) {
+            //一天只计数一次
             count = count + 1;
-            new DB_Click(context).setClickCount(count);
-            new DB_Click(context).setClickTime(curTime);
+            new DB_Click(context).setCount(count);
+            new DB_Click(context).setDay(curDay);
         }
 
     }
 
     public static int getCount(Context context) {
-        return new DB_Click(context).getClickCount();
+        return new DB_Click(context).getCount();
     }
 
+    /**
+     * 第二个月清空
+     *
+     * @param context
+     */
     public static void clean(Context context) {
         Calendar calendar = Calendar.getInstance();
-        int curDay = calendar.get(Calendar.DAY_OF_MONTH);
+        int curMonth = calendar.get(Calendar.MONTH);
 
-        int day = new DB_Click(context).getClickDay();
-        if (curDay < day) {
-            new DB_Click(context).setClickCount(0);
+        int month = new DB_Click(context).getMonth();
+        if (month != curMonth) {
+            new DB_Click(context).setCount(0);
+            new DB_Click(context).setMonth(curMonth);
         }
     }
+
+
 }

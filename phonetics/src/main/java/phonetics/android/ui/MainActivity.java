@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +34,7 @@ import phonetics.android.db.DB_Share;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
 import phonetics.android.utils.AdClickUtil;
+import phonetics.android.utils.AlertDialogUtil;
 import phonetics.android.view.GuideDialog;
 import phonetics.android.view.ShareDialog;
 import phonetics.android.widget.CustomDialog;
@@ -38,6 +42,11 @@ import phonetics.android.widget.CustomDialog;
 import static com.mob.tools.utils.R.getStringRes;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
+    final int SHARE_SUCCESS = 0;
+    final int SHARE_FAIL = 1;
+    final int SHARE_CANCEL = 2;
+
+
     TextView bt_left, bt_right;
     ImageView iv_menu;
     PhoneticsAdapter adapter;
@@ -158,40 +167,66 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     }
 
     public void showShare() {
-        ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
         oks.setTitle(getString(R.string.share_title));
         oks.setText(getString(R.string.share_content));
         //oks.setUrl(url);
-        oks.setImagePath(getResources().getAssets().toString() + "ic_logo");
-        oks.show(this);
-        /*oks.setCallback(new PlatformActionListener() {
+        oks.setImagePath(getResources().getAssets()+ "ic_logo");
+        oks.setCallback(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                Toast.makeText(mActivity, R.string.share_success, Toast.LENGTH_SHORT).show();
-                new DB_Share(mActivity).setShareResult(true);
+                messageHandler.sendEmptyMessage(SHARE_SUCCESS);
             }
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
+                Message msg = messageHandler.obtainMessage();
+                msg.what = SHARE_FAIL;
                 String expName = throwable.getClass().getSimpleName();
                 if ("WechatClientNotExistException".equals(expName)
                         || "WechatTimelineNotSupportedException".equals(expName)
                         || "WechatFavoriteNotSupportedException".equals(expName)) {
-                    new AlertDialog.Builder(mActivity).setTitle("提示").setMessage("您未安装微信").setNegativeButton("关闭", null).show();
-                } else {
-                    Toast.makeText(mActivity, R.string.share_fail, Toast.LENGTH_SHORT).show();
+                    msg.arg1 = 1;
                 }
+                messageHandler.sendMessage(msg);
             }
 
             @Override
             public void onCancel(Platform platform, int i) {
-                Toast.makeText(mActivity,R.string.share_cancel, Toast.LENGTH_SHORT).show();
+                messageHandler.sendEmptyMessage(SHARE_CANCEL);
             }
-        });*/
+        });
+        oks.show(this);
     }
+
+    /***
+     * 分享结果处理
+     */
+    Handler messageHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case SHARE_SUCCESS:
+                    //分享成功
+                    Toast.makeText(mActivity, R.string.share_success, Toast.LENGTH_SHORT).show();
+                    new DB_Share(mActivity).setShareResult(true);
+                    break;
+                case SHARE_CANCEL:
+                    Toast.makeText(mActivity,R.string.share_cancel, Toast.LENGTH_SHORT).show();
+                    break;
+                case SHARE_FAIL:
+                    if (msg.arg1 == 1){
+                        AlertDialogUtil.show(mActivity,getString(R.string.share_alter),getString(R.string.share_weichat_uninstalled));
+                    }else{
+                        Toast.makeText(mActivity,R.string.share_fail, Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+            }
+        }
+    };
+
 
     /**
      * 引导
@@ -201,6 +236,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             new GuideDialog().Step1(mActivity);
         }
     }
+
+
 
     @Override
     public void onClick(View v) {

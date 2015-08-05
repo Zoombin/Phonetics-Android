@@ -14,30 +14,54 @@ public class DB_Click extends DB_Base {
         getSettings();
     }
 
-    public void setClickCount(int count) {
-        setSaveString("clickCount", count + "");
+    public void setCount(int count) {
+        setSaveInt("count", count);
     }
 
-    public int getClickCount() {
-        String s = getSaveString("clickCount", "0");
-        return Integer.parseInt(s);
+    public int getCount() {
+        return getSaveInt("count", 0);
     }
 
 
-    public void setClickTime(long time) {
-        setSaveLong("ClickTime", time);
+    public void setTime(long time) {
+        setSaveLong("Time", time);
     }
 
-    public long getClickTime() {
-        return getSaveLong("ClickTime", 0);
+    public long getTime() {
+        return getSaveLong("Time", 0);
     }
 
-    public void setClickDay(int day) {
-        setSaveInt("ClickDay", day);
+    public void setDay(int day) {
+        setSaveInt("Day", day);
     }
 
-    public int getClickDay() {
-        return getSaveInt("ClickDay", 1);
+    public int getDay() {
+        return getSaveInt("Day", 1);
+    }
+
+    public void setMonth(int month) {
+        setSaveInt("Month", month);
+    }
+
+    public int getMonth() {
+        return getSaveInt("Month", 1);
+    }
+
+
+    public void setBasicVoiceClick(int day) {
+        setSaveInt("BasicVoiceClick", day);
+    }
+
+    public int getBasicVoiceClick() {
+        return getSaveInt("BasicVoiceClick", 0);
+    }
+
+    public void setAdvancedVoiceClick(int day) {
+        setSaveInt("AdvancedVoiceClick", day);
+    }
+
+    public int getAdvancedVoiceClick() {
+        return getSaveInt("AdvancedVoiceClick", 0);
     }
 
 
