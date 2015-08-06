@@ -64,5 +64,29 @@ public class DB_Click extends DB_Base {
         return getSaveInt("AdvancedVoiceClick", 0);
     }
 
+    public void setCompareClick(int day) {
+        setSaveInt("CompareClick", day);
+    }
+
+    public int getCompareClick() {
+        return getSaveInt("CompareClick", 0);
+    }
+
+    public void setCompareTopSelectClick(int day) {
+        setSaveInt("CompareTopSelectClick", day);
+    }
+
+    public int getCompareTopSelectClick() {
+        return getSaveInt("CompareTopSelectClick", 0);
+    }
+
+    public void setCompareBottomSelectClick(int day) {
+        setSaveInt("CompareBottomSelectClick", day);
+    }
+
+    public int getCompareBottomSelectClick() {
+        return getSaveInt("CompareBottomSelectClick", 0);
+    }
+
 
 }

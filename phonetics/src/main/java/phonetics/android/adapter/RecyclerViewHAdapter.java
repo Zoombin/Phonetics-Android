@@ -18,6 +18,7 @@ import phonetics.android.config.Config;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
 import phonetics.android.ui.DetailsActivity;
+import phonetics.android.utils.ClickUtil;
 
 class RecyclerViewHAdapter extends RecyclerView.Adapter<RecyclerViewHAdapter.MViewHolder> {
     private Context context;
@@ -47,12 +48,22 @@ class RecyclerViewHAdapter extends RecyclerView.Adapter<RecyclerViewHAdapter.MVi
                 @Override
                 public void onClick(View v) {
                     //跳转
-                    CurrentPhonetics.instance().setCurrentVoice(ety);
-                    context.startActivity(new Intent(context, DetailsActivity.class));
+                    if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.BASIC){
+                        //if (ClickUtil.basicClick(context)){
+                            CurrentPhonetics.instance().setCurrentVoice(ety);
+                            context.startActivity(new Intent(context, DetailsActivity.class));
+                        //}
+                    }else if(CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
+                        // (ClickUtil.advancedClick(context)){
+                            CurrentPhonetics.instance().setCurrentVoice(ety);
+                            context.startActivity(new Intent(context, DetailsActivity.class));
+                        //}
+                    }
                 }
             });
         }
     }
+
 
     @Override
     public int getItemCount() {

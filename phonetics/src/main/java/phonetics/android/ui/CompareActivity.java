@@ -19,6 +19,7 @@ import phonetics.android.config.Config;
 import phonetics.android.db.DB_Data;
 import phonetics.android.entity.ComparEntity;
 import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.utils.ClickUtil;
 import phonetics.android.utils.FileNameUtil;
 import phonetics.android.utils.PlayUtil;
 
@@ -143,8 +144,9 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
         String[] pic = pics.split(",");
         if (pic != null && pic.length > 0) {
             topFirstPic = FileNameUtil.replace(pic[0]);
-            int front_id = getResources().getIdentifier("c" + topFirstPic, "drawable", "phonetics.android");
-            top_iv_side.setImageDrawable(getResources().getDrawable(front_id));//
+            //int front_id = getResources().getIdentifier("c" + topFirstPic, "drawable", "phonetics.android");
+            //top_iv_side.setImageDrawable(getResources().getDrawable(front_id));//
+            ImageLoader.getInstance().displayImage(Config.VOCIEPIC_BASE_PATH + "c" + topFirstPic + Config.IMG_TYPE_JPG,top_iv_side);
 
             ImageLoader.getInstance().displayImage(Config.SYMBOLPIC_BASE_PATH + topVoiceEty.getImg() + Config.IMG_TYPE_PNG, top_iv_img);
         }
@@ -158,9 +160,12 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
         String[] pic = pics.split(",");
         if (pic != null && pic.length > 0) {
             bottomFirstPic = FileNameUtil.replace(pic[0]);
-            int front_id = getResources().getIdentifier("c" + bottomFirstPic, "drawable", "phonetics.android");
-            bottom_iv_side.setImageDrawable(getResources().getDrawable(front_id));
+            //脸部数据
+            //int front_id = getResources().getIdentifier("c" + bottomFirstPic, "drawable", "phonetics.android");
+            //bottom_iv_side.setImageDrawable(getResources().getDrawable(front_id));
+            ImageLoader.getInstance().displayImage(Config.VOCIEPIC_BASE_PATH + "c" + bottomFirstPic + Config.IMG_TYPE_JPG,bottom_iv_side);
 
+            //英标名称
             ImageLoader.getInstance().displayImage(Config.SYMBOLPIC_BASE_PATH + bottomVoiceEty.getImg() + Config.IMG_TYPE_PNG, bottom_iv_img);
         }
     }
@@ -214,10 +219,14 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.top_iv_img:
-                startActivityForResult(topRequstCode);
+                if(ClickUtil.compareTopSelectClick(mActivity)){
+                    startActivityForResult(topRequstCode);
+                }
                 break;
             case R.id.bottom_iv_img:
-                startActivityForResult(bottomRequstCode);
+                if(ClickUtil.compareBottomSelectClick(mActivity)){
+                    startActivityForResult(bottomRequstCode);
+                }
                 break;
             case R.id.top_bt_voice:
                 //顶部切换男女声音按钮
@@ -249,8 +258,9 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
                 top_iv_side.setVisibility(View.GONE);
 
                 if (!TextUtils.isEmpty(topFirstPic)) {
-                    int front_id = getResources().getIdentifier(topFirstPic, "drawable", "phonetics.android");
-                    top_iv_front.setImageDrawable(getResources().getDrawable(front_id));//
+                    //int front_id = getResources().getIdentifier(topFirstPic, "drawable", "phonetics.android");
+                    //top_iv_front.setImageDrawable(getResources().getDrawable(front_id));//
+                    ImageLoader.getInstance().displayImage(Config.VOCIEPIC_BASE_PATH + topFirstPic + Config.IMG_TYPE_JPG,top_iv_front);
                 }
                 break;
             case R.id.top_bt_side:
@@ -263,8 +273,9 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
                 top_iv_side.setVisibility(View.VISIBLE);//顶部显示侧面
 
                 if (!TextUtils.isEmpty(topFirstPic)) {
-                    int front_id = getResources().getIdentifier("c" + topFirstPic, "drawable", "phonetics.android");
-                    top_iv_side.setImageDrawable(getResources().getDrawable(front_id));//
+                    //int front_id = getResources().getIdentifier("c" + topFirstPic, "drawable", "phonetics.android");
+                    //top_iv_side.setImageDrawable(getResources().getDrawable(front_id));//
+                    ImageLoader.getInstance().displayImage(Config.VOCIEPIC_BASE_PATH + "c" + topFirstPic + Config.IMG_TYPE_JPG,top_iv_side);
                 }
                 break;
             case R.id.bottom_bt_front:
@@ -277,8 +288,9 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
                 bottom_iv_side.setVisibility(View.GONE);
 
                 if (!TextUtils.isEmpty(bottomFirstPic)) {
-                    int front_id = getResources().getIdentifier(bottomFirstPic, "drawable", "phonetics.android");
-                    bottom_iv_front.setImageDrawable(getResources().getDrawable(front_id));
+                    //int front_id = getResources().getIdentifier(bottomFirstPic, "drawable", "phonetics.android");
+                    //bottom_iv_front.setImageDrawable(getResources().getDrawable(front_id));
+                    ImageLoader.getInstance().displayImage(Config.VOCIEPIC_BASE_PATH + bottomFirstPic + Config.IMG_TYPE_JPG,bottom_iv_front);
                 }
                 break;
             case R.id.bottom_bt_side:
@@ -291,8 +303,9 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
                 bottom_iv_side.setVisibility(View.VISIBLE);//底部显示侧面
 
                 if (!TextUtils.isEmpty(bottomFirstPic)) {
-                    int front_id = getResources().getIdentifier("c" + bottomFirstPic, "drawable", "phonetics.android");
-                    bottom_iv_side.setImageDrawable(getResources().getDrawable(front_id));
+                    //int front_id = getResources().getIdentifier("c" + bottomFirstPic, "drawable", "phonetics.android");
+                    //bottom_iv_side.setImageDrawable(getResources().getDrawable(front_id));
+                    ImageLoader.getInstance().displayImage(Config.VOCIEPIC_BASE_PATH + "c" + bottomFirstPic + Config.IMG_TYPE_JPG,bottom_iv_side);
                 }
                 break;
             case R.id.top_iv_front:
@@ -336,34 +349,38 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
                 finish();
                 break;
             case R.id.iv_forward:
-                saveData();
-                if (comparEntities != null && comparEntities.size() > 0) {
-                    if (etyIndex > 0) {
-                        etyIndex = etyIndex - 1;
-                    }
-                    comparEntity = comparEntities.get(etyIndex);
-                    topVoiceEty = comparEntity.getTopEty();
-                    bottomVoiceEty = comparEntity.getBottomEty();
-                }
-                setData();
-                break;
-            case R.id.iv_next:
-                saveData();
-                if (comparEntities != null && comparEntities.size() > 0) {
-                    if (etyIndex < comparEntities.size()- 1){
-                        etyIndex = etyIndex + 1;
-
+                //if (ClickUtil.basicClick(mActivity)){
+                    saveData();
+                    if (comparEntities != null && comparEntities.size() > 0) {
+                        if (etyIndex > 0) {
+                            etyIndex = etyIndex - 1;
+                        }
                         comparEntity = comparEntities.get(etyIndex);
                         topVoiceEty = comparEntity.getTopEty();
                         bottomVoiceEty = comparEntity.getBottomEty();
+                    }
+                    setData();
+                //}
+                break;
+            case R.id.iv_next:
+               // if (ClickUtil.basicClick(mActivity)){
+                    saveData();
+                    if (comparEntities != null && comparEntities.size() > 0) {
+                        if (etyIndex < comparEntities.size()- 1){
+                            etyIndex = etyIndex + 1;
 
-                        setData();
-                    }else{
+                            comparEntity = comparEntities.get(etyIndex);
+                            topVoiceEty = comparEntity.getTopEty();
+                            bottomVoiceEty = comparEntity.getBottomEty();
+
+                            setData();
+                        }else{
+                            cleanData();
+                        }
+                    } else {
                         cleanData();
                     }
-                } else {
-                    cleanData();
-                }
+                //}
                 break;
         }
 

@@ -3,7 +3,6 @@ package phonetics.android;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.provider.ContactsContract;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -20,7 +19,7 @@ import java.io.File;
 import cn.sharesdk.framework.ShareSDK;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.tools.StorageUtils;
-import phonetics.android.utils.AdClickUtil;
+import phonetics.android.utils.ClickUtil;
 import phonetics.android.utils.MediaPlayerUtil;
 
 /**
@@ -36,7 +35,7 @@ public class BaseApplication extends Application {
 
         CurrentPhonetics.instance().loadData(this);//加载配置文件
         MediaPlayerUtil.create(this);//准备音乐文件
-        AdClickUtil.clean(this);//是否需要清除数据
+        ClickUtil.clean(this);//是否需要清除数据
 
         //有米初始化
         AdManager.getInstance(this).init("7903c4ec230be820", "d6d134031fa3f5bd", Constants.DEBUG);

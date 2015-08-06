@@ -338,4 +338,14 @@ public class PlayUtil {
         //////音乐
         MediaPlayerUtil.start(start_time, delay_time);
     }
+
+
+    /***
+     * 图片加载缓慢
+     *
+     * 加载完成后回调
+     */
+    public interface LoadListener{
+        void complete();
+    }
 }

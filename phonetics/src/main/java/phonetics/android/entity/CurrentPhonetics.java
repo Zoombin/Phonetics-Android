@@ -155,7 +155,7 @@ public class CurrentPhonetics {
             if (curVoice != null && advancedVoiceList != null) {
                 for (int i = 0; i < advancedVoiceList.size(); i++) {
                     PhoneticsEntity.VoiceEty ety = advancedVoiceList.get(i);
-                    if (curVoice.getName().equals(ety.getName())) {
+                    if (curVoice.getExamples().equals(ety.getExamples())) {
                         curIndex = i;
                         setCanNextA();
                         break;

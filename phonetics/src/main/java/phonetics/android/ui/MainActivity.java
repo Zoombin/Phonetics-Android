@@ -1,14 +1,9 @@
 package phonetics.android.ui;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,13 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.onekeyshare.PlatformListFakeActivity;
 import phonetics.android.BaseActivity;
 import phonetics.android.BaseApplication;
 import phonetics.android.R;
@@ -33,13 +26,10 @@ import phonetics.android.db.DB_Data;
 import phonetics.android.db.DB_Share;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
-import phonetics.android.utils.AdClickUtil;
+import phonetics.android.utils.ClickUtil;
 import phonetics.android.utils.AlertDialogUtil;
 import phonetics.android.view.GuideDialog;
-import phonetics.android.view.ShareDialog;
 import phonetics.android.widget.CustomDialog;
-
-import static com.mob.tools.utils.R.getStringRes;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
     final int SHARE_SUCCESS = 0;
@@ -94,10 +84,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 adapter.setData(entity.getBasics());
                 break;
             case R.id.bt_right:
-                if (!new DB_Share(mActivity).getShareResult()) {
-                    showShare();
-                    return;
-                }
+                //if (!new DB_Share(mActivity).getShareResult()) {
+                    //showShare();
+                    //return;
+                //}
                 CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.ADVANCE;//当前类型 高级
                 adapter.setData(entity.getAdvanced());
                 break;
@@ -109,7 +99,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         final CustomDialog dialog = CustomDialog.create(mActivity, R.style.customDialogOne);
         View view = LayoutInflater.from(mActivity).inflate(R.layout.layout_menu_dialog, null);
         TextView tv_click = (TextView) view.findViewById(R.id.tv_click);
-        int count = AdClickUtil.getCount(mActivity);
+        int count = ClickUtil.getCount(mActivity);
         if (count > 0) {
             tv_click.setVisibility(View.VISIBLE);
             tv_click.setText(count + "");
@@ -136,8 +126,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                     dialog.dismiss();
                     return;
                 }
-                startActivity(new Intent(mActivity, CompareActivity.class));
                 dialog.dismiss();
+                //if (ClickUtil.compareClick(mActivity)){
+                    startActivity(new Intent(mActivity, CompareActivity.class));
+                //}
             }
         });
         view.findViewById(R.id.tv_item_share).setOnClickListener(new OnClickListener() {
@@ -218,7 +210,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                     break;
                 case SHARE_FAIL:
                     if (msg.arg1 == 1){
-                        AlertDialogUtil.show(mActivity,getString(R.string.share_alter),getString(R.string.share_weichat_uninstalled));
+                        AlertDialogUtil.show(mActivity,getString(R.string.alter_title),getString(R.string.share_weichat_uninstalled));
                     }else{
                         Toast.makeText(mActivity,R.string.share_fail, Toast.LENGTH_SHORT).show();
                     }

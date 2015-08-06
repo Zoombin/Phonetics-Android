@@ -89,8 +89,8 @@ public class DetailsBasicAdapter extends BaseAdapter {
 
                     int[] data = PlayUtil.getStepVoicesData(stepVoices);
 
-                    int start_time = data[0];
-                    int delay_time = data[1];
+                    final int start_time = data[0];
+                    final int delay_time = data[1];
 
                     //播放动画
                     String pics = ety.getPics();
@@ -102,17 +102,26 @@ public class DetailsBasicAdapter extends BaseAdapter {
                             for (int i = 0;i<picArray.length;i++){
                                 resouce[i] = FileNameUtil.replace(picArray[i]);
                             }
-                            AnimationUtil.startAnimation(context, DetailsActivity.iv_front, resouce, delay_time);
+                            AnimationUtil.startAnimation(context, DetailsActivity.iv_front, resouce, delay_time/*, new PlayUtil.LoadListener() {
+                                @Override
+                                public void complete() {
+                                    MediaPlayerUtil.start(start_time,delay_time);
+                                }
+                            }*/);
                         }else{
                             for (int i = 0;i<picArray.length;i++){
                                 resouce[i] = "c"+FileNameUtil.replace(picArray[i]);
                             }
-                            AnimationUtil.startAnimation(context, DetailsActivity.iv_side, resouce, delay_time);
+                            AnimationUtil.startAnimation(context, DetailsActivity.iv_side, resouce, delay_time/*, new PlayUtil.LoadListener() {
+                                @Override
+                                public void complete() {
+                                    MediaPlayerUtil.start(start_time,delay_time);
+                                }
+                            }*/);
                         }
 
                         //播放音乐
                         MediaPlayerUtil.start(start_time,delay_time);
-
                     }
                 }
             });
