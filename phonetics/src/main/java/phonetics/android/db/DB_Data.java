@@ -21,20 +21,10 @@ public class DB_Data extends DB_Base {
         return list;
     }
 
-    public void setComparEntitie(ComparEntity ety) {
-        List<ComparEntity> list = getComparEntities();
-        if (list == null){
-            list = new ArrayList<>();
-        }
-        list.add(ety);
+    public void setComparEntities(List<ComparEntity> list) {
         setSaveMode("etys", list);
     }
 
-    public void changeComparEntitie(int position, ComparEntity ety) {
-        List<ComparEntity> list = getComparEntities();
-        list.set(position, ety);
-        setSaveMode("etys", list);
-    }
 
     public boolean isGuideMode(){
         return getSaveBoolean("isGuideMode",true);

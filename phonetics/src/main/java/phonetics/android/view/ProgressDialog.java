@@ -21,13 +21,17 @@ public class ProgressDialog {
         dialog = CustomDialog.create(context, R.style.customDialogOne);
         View view = LayoutInflater.from(context).inflate(R.layout.layout_progress_dialog, null);
         dialog.setContentVw(view);
-        dialog.show();
     }
 
     public void show() {
+        if (!dialog.isShowing()){
+            dialog.show();
+        }
     }
 
     public void dismiss() {
-        dialog.dismiss();
+        if(dialog.isShowing()){
+            dialog.dismiss();
+        }
     }
 }

@@ -48,12 +48,22 @@ public class DetailsRecyclerViewHAdapter extends RecyclerView.Adapter<DetailsRec
                 @Override
                 public void onClick(View v) {
                     if (DetailsActivity.faceSide == 0) {
-                        PlayUtil.playAnimation(context, DetailsActivity.faceSide, DetailsActivity.iv_front, ety);
-                        PlayUtil.playMedia(DetailsActivity.voice,ety);
+                        PlayUtil.playAnimation(context, DetailsActivity.faceSide, DetailsActivity.iv_front, ety, new PlayUtil.LoadListener() {
+                            @Override
+                            public void complete() {
+                                PlayUtil.playMedia(DetailsActivity.voice, ety);
+                            }
+                        });
+                        //PlayUtil.playMedia(DetailsActivity.voice, ety);
                     }
                     if (DetailsActivity.faceSide == 1) {
-                        PlayUtil.playAnimation(context, DetailsActivity.faceSide, DetailsActivity.iv_side, ety);
-                        PlayUtil.playMedia(DetailsActivity.voice, ety);
+                        PlayUtil.playAnimation(context, DetailsActivity.faceSide, DetailsActivity.iv_side, ety, new PlayUtil.LoadListener() {
+                            @Override
+                            public void complete() {
+                                PlayUtil.playMedia(DetailsActivity.voice, ety);
+                            }
+                        });
+                        //PlayUtil.playMedia(DetailsActivity.voice, ety);
                     }
                 }
             });

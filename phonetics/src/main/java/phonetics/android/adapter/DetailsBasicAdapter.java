@@ -102,26 +102,26 @@ public class DetailsBasicAdapter extends BaseAdapter {
                             for (int i = 0;i<picArray.length;i++){
                                 resouce[i] = FileNameUtil.replace(picArray[i]);
                             }
-                            AnimationUtil.startAnimation(context, DetailsActivity.iv_front, resouce, delay_time/*, new PlayUtil.LoadListener() {
+                            new AnimationUtil().startAnimation(context, DetailsActivity.iv_front, resouce, delay_time, new PlayUtil.LoadListener() {
                                 @Override
                                 public void complete() {
                                     MediaPlayerUtil.start(start_time,delay_time);
                                 }
-                            }*/);
+                            });
                         }else{
                             for (int i = 0;i<picArray.length;i++){
                                 resouce[i] = "c"+FileNameUtil.replace(picArray[i]);
                             }
-                            AnimationUtil.startAnimation(context, DetailsActivity.iv_side, resouce, delay_time/*, new PlayUtil.LoadListener() {
+                            new AnimationUtil().startAnimation(context, DetailsActivity.iv_side, resouce, delay_time, new PlayUtil.LoadListener() {
                                 @Override
                                 public void complete() {
-                                    MediaPlayerUtil.start(start_time,delay_time);
+                                    MediaPlayerUtil.start(start_time, delay_time);
                                 }
-                            }*/);
+                            });
                         }
 
                         //播放音乐
-                        MediaPlayerUtil.start(start_time,delay_time);
+                        //MediaPlayerUtil.start(start_time,delay_time);
                     }
                 }
             });

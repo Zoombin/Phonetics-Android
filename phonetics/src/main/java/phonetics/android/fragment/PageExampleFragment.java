@@ -171,14 +171,24 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
     public void guideForExample(){
         List<PhoneticsEntity.VoiceEty> list = example_h_layout.getData();
         if (list != null && list.size()>0){
-            PhoneticsEntity.VoiceEty ety = list.get(0);
+            final PhoneticsEntity.VoiceEty ety = list.get(0);
             if (DetailsActivity.faceSide == 0) {
-                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_front, ety);
-                PlayUtil.playMedia(DetailsActivity.voice, ety);
+                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_front, ety, new PlayUtil.LoadListener() {
+                    @Override
+                    public void complete() {
+                        PlayUtil.playMedia(DetailsActivity.voice, ety);
+                    }
+                });
+                //PlayUtil.playMedia(DetailsActivity.voice, ety);
             }
             if (DetailsActivity.faceSide == 1) {
-                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_side, ety);
-                PlayUtil.playMedia(DetailsActivity.voice, ety);
+                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_side, ety, new PlayUtil.LoadListener() {
+                    @Override
+                    public void complete() {
+                        PlayUtil.playMedia(DetailsActivity.voice, ety);
+                    }
+                });
+                //PlayUtil.playMedia(DetailsActivity.voice, ety);
             }
         }
     }

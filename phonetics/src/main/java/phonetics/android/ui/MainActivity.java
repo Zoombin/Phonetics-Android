@@ -84,10 +84,10 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 adapter.setData(entity.getBasics());
                 break;
             case R.id.bt_right:
-                //if (!new DB_Share(mActivity).getShareResult()) {
-                    //showShare();
-                    //return;
-                //}
+                if (!new DB_Share(mActivity).getShareResult()) {
+                    showShare();
+                    return;
+                }
                 CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.ADVANCE;//当前类型 高级
                 adapter.setData(entity.getAdvanced());
                 break;

@@ -28,10 +28,10 @@ public class PlayUtil {
      * @param ety
      */
 
-    public static void playAnimation(Context context, int faceSide, ImageView imageView, PhoneticsEntity.VoiceEty ety) {
-        playAnimation(context, faceSide, imageView, ety, false);
+    public static void playAnimation(Context context, int faceSide, ImageView imageView, PhoneticsEntity.VoiceEty ety,LoadListener loadListener) {
+        playAnimation(context, faceSide, imageView, ety, false,loadListener);
     }
-    public static void playAnimation(Context context, int faceSide, ImageView imageView, PhoneticsEntity.VoiceEty ety,boolean isCut) {
+    public static void playAnimation(Context context, int faceSide, ImageView imageView, PhoneticsEntity.VoiceEty ety,boolean isCut,LoadListener loadListener) {
         String pics = null;
         if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE) {
             //高级
@@ -64,7 +64,7 @@ public class PlayUtil {
                 resouce[j] = FileNameUtil.replace(picArray[i]);
                 j++;
             }
-            AnimationUtil.startAnimation(context, imageView, resouce, long_time);
+            new AnimationUtil().startAnimation(context, imageView, resouce, long_time, loadListener);
         }
         if (faceSide == 1) {
             //播放动画
@@ -73,7 +73,7 @@ public class PlayUtil {
                 resouce[j] = "c" + FileNameUtil.replace(picArray[i]);
                 j++;
             }
-            AnimationUtil.startAnimation(context, imageView, resouce, long_time);
+            new AnimationUtil().startAnimation(context, imageView, resouce, long_time, loadListener);
         }
     }
 
@@ -317,8 +317,8 @@ public class PlayUtil {
             //慢速
             data = PlayUtil.getStepVoicesData(eEty.getSlow_read());
         }
-        int start_time = data[0];
-        int delay_time = data[1];
+        final int start_time = data[0];
+        final int delay_time = data[1];
 
         /////动画
         if (DetailsActivity.faceSide == 0) {
@@ -326,17 +326,27 @@ public class PlayUtil {
             for (int i = 0; i < picArray.length; i++) {
                 resouce[i] = FileNameUtil.replace(picArray[i]);
             }
-            AnimationUtil.startAnimation(context, DetailsActivity.iv_front, resouce, delay_time);
+            new AnimationUtil().startAnimation(context, DetailsActivity.iv_front, resouce, delay_time, new LoadListener() {
+                @Override
+                public void complete() {
+                    MediaPlayerUtil.start(start_time, delay_time);
+                }
+            });
         }
         if (DetailsActivity.faceSide == 1) {
             //播放动画
             for (int i = 0; i < picArray.length; i++) {
                 resouce[i] = "c" + FileNameUtil.replace(picArray[i]);
             }
-            AnimationUtil.startAnimation(context, DetailsActivity.iv_side, resouce, delay_time);
+            new AnimationUtil().startAnimation(context, DetailsActivity.iv_side, resouce, delay_time, new LoadListener() {
+                @Override
+                public void complete() {
+                    MediaPlayerUtil.start(start_time, delay_time);
+                }
+            });
         }
         //////音乐
-        MediaPlayerUtil.start(start_time, delay_time);
+        //MediaPlayerUtil.start(start_time, delay_time);
     }
 
 
