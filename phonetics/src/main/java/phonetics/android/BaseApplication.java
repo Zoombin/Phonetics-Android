@@ -3,7 +3,12 @@ package phonetics.android;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.AudioManager;
+import android.provider.Settings;
+import android.util.DisplayMetrics;
 
+import com.baidu.mobstat.SendStrategyEnum;
+import com.baidu.mobstat.StatService;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -34,16 +39,37 @@ public class BaseApplication extends Application {
         app = this;
 
         CurrentPhonetics.instance().loadData(this);//加载配置文件
-        MediaPlayerUtil.create(this);//准备音乐文件
         ClickUtil.clean(this);//是否需要清除数据
 
         //有米初始化
         AdManager.getInstance(this).init("7903c4ec230be820", "d6d134031fa3f5bd", Constants.DEBUG);
 
+        //百度统计
+        if(Constants.DEBUG){
+            // 测试时，可以使用1秒钟session过期，这样不断的间隔1S启动退出会产生大量日志。
+            StatService.setSessionTimeOut(30);
+        }
+        //设置启动时日志发送延时的秒数
+        StatService.setLogSenderDelayed(200);
+        //日志发送策略
+        StatService.setSendLogStrategy(this, SendStrategyEnum.SET_TIME_INTERVAL, 1, false);
+        StatService.setDebugOn(Constants.DEBUG);
+
+
+
         //ShareSDK初始化
         ShareSDK.initSDK(this);
 
-        initImageLoader(this);//初始化图片加载
+        //初始化图片加载
+        initImageLoader(this);
+
+        new Thread(){
+            @Override
+            public void run() {
+                MediaPlayerUtil.create(app);//准备音乐文件
+                setSystemAudioManager();//设置系统音频参数
+            }
+        }.start();
     }
 
     public static Application instance() {
@@ -79,6 +105,21 @@ public class BaseApplication extends Application {
                 .build();
 
         ImageLoader.getInstance().init(config);
+    }
+
+    private void setSystemAudioManager(){
+        AudioManager audioManager = (AudioManager) app.getSystemService(Context.AUDIO_SERVICE);
+        Settings.System.putInt(app.getContentResolver(), Settings.System.SOUND_EFFECTS_ENABLED, 0);
+        audioManager.unloadSoundEffects();//关闭按键音
+        audioManager.setMode(AudioManager.MODE_NORMAL);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 100, 0);//tempVolume:音量绝对值
+        MediaPlayerUtil.getPlayer().setAudioStreamType(AudioManager.STREAM_MUSIC);
+        if (audioManager.isWiredHeadsetOn()){
+            //插上耳机
+            audioManager.setWiredHeadsetOn(true);
+        }else{
+            audioManager.setSpeakerphoneOn(true);
+        }
     }
 
     @Override

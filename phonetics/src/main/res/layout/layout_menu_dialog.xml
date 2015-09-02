@@ -123,6 +123,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/gray_level1"></View>
+
+            <TextView
+                android:id="@+id/tv_item_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:minWidth="200dp"
+                android:padding="8dp"
+                android:text="@string/tv_item_call"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/gray_level1"></View>
         </LinearLayout>
 
         <TextView

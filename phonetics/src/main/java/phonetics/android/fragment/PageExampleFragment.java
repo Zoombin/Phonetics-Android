@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import phonetics.android.BaseFragment;
+import phonetics.android.Constants;
 import phonetics.android.R;
 import phonetics.android.adapter.DetailsRecyclerViewHAdapter;
 import phonetics.android.adapter.DetailsGeneralAdapter;
@@ -173,22 +174,12 @@ public class PageExampleFragment extends BaseFragment implements DetailsGeneralA
         if (list != null && list.size()>0){
             final PhoneticsEntity.VoiceEty ety = list.get(0);
             if (DetailsActivity.faceSide == 0) {
-                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_front, ety, new PlayUtil.LoadListener() {
-                    @Override
-                    public void complete() {
-                        PlayUtil.playMedia(DetailsActivity.voice, ety);
-                    }
-                });
-                //PlayUtil.playMedia(DetailsActivity.voice, ety);
+                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_front, ety, null);
+                PlayUtil.playMedia(DetailsActivity.voice, ety);
             }
             if (DetailsActivity.faceSide == 1) {
-                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_side, ety, new PlayUtil.LoadListener() {
-                    @Override
-                    public void complete() {
-                        PlayUtil.playMedia(DetailsActivity.voice, ety);
-                    }
-                });
-                //PlayUtil.playMedia(DetailsActivity.voice, ety);
+                PlayUtil.playAnimation(mActivity, DetailsActivity.faceSide, DetailsActivity.iv_side, ety, null);
+                PlayUtil.playMedia(DetailsActivity.voice, ety);
             }
         }
     }

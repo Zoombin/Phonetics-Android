@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/ic_tutorial_dlg_bg"
         android:minHeight="150dp"
         android:orientation="vertical"
@@ -45,9 +45,10 @@
             android:id="@+id/tv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="@string/tv_close"
             android:textColor="@color/blue"
-            android:textSize="15dp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
 

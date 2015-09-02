@@ -39,15 +39,12 @@ public class AnimationUtil {
 
     /**
      * @param imageView
-     * @param resouce   资源
+     * @param resouce       资源
      * @param time      毫秒
      */
     public static void startAnimation(final Context context, ImageView imageView, final String[] resouce, int time, PlayUtil.LoadListener listener) {
         displayImage = imageView;
         lis = listener;
-        if (Constants.isPlaying) {
-            return;
-        }
         dialog = new ProgressDialog(context);
         if (lis != null) {
             dialog.show();
@@ -74,7 +71,7 @@ public class AnimationUtil {
                         handler.sendMessage(msg);
                     }
                 }.start();
-            }else{
+            } else {
                 //同步
                 AnimationDrawable animationDrawable = new AnimationDrawable();
                 for (int i = 0; i < count; i++) {
@@ -90,4 +87,5 @@ public class AnimationUtil {
             }
         }
     }
+
 }

@@ -31,9 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:padding="8dp"
             android:text="@string/tv_close"
             android:textColor="@color/blue"
-            android:textSize="15dp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
 

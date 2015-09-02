@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Phonetics</string>
+    <string name="app_name">TheHaNaKaGumiPhonetics</string>
     <string name="phonetics_title">Phonetics</string>
     <string name="action_settings">Setting</string>
     <string name="bt_left_txt">Basic</string>
@@ -8,6 +8,8 @@
     <string name="tv_ver">ver.1.0</string>
     <string name="tv_item_compare">Comparison</string>
     <string name="tv_item_share">Share</string>
+    <string name="tv_item_guide">tv_item_guide</string>
+    <string name="tv_item_call">tv_item_call</string>
     <string name="tv_close">Close</string>
     <string name="bt_txt_front">Front</string>
     <string name="bt_txt_side">Side</string>
@@ -20,4 +22,26 @@
     <string name="share_dlg_circle_of_friends">share_friends</string>
     <string name="cancel">cancle</string>
     <string name="click_here">click_here</string>
+
+    <string name="guide_step1_text">guide_step1_text</string>
+    <string name="guide_step2_text">guide_step2_text。</string>
+    <string name="guide_step3_text">guide_step3_text。</string>
+    <string name="guide_step4_text">guide_step4_text。</string>
+    <string name="guide_step5_text">guide_step5_text。</string>
+    <string name="guide_step6_text">guide_step6_text。</string>
+    <string name="guide_step7_text">guide_step7_text。</string>
+    <string name="guide_step8_text">guide_step8_text。</string>
+    <string name="guide_step9_text">guide_step9_text。</string>
+    <string name="guide_step10_text">guide_step10_text。</string>
+    <string name="guide_step11_text">guide_step11_text</string>
+    <string name="guide_step_next">guide_step_next</string>
+
+    <string name="share_title">share_title™</string>
+    <string name="share_success">share_success</string>
+    <string name="share_fail">share_fail</string>
+    <string name="share_cancel">share_cancel</string>
+    <string name="alter_title">alter_title</string>
+    <string name="share_weichat_uninstalled">share_weichat_uninstalled！</string>
+    <string name="share_content">share_content</string>
+    <string name="alter_beta_content">alter_beta_content</string>
 </resources>

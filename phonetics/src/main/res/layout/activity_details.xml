@@ -13,15 +13,15 @@
 
         <ImageView
             android:id="@+id/iv_front"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:scaleType="fitXY" />
 
         <ImageView
             android:id="@+id/iv_side"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:scaleType="fitXY" />
 
@@ -153,17 +153,18 @@
     <RelativeLayout
         android:id="@+id/ad_contentlayout"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_layout">
 
         <LinearLayout
             android:id="@+id/ad_layout"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="55dp"
             android:orientation="horizontal"></LinearLayout>
 
         <TextView
             android:id="@+id/tv_click"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

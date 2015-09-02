@@ -515,7 +515,7 @@
                     "similar_yb_name": "",
                     "similar_slow_read": "",
                     "similar_read": "",
-                    "examples_read": "15:35.248,0.646,7:12.250,0.612",
+                    "examples_read": "15:35.248,0.646,7:12.000,0.862",
                     "examples_slow_read": "22:08.063,2.104,22:08.063,2.104",
                     "similar_yb": "",
                     "examples_yb": "ə （b→不喷气的b） t eɪ n",
@@ -639,7 +639,7 @@
                     "similar_yb_name": "",
                     "similar_slow_read": "",
                     "similar_read": "",
-                    "examples_read": "16:32.249,0.475,8:09.248,0.427",
+                    "examples_read": "16:32.249,0.475,8:09.000,0.675",
                     "examples_slow_read": "22:55.715,1.801,22:55.715,1.801",
                     "similar_yb": "",
                     "examples_yb": "r ʌ （g→不喷气的g） b i:",
@@ -1890,7 +1890,7 @@
                     "etime_female": "0:58.781",
                     "img": "symbol_SH",
                     "step_voices": "0:0,0,0:0,0&&2:27.258,1.379,1:37.254,1.187",
-                    "step_pics": "ʃ1,ʃ2,ʃ3&&ʃ4,ʃ5,ʃ6",
+                    "step_pics": "ʃ1,ʃ2,ʃ3,ʃ0&&ʃ4,ʃ5,ʃ6",
                     "examples_pics": ""
                 },
                 {

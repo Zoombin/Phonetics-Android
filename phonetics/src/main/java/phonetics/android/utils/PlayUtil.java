@@ -49,7 +49,7 @@ public class PlayUtil {
         String[] picArray = pics.split(",");
         String[] resouce = null;
         if (picArray != null && picArray.length > 0) {
-            resouce = new String[picArray.length-startIndex];
+            resouce = new String[(picArray.length-startIndex)+1];//末尾再添加第一章图片
         }
         int long_time = 0;
         try {
@@ -64,7 +64,8 @@ public class PlayUtil {
                 resouce[j] = FileNameUtil.replace(picArray[i]);
                 j++;
             }
-            new AnimationUtil().startAnimation(context, imageView, resouce, long_time, loadListener);
+            resouce[j] = FileNameUtil.replace(picArray[0]);////末尾再添加第一章图片(动画播放完，保持第一张图片)
+            AnimationUtil.startAnimation(context, imageView, resouce, long_time, loadListener);
         }
         if (faceSide == 1) {
             //播放动画
@@ -73,7 +74,8 @@ public class PlayUtil {
                 resouce[j] = "c" + FileNameUtil.replace(picArray[i]);
                 j++;
             }
-            new AnimationUtil().startAnimation(context, imageView, resouce, long_time, loadListener);
+            resouce[j] = "c"+FileNameUtil.replace(picArray[0]);////末尾再添加第一章图片(动画播放完，保持第一张图片)
+            AnimationUtil.startAnimation(context, imageView, resouce, long_time, loadListener);
         }
     }
 
@@ -132,9 +134,6 @@ public class PlayUtil {
             } catch (Exception e) {
             }
         }
-
-        Log.i("LSD","stime = "+stime);
-        Log.i("LSD","long_time = "+long_time);
 
 
         if (long_time > 0) {
@@ -306,7 +305,7 @@ public class PlayUtil {
         String[] picArray = picsStr.split(",");
         String[] resouce = null;
         if (picArray != null && picArray.length > 0) {
-            resouce = new String[picArray.length];
+            resouce = new String[(picArray.length)+1];//末尾再添加第一章图片
         }
 
         int[] data = null;
@@ -326,7 +325,8 @@ public class PlayUtil {
             for (int i = 0; i < picArray.length; i++) {
                 resouce[i] = FileNameUtil.replace(picArray[i]);
             }
-            new AnimationUtil().startAnimation(context, DetailsActivity.iv_front, resouce, delay_time, new LoadListener() {
+            resouce[picArray.length] = FileNameUtil.replace(picArray[0]);////末尾再添加第一章图片(动画播放完，保持第一张图片)
+            AnimationUtil.startAnimation(context, DetailsActivity.iv_front, resouce, delay_time, new LoadListener() {
                 @Override
                 public void complete() {
                     MediaPlayerUtil.start(start_time, delay_time);
@@ -338,7 +338,8 @@ public class PlayUtil {
             for (int i = 0; i < picArray.length; i++) {
                 resouce[i] = "c" + FileNameUtil.replace(picArray[i]);
             }
-            new AnimationUtil().startAnimation(context, DetailsActivity.iv_side, resouce, delay_time, new LoadListener() {
+            resouce[picArray.length] = "c"+FileNameUtil.replace(picArray[0]);////末尾再添加第一章图片(动画播放完，保持第一张图片)
+            AnimationUtil.startAnimation(context, DetailsActivity.iv_side, resouce, delay_time, new LoadListener() {
                 @Override
                 public void complete() {
                     MediaPlayerUtil.start(start_time, delay_time);

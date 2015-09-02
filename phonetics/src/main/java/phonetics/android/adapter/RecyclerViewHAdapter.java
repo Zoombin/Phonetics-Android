@@ -49,15 +49,15 @@ class RecyclerViewHAdapter extends RecyclerView.Adapter<RecyclerViewHAdapter.MVi
                 public void onClick(View v) {
                     //跳转
                     if (CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.BASIC){
-                        //if (ClickUtil.basicClick(context)){
+                        if (ClickUtil.basicClick(context)){
                             CurrentPhonetics.instance().setCurrentVoice(ety);
                             context.startActivity(new Intent(context, DetailsActivity.class));
-                        //}
+                        }
                     }else if(CurrentPhonetics.instance().voiceType == CurrentPhonetics.VoiceType.ADVANCE){
-                        // (ClickUtil.advancedClick(context)){
+                         if(ClickUtil.advancedClick(context)){
                             CurrentPhonetics.instance().setCurrentVoice(ety);
                             context.startActivity(new Intent(context, DetailsActivity.class));
-                        //}
+                        }
                     }
                 }
             });

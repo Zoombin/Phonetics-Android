@@ -86,7 +86,6 @@ public class DetailsBasicAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     String stepVoices = ety.getVoices();
-
                     int[] data = PlayUtil.getStepVoicesData(stepVoices);
 
                     final int start_time = data[0];
@@ -97,12 +96,14 @@ public class DetailsBasicAdapter extends BaseAdapter {
                     String[] picArray = pics.split(",");
                     String resouce[] = null;
                     if (picArray != null && picArray.length > 0) {
-                        resouce = new String[picArray.length];
+                        resouce = new String[(picArray.length)];
+
+                        //单步播放末尾不需要添加第一张
                         if (DetailsActivity.faceSide == 0){
                             for (int i = 0;i<picArray.length;i++){
                                 resouce[i] = FileNameUtil.replace(picArray[i]);
                             }
-                            new AnimationUtil().startAnimation(context, DetailsActivity.iv_front, resouce, delay_time, new PlayUtil.LoadListener() {
+                            AnimationUtil.startAnimation(context, DetailsActivity.iv_front, resouce, delay_time, new PlayUtil.LoadListener() {
                                 @Override
                                 public void complete() {
                                     MediaPlayerUtil.start(start_time,delay_time);
@@ -112,7 +113,7 @@ public class DetailsBasicAdapter extends BaseAdapter {
                             for (int i = 0;i<picArray.length;i++){
                                 resouce[i] = "c"+FileNameUtil.replace(picArray[i]);
                             }
-                            new AnimationUtil().startAnimation(context, DetailsActivity.iv_side, resouce, delay_time, new PlayUtil.LoadListener() {
+                            AnimationUtil.startAnimation(context, DetailsActivity.iv_side, resouce, delay_time, new PlayUtil.LoadListener() {
                                 @Override
                                 public void complete() {
                                     MediaPlayerUtil.start(start_time, delay_time);

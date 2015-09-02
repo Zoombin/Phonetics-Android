@@ -1,11 +1,22 @@
 package phonetics.android.utils;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import java.io.IOException;
+
+import phonetics.android.BaseApplication;
 import phonetics.android.Constants;
 import phonetics.android.R;
 
@@ -13,19 +24,21 @@ import phonetics.android.R;
  * Created by lsd on 15/7/25.
  */
 public class MediaPlayerUtil {
+    static Context appContext;
     static MediaPlayer player;
 
     public static void create(Context context) {
-        player = MediaPlayer.create(context, R.raw.sy3);
-        /*player = new MediaPlayer();
-        try {
-            player.setDataSource(Environment.getExternalStorageDirectory()+"/Phies/sy3.mp3");
-            player.prepare();
-        }catch (Exception e){}*/
+        appContext = context;
+        player = MediaPlayer.create(appContext, R.raw.sy3);
+    }
+
+    public static MediaPlayer getPlayer() {
+        return player;
     }
 
     public static void start(int startTime, final int delayTime) {
-        if (Constants.isPlaying){
+        if (player == null) {
+            Toast.makeText(appContext, "正在获取语音数据，请稍后再试", Toast.LENGTH_SHORT).show();
             return;
         }
         if (startTime > 0) {
@@ -37,7 +50,14 @@ public class MediaPlayerUtil {
                     delay(delayTime);
                 }
             });
-            player.seekTo(startTime);
+            try {
+                player.seekTo(startTime);
+            } catch (Exception e) {
+                e.printStackTrace();
+                player = null;
+                Toast.makeText(appContext, "正在获取语音数据，请稍后再试", Toast.LENGTH_SHORT).show();
+                create(BaseApplication.instance());
+            }
         } else {
             Constants.isPlaying = true;
             player.start();
@@ -50,11 +70,20 @@ public class MediaPlayerUtil {
         TimerUtil tUtil = new TimerUtil(new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                Constants.isPlaying = false;
                 player.pause();
+                setIsNotPlaying();
             }
         });
         tUtil.startTimer(time);
+    }
+
+    private static void setIsNotPlaying(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Constants.isPlaying = false;
+            }
+        },200);
     }
 
 

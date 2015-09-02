@@ -30,9 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
+            android:padding="14dp"
             android:text="@string/guide_step_next"
             android:textColor="@color/blue"
-            android:textSize="15dp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/tv_close"
@@ -40,8 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/tv_close"
+            android:padding="8dp"
             android:textColor="@color/blue"
-            android:textSize="15dp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
 

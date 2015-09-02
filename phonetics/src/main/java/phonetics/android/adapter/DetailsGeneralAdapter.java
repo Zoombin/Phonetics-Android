@@ -12,9 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import phonetics.android.Constants;
 import phonetics.android.R;
 import phonetics.android.entity.ExampleEntity;
 import phonetics.android.entity.GeneralEntity;
+import phonetics.android.utils.ClickUtil;
 
 public class DetailsGeneralAdapter extends BaseAdapter {
     private Context context;
@@ -109,6 +111,10 @@ public class DetailsGeneralAdapter extends BaseAdapter {
         viewHodler.content_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(Constants.isPlaying){
+                    //正在播放不进行其他操作
+                    return;
+                }
                 //改变视图
                 changSlowsPic(position);
                 if (click != null) {
@@ -119,6 +125,10 @@ public class DetailsGeneralAdapter extends BaseAdapter {
         viewHodler.iv_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(Constants.isPlaying){
+                    //正在播放不进行其他操作
+                    return;
+                }
                 //慢放
                 if (click != null) {
                     click.click(position, v);

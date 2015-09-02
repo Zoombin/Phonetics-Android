@@ -119,14 +119,14 @@ public class CurrentPhonetics {
     //上一个
     public PhoneticsEntity.VoiceEty getForwardVoice() {
         if (voiceType == VoiceType.BASIC) {
-            if (curIndex > 1) {
+            if (curIndex > 0) {
                 curIndex = curIndex - 1;
                 setCanForward();
                 setCanNextB();
                 return curVoice = basicsVoiceList.get(curIndex);
             }
         } else {
-            if (curIndex > 1) {
+            if (curIndex > 0) {
                 curIndex = curIndex - 1;
                 setCanForward();
                 setCanNextA();

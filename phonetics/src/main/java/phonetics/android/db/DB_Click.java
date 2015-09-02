@@ -88,5 +88,47 @@ public class DB_Click extends DB_Base {
         return getSaveInt("CompareBottomSelectClick", 0);
     }
 
+    public void setCompareBottomSelectClickCount(int count) {
+        setSaveInt("CompareBottomSelectClickCount", count);
+    }
+
+    public int getCompareBottomSelectClickCount() {
+        return getSaveInt("CompareBottomSelectClickCount", 1);
+    }
+
+    public void setCompareTopSelectClickCount(int count) {
+        setSaveInt("CompareTopSelectClickCount", count);
+    }
+
+    public int getCompareTopSelectClickCount() {
+        return getSaveInt("CompareTopSelectClickCount", 1);
+    }
+
+
+
+    public void setBasicVoiceClickCount(int count) {
+        setSaveInt("BasicVoiceClickCount", count);
+    }
+
+    public int getBasicVoiceClickCount() {
+        return getSaveInt("BasicVoiceClickCount", 1);
+    }
+
+    public void setAdvancedVoiceClickCount(int count) {
+        setSaveInt("AdvancedVoiceClickCount", count);
+    }
+
+    public int getAdvancedVoiceClickCount() {
+        return getSaveInt("AdvancedVoiceClickCount", 1);
+    }
+
+    public void setCompareClickCount(int count) {
+        setSaveInt("CompareClickCount", count);
+    }
+
+    public int getCompareClickCount() {
+        return getSaveInt("CompareClickCount", 1);
+    }
+
 
 }

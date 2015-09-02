@@ -1,7 +1,9 @@
+【release】
 Keystore information:
-Password: niusan
-Alias: zmkm.keystore
-Alias Password: niusan
+Password: ph123456
+Alias: phonetics
+Alias Password: ph123456
+
 
 
 【debug】
@@ -10,12 +12,3 @@ Password: android
 Alias: androiddebugkey
 Alias Password: android
 
-
-【渠道名称】
-应用宝-yingyongbao
-豌豆荚-wandoujia
-安智-anzhi
-百度手机助手-baidu
-360手机助手-360
-小米-mi
-电信-dianxin

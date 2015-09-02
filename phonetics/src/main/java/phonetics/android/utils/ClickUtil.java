@@ -11,6 +11,19 @@ import phonetics.android.db.DB_Click;
  * Created by lsd on 15/8/2.
  */
 public class ClickUtil {
+    private static long lastClickTime = 0;
+
+    public static boolean isFastDoubleClick() {
+        long time = System.currentTimeMillis();
+        long timeD = time - lastClickTime;
+        if (0 < timeD && timeD < 1000) {
+            return true;
+        }
+
+        lastClickTime = time;
+        return false;
+    }
+
 
     public static void adClick(Context context) {
         int count = new DB_Click(context).getCount();
@@ -42,10 +55,17 @@ public class ClickUtil {
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
             new DB_Click(context).setBasicVoiceClick(curDay);
+            new DB_Click(context).setBasicVoiceClickCount(1);
             return true;
         }else{
-            showAlter(context);
-            return false;
+            int count = new DB_Click(context).getBasicVoiceClickCount();
+            if (count>10){
+                showAlter(context);
+                return false;
+            }else{
+                new DB_Click(context).setBasicVoiceClickCount(count + 1);
+                return true;
+            }
         }
     }
 
@@ -60,10 +80,17 @@ public class ClickUtil {
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
             new DB_Click(context).setAdvancedVoiceClick(curDay);
+            new DB_Click(context).setAdvancedVoiceClickCount(1);
             return true;
         }else{
-            showAlter(context);
-            return false;
+            int count = new DB_Click(context).getAdvancedVoiceClickCount();
+            if (count>10){
+                showAlter(context);
+                return false;
+            }else{
+                new DB_Click(context).setAdvancedVoiceClickCount(count + 1);
+                return true;
+            }
         }
     }
 
@@ -79,10 +106,17 @@ public class ClickUtil {
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
             new DB_Click(context).setCompareClick(curDay);
+            new DB_Click(context).setCompareClickCount(1);
             return true;
         }else{
-            showAlter(context);
-            return false;
+            int count = new DB_Click(context).getCompareClickCount();
+            if (count>10){
+                showAlter(context);
+                return false;
+            }else{
+                new DB_Click(context).setCompareClickCount(count + 1);
+                return true;
+            }
         }
     }
 
@@ -97,10 +131,17 @@ public class ClickUtil {
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
             new DB_Click(context).setCompareTopSelectClick(curDay);
+            new DB_Click(context).setCompareTopSelectClickCount(1);
             return true;
         }else{
-            showAlter(context);
-            return false;
+            int count = new DB_Click(context).getCompareTopSelectClickCount();
+            if (count>10){
+                showAlter(context);
+                return false;
+            }else{
+                new DB_Click(context).setCompareTopSelectClickCount(count + 1);
+                return true;
+            }
         }
     }
 
@@ -115,10 +156,17 @@ public class ClickUtil {
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
             new DB_Click(context).setCompareBottomSelectClick(curDay);
+            new DB_Click(context).setCompareBottomSelectClickCount(1);
             return true;
         }else{
-            showAlter(context);
-            return false;
+            int count = new DB_Click(context).getCompareBottomSelectClickCount();
+            if (count>10){
+                showAlter(context);
+                return false;
+            }else{
+                new DB_Click(context).setCompareBottomSelectClickCount(count + 1);
+                return true;
+            }
         }
     }
 

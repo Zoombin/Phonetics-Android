@@ -1,6 +1,8 @@
 package phonetics.android.ui;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +28,7 @@ import phonetics.android.db.DB_Data;
 import phonetics.android.db.DB_Share;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.entity.PhoneticsEntity;
+import phonetics.android.receiver.AudioStreamReceiver;
 import phonetics.android.utils.ClickUtil;
 import phonetics.android.utils.AlertDialogUtil;
 import phonetics.android.view.GuideDialog;
@@ -41,6 +44,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     ImageView iv_menu;
     PhoneticsAdapter adapter;
     ListView listView;
+    AudioStreamReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +59,19 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
         setData();
         isFirstLogin();
+        registerHeadsetPlugReceiver();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    private void registerHeadsetPlugReceiver() {
+        receiver = new AudioStreamReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.intent.action.HEADSET_PLUG");
+        registerReceiver(receiver, intentFilter);
     }
 
     private void initView() {
@@ -73,13 +85,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     }
 
     private void tabSelect(View v) {
-        bt_right.setSelected(false);
-        bt_left.setSelected(false);
-        v.setSelected(true);
-
         PhoneticsEntity entity = CurrentPhonetics.instance().entity;
         switch (v.getId()) {
             case R.id.bt_left:
+                bt_right.setSelected(false);
+                bt_left.setSelected(true);
                 CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.BASIC;//当前类型 基本
                 adapter.setData(entity.getBasics());
                 break;
@@ -88,6 +98,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                     showShare();
                     return;
                 }
+                bt_left.setSelected(false);
+                bt_right.setSelected(true);
                 CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.ADVANCE;//当前类型 高级
                 adapter.setData(entity.getAdvanced());
                 break;
@@ -127,15 +139,14 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                     return;
                 }
                 dialog.dismiss();
-                //if (ClickUtil.compareClick(mActivity)){
+                if (ClickUtil.compareClick(mActivity)) {
                     startActivity(new Intent(mActivity, CompareActivity.class));
-                //}
+                }
             }
         });
         view.findViewById(R.id.tv_item_share).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new ShareDialog(mActivity);
                 showShare();
                 dialog.dismiss();
             }
@@ -143,8 +154,16 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         view.findViewById(R.id.tv_item_guide).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                tabSelect(bt_left);
                 new DB_Data(mActivity).setGuideMode(true);
                 new GuideDialog().Step1(mActivity);
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.tv_item_call).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, WebViewActivity.class).putExtra("url", "http://url.cn/e1QPcQ"));
                 dialog.dismiss();
             }
         });
@@ -165,7 +184,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         oks.setTitle(getString(R.string.share_title));
         oks.setText(getString(R.string.share_content));
         //oks.setUrl(url);
-        oks.setImagePath(getResources().getAssets()+ "ic_logo");
+        oks.setImagePath(getResources().getAssets() + "ic_logo");
         oks.setCallback(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
@@ -196,23 +215,23 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     /***
      * 分享结果处理
      */
-    Handler messageHandler = new Handler(){
+    Handler messageHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case SHARE_SUCCESS:
                     //分享成功
                     Toast.makeText(mActivity, R.string.share_success, Toast.LENGTH_SHORT).show();
                     new DB_Share(mActivity).setShareResult(true);
                     break;
                 case SHARE_CANCEL:
-                    Toast.makeText(mActivity,R.string.share_cancel, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity, R.string.share_cancel, Toast.LENGTH_SHORT).show();
                     break;
                 case SHARE_FAIL:
-                    if (msg.arg1 == 1){
-                        AlertDialogUtil.show(mActivity,getString(R.string.alter_title),getString(R.string.share_weichat_uninstalled));
-                    }else{
-                        Toast.makeText(mActivity,R.string.share_fail, Toast.LENGTH_SHORT).show();
+                    if (msg.arg1 == 1) {
+                        AlertDialogUtil.show(mActivity, getString(R.string.alter_title), getString(R.string.share_weichat_uninstalled));
+                    } else {
+                        Toast.makeText(mActivity, R.string.share_fail, Toast.LENGTH_SHORT).show();
                     }
                     break;
             }
@@ -228,7 +247,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             new GuideDialog().Step1(mActivity);
         }
     }
-
 
 
     @Override
@@ -248,8 +266,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected void onDestroy() {
-        BaseApplication.instance().onTerminate();
+        unregisterReceiver(receiver);
         ShareSDK.stopSDK(this);
+        BaseApplication.instance().onTerminate();
         super.onDestroy();
     }
 }
