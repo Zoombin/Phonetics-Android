@@ -1,23 +1,21 @@
 package phonetics.android.widget;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.MotionEvent;
 
-import net.youmi.android.banner.AdSize;
-import net.youmi.android.banner.AdView;
 
 /**
  * Created by lsd on 15/8/5.
  */
-public class MAdView extends AdView {
+/*public class MYoumiAdView extends AdView {
+    //有米
     OnClickListener listener;
 
-    public MAdView(Context context) {
+    public MYoumiAdView(Context context) {
         super(context);
     }
 
-    public MAdView(Context context, AdSize adSize) {
+    public MYoumiAdView(Context context, AdSize adSize) {
         super(context, adSize);
     }
 
@@ -43,4 +41,4 @@ public class MAdView extends AdView {
         void onClick();
     }
 
-}
+}*/

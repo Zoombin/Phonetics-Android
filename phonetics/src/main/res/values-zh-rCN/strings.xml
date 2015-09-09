@@ -34,7 +34,7 @@
     <string name="guide_step8_text">烦请点击\"音标按钮\"，听一下发音。</string>
     <string name="guide_step9_text">烦请点击\"SLOW\"按钮可以听到慢放的发音。</string>
     <string name="guide_step10_text">点击左下角回退按钮，可以返回主界面。</string>
-    <string name="guide_step11_text">新手说明结束。《金版音标图谱™》限定版，每日点击广告1次（连击无效）、单月累计点击广告28次的用户朋友可以凭含“广告计数页面的截图”和“微信朋友圈分享此活动内容的截图”参与每月的“返20元大抽奖”，每人每月有一次机会。参与者可将上述截图和领奖微信号和下载本软件的网址一并发至：\nhanakagumi@outlook.com --花华组</string>
+    <string name="guide_step11_text">新手说明结束。《金版音标图谱》限定版，每日点击广告1次（连击无效）、单月累计点击广告28次的用户朋友可以凭含“广告计数页面的截图”和“微信朋友圈分享此活动内容的截图”参与每月的“返20元大抽奖”，每人每月有一次机会。参与者可将上述截图和领奖微信号和下载本软件的网址一并发至：\nhanakagumi@outlook.com --花华组</string>
     <string name="guide_step_next">下一步</string>
 
     <string name="share_title">金版音标图谱</string>
@@ -43,6 +43,6 @@
     <string name="share_cancel">分享取消</string>
     <string name="alter_title">提示</string>
     <string name="share_weichat_uninstalled">您未安装微信，请下载安装！</string>
-    <string name="share_content">推荐：【花华组】基于国外著名大学研究成果，结合世界级美工特效，打造出的全球最精细的音标学习软件。关注官方公众号：hanakagumi《金版音标图谱》下载地址：http://pan.baidu.com/s/1eQqB0jS官方贴吧地址：http://url.cn/Scmk8i花华组主页：http://hanaka.5858.com</string>
-    <string name="alter_beta_content">当前版本各项功能每天仅可使用三次</string>
+    <string name="share_content">推荐：【花华组】基于国外著名大学研究成果，结合世界级美工特效，打造出的全球最精细的音标学习软件。关注官方公众号：hanakagumi《金版音标图谱》下载地址：http://url.cn/jjnA76官方贴吧地址：http://url.cn/Scmk8i花华组主页：http://hanaka.5858.com从没见过任何资料把音标教得如此细致入微！</string>
+    <string name="alter_beta_content">当前版本各项功能每天限定使用10次,请明天再来使用哦。或者您可以推荐给朋友，并用对方机器继续查阅。</string>
 </resources>

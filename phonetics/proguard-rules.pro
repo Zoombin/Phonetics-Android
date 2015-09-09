@@ -155,3 +155,16 @@
 -keep class org.bitlet.** {*;}
 -keep class org.slf4j.** {*;}
 -keep class ch.imvs.** {*;}
+
+
+#腾讯广告
+-keep class com.qq.e.** {
+   public protected *;
+   }
+-keep class android.support.v4.app.NotificationCompat**{
+   public *;
+   }
+
+#百度广告
+-keep class com.baidu.mobads.** { public protected *;
+}

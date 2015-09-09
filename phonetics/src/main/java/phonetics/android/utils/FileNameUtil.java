@@ -32,7 +32,6 @@ public class FileNameUtil {
                 .replace("ʌ", "ar")
                 .replace("ŋ", "ng")
                 .replace("ɫ", "ii");
-
         return  newName;
     }
 

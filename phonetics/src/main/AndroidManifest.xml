@@ -41,7 +41,6 @@
             android:screenOrientation="portrait"></activity>
 
 
-
         <!-- 百度统计-->
         <!-- 您从百度网站获取的APP KEY -->
         <meta-data
@@ -80,7 +79,6 @@
             android:value="false" />
 
 
-
         <!-- SHARED SDK -->
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -112,7 +110,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- 有米-->
-        <activity
+        <!--<activity
             android:name="net.youmi.android.AdBrowser"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
@@ -122,7 +120,26 @@
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <data android:scheme="package" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
+
+
+        <!-- 腾讯-->
+       <!-- <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
+        </activity>-->
+
+
+        <!-- 百度-->
+        <meta-data android:name="BaiduMobAd_APP_ID" android:value="f8a9e982" />
+        <activity
+            android:name="com.baidu.mobads.AppActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
     </application>
 
 
@@ -140,27 +157,20 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
-
-    <!--ShareSDK-->
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-
-
     <!-- 有米广告-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <!-- 腾讯广告-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+
+    <!-- 百度-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
 
 </manifest>

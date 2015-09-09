@@ -17,8 +17,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
-import net.youmi.android.AdManager;
-
 import java.io.File;
 
 import cn.sharesdk.framework.ShareSDK;
@@ -42,7 +40,8 @@ public class BaseApplication extends Application {
         ClickUtil.clean(this);//是否需要清除数据
 
         //有米初始化
-        AdManager.getInstance(this).init("7903c4ec230be820", "d6d134031fa3f5bd", Constants.DEBUG);
+        //AdManager.getInstance(this).init("7903c4ec230be820", "d6d134031fa3f5bd", Constants.DEBUG);
+
 
         //百度统计
         if(Constants.DEBUG){
