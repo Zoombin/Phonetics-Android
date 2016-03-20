@@ -14,6 +14,7 @@
         android:padding="2dp">
 
         <RelativeLayout
+            android:id="@+id/ll_headview1"
             android:layout_width="match_parent"
             android:layout_height="250dp">
 
@@ -34,20 +35,20 @@
 
             <ImageView
                 android:id="@+id/top_iv_img"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="@dimen/img_size_comm"
+                android:layout_height="@dimen/img_size_comm"
+                android:layout_marginLeft="@dimen/margin_comm"
+                android:layout_marginTop="@dimen/margin_comm"
                 android:background="@color/gray_level3"
                 android:src="@drawable/ic_click" />
 
             <Button
                 android:id="@+id/top_bt_voice"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="@dimen/img_bt_voice"
+                android:layout_height="@dimen/img_bt_voice"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="6dp"
-                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_comm"
                 android:background="@drawable/bt_voice_selector" />
 
 
@@ -58,33 +59,33 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:padding="12dp">
+                android:padding="@dimen/padding_comm">
 
                 <TextView
                     android:id="@+id/top_bt_front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bt_txtfront_selector"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="14dp"
-                    android:paddingRight="14dp"
-                    android:paddingTop="6dp"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:paddingLeft="@dimen/padding_comm"
+                    android:paddingRight="@dimen/padding_comm"
+                    android:paddingTop="@dimen/padding_small"
                     android:text="@string/bt_txt_front"
                     android:textColor="@drawable/bt_view_color"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_small" />
 
                 <TextView
                     android:id="@+id/top_bt_side"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bt_txtside_selector"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="14dp"
-                    android:paddingRight="14dp"
-                    android:paddingTop="6dp"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:paddingLeft="@dimen/padding_comm"
+                    android:paddingRight="@dimen/padding_comm"
+                    android:paddingTop="@dimen/padding_small"
                     android:text="@string/bt_txt_side"
                     android:textColor="@drawable/bt_view_color"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_small" />
 
             </LinearLayout>
         </RelativeLayout>
@@ -99,6 +100,7 @@
         android:padding="2dp">
 
         <RelativeLayout
+            android:id="@+id/ll_headview2"
             android:layout_width="match_parent"
             android:layout_height="250dp">
 
@@ -119,20 +121,20 @@
 
             <ImageView
                 android:id="@+id/bottom_iv_img"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="@dimen/img_size_comm"
+                android:layout_height="@dimen/img_size_comm"
+                android:layout_marginLeft="@dimen/margin_comm"
+                android:layout_marginTop="@dimen/margin_comm"
                 android:background="@color/gray_level3"
                 android:src="@drawable/ic_click" />
 
             <Button
                 android:id="@+id/bottom_bt_voice"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="@dimen/img_bt_voice"
+                android:layout_height="@dimen/img_bt_voice"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="6dp"
-                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_comm"
                 android:background="@drawable/bt_voice_selector" />
 
 
@@ -143,33 +145,33 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:padding="12dp">
+                android:padding="@dimen/padding_comm">
 
                 <TextView
                     android:id="@+id/bottom_bt_front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bt_txtfront_selector"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="14dp"
-                    android:paddingRight="14dp"
-                    android:paddingTop="6dp"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:paddingLeft="@dimen/padding_comm"
+                    android:paddingRight="@dimen/padding_comm"
+                    android:paddingTop="@dimen/padding_small"
                     android:text="@string/bt_txt_front"
                     android:textColor="@drawable/bt_view_color"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_small" />
 
                 <TextView
                     android:id="@+id/bottom_bt_side"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bt_txtside_selector"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="14dp"
-                    android:paddingRight="14dp"
-                    android:paddingTop="6dp"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:paddingLeft="@dimen/padding_comm"
+                    android:paddingRight="@dimen/padding_comm"
+                    android:paddingTop="@dimen/padding_small"
                     android:text="@string/bt_txt_side"
                     android:textColor="@drawable/bt_view_color"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_small" />
 
             </LinearLayout>
         </RelativeLayout>
@@ -183,22 +185,22 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/img_bt_size_comm"
+            android:layout_height="@dimen/img_bt_size_comm"
             android:src="@drawable/ic_back" />
 
         <ImageView
             android:id="@+id/iv_forward"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginRight="12dp"
+            android:layout_width="@dimen/img_bt_size_comm"
+            android:layout_height="@dimen/img_bt_size_comm"
+            android:layout_marginRight="@dimen/margin_comm"
             android:layout_toLeftOf="@+id/iv_next"
             android:src="@drawable/ic_forward" />
 
         <ImageView
             android:id="@+id/iv_next"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/img_bt_size_comm"
+            android:layout_height="@dimen/img_bt_size_comm"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_next" />
     </RelativeLayout>

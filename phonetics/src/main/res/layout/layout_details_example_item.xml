@@ -12,9 +12,9 @@
 
         <ImageView
             android:id="@+id/iv_pic"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
+            android:layout_width="@dimen/img_size_comm"
+            android:layout_height="@dimen/img_size_small"
+            android:layout_margin="@dimen/margin_comm"
             android:src="@drawable/ic_slow_b" />
 
         <TextView
@@ -22,10 +22,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="@dimen/margin_comm"
             android:text="fd"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_comm" />
     </LinearLayout>
 
     <View

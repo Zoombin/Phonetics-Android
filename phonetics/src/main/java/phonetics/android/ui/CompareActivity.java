@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,6 +23,7 @@ import phonetics.android.db.DB_Data;
 import phonetics.android.entity.ComparEntity;
 import phonetics.android.entity.PhoneticsEntity;
 import phonetics.android.utils.ClickUtil;
+import phonetics.android.utils.DensityUtil;
 import phonetics.android.utils.FileNameUtil;
 import phonetics.android.utils.PlayUtil;
 
@@ -59,6 +61,8 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
     Button bottom_bt_voice;
     TextView bottom_bt_front;
     TextView bottom_bt_side;
+    RelativeLayout ll_headview1;
+    RelativeLayout ll_headview2;
 
 
     @Override
@@ -67,6 +71,7 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
 
         setContentView(R.layout.activity_compare);
         initView();
+        initHeaderViewHight();
         setViewStatus();
         loadData();
     }
@@ -86,9 +91,21 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
         (bottom_bt_front = (TextView) findViewById(R.id.bottom_bt_front)).setOnClickListener(this);
         (bottom_bt_side = (TextView) findViewById(R.id.bottom_bt_side)).setOnClickListener(this);
 
+        ll_headview1 = (RelativeLayout) findViewById(R.id.ll_headview1);
+        ll_headview2 = (RelativeLayout) findViewById(R.id.ll_headview2);
+
         findViewById(R.id.iv_back).setOnClickListener(this);
         findViewById(R.id.iv_forward).setOnClickListener(this);
         findViewById(R.id.iv_next).setOnClickListener(this);
+    }
+
+
+    public  void initHeaderViewHight(){
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)ll_headview1.getLayoutParams();
+        params.height = Constants.PTImgHeight;
+        ll_headview1.setLayoutParams(params);
+
+        ll_headview2.setLayoutParams(params);
     }
 
     private void setViewStatus() {

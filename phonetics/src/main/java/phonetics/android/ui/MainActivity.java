@@ -94,10 +94,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 adapter.setData(entity.getBasics());
                 break;
             case R.id.bt_right:
-                if (!new DB_Share(mActivity).getShareResult()) {
+                //去掉强制分享
+                /*if (!new DB_Share(mActivity).getShareResult()) {
                     showShare();
                     return;
-                }
+                }*/
                 bt_left.setSelected(false);
                 bt_right.setSelected(true);
                 CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.ADVANCE;//当前类型 高级
@@ -133,11 +134,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         view.findViewById(R.id.tv_item_compare).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!new DB_Share(mActivity).getShareResult()) {
+                //去掉强制分享
+                /*if (!new DB_Share(mActivity).getShareResult()) {
                     showShare();
                     dialog.dismiss();
                     return;
-                }
+                }*/
                 dialog.dismiss();
                 if (ClickUtil.compareClick(mActivity)) {
                     startActivity(new Intent(mActivity, CompareActivity.class));

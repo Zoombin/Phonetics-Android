@@ -10,9 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:background="@color/white_level1"
-        android:minWidth="260dp"
+        android:minWidth="@dimen/menu_minwidth"
         android:orientation="vertical"
-        android:padding="6dp">
+        android:padding="@dimen/padding_small">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,13 +21,13 @@
 
             <RelativeLayout
                 android:id="@+id/logo_layout"
-                android:layout_width="60dp"
-                android:layout_height="60dp">
+                android:layout_width="@dimen/img_size_comm"
+                android:layout_height="@dimen/img_size_comm">
 
                 <ImageView
                     android:id="@+id/iv_logo"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="@dimen/img_size_comm"
+                    android:layout_height="@dimen/img_size_comm"
                     android:src="@mipmap/ic_launcher" />
 
                 <TextView
@@ -47,30 +47,30 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="@dimen/margin_comm"
                 android:layout_toRightOf="@id/logo_layout"
                 android:text="@string/tv_name"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_size_comm" />
 
             <TextView
                 android:id="@+id/tv_ver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_name"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="@dimen/margin_comm"
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@id/logo_layout"
                 android:text="@string/tv_ver"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_size_comm" />
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/item_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/margin_small"
             android:orientation="vertical">
 
             <TextView
@@ -83,7 +83,7 @@
                 android:padding="8dp"
                 android:text="@string/tv_item_compare"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_size_comm" />
 
             <View
                 android:layout_width="match_parent"
@@ -97,10 +97,10 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:minWidth="200dp"
-                android:padding="8dp"
+                android:padding="@dimen/padding_comm"
                 android:text="@string/tv_item_share"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_size_comm" />
 
             <View
                 android:layout_width="match_parent"
@@ -114,10 +114,10 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:minWidth="200dp"
-                android:padding="8dp"
+                android:padding="@dimen/padding_comm"
                 android:text="@string/tv_item_guide"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_size_comm" />
 
             <View
                 android:layout_width="match_parent"
@@ -131,10 +131,10 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:minWidth="200dp"
-                android:padding="8dp"
+                android:padding="@dimen/padding_comm"
                 android:text="@string/tv_item_call"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_size_comm" />
 
             <View
                 android:layout_width="match_parent"
@@ -148,10 +148,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:padding="8dp"
+            android:padding="@dimen/padding_comm"
             android:text="@string/tv_close"
             android:textColor="@color/green"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_comm" />
     </LinearLayout>
 
 

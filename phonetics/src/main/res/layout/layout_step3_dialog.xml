@@ -7,14 +7,13 @@
 
 
     <LinearLayout
-        android:layout_width="280dp"
+        android:layout_width="@dimen/guide_step_conentview_width"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_centerInParent="true"
         android:background="@drawable/ic_tutorial_dlg_bg"
-        android:minHeight="150dp"
+        android:minHeight="@dimen/guide_step_conentview_minheight"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/guide_step_conentview_padding">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,28 +21,28 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/guide_step3_text"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
             android:id="@+id/tv_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:padding="14dp"
+            android:layout_marginTop="@dimen/guide_step_contendata_dir"
+            android:padding="@dimen/padding_comm"
             android:text="@string/guide_step_next"
             android:textColor="@color/blue"
-            android:textSize="17sp" />
+            android:textSize="@dimen/text_size_comm" />
 
         <TextView
             android:id="@+id/tv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/guide_step_contendata_dir"
+            android:padding="@dimen/padding_comm"
             android:text="@string/tv_close"
-            android:padding="8dp"
             android:textColor="@color/blue"
-            android:textSize="17sp" />
+            android:textSize="@dimen/text_size_comm" />
     </LinearLayout>
 
 

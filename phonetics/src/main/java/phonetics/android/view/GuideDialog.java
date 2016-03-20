@@ -6,12 +6,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 
+import phonetics.android.Constants;
 import phonetics.android.R;
 import phonetics.android.db.DB_Data;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.ui.DetailsActivity;
 import phonetics.android.widget.CustomDialog;
+import phonetics.android.widget.MImageView;
 
 /**
  * Created by lsd on 15/8/2.
@@ -172,7 +175,8 @@ public class GuideDialog {
                 dialog.dismiss();
             }
         });
-        view.findViewById(R.id.indicator_tap).setOnClickListener(new View.OnClickListener() {
+        MImageView imageView = (MImageView)view.findViewById(R.id.indicator_tap);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -180,6 +184,9 @@ public class GuideDialog {
                 doCallBack(5);
             }
         });
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
+        params.setMargins(10,10,0,0);
+        imageView.setLayoutParams(params);
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -205,7 +212,8 @@ public class GuideDialog {
                 dialog.dismiss();
             }
         });
-        view.findViewById(R.id.indicator_tap).setOnClickListener(new View.OnClickListener() {
+        MImageView imageView = (MImageView)view.findViewById(R.id.indicator_tap);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -213,6 +221,10 @@ public class GuideDialog {
                 doCallBack(6);
             }
         });
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
+        int dimensCircleValue = (int)context.getResources().getDimension(R.dimen.guide_img_circle);
+        params.setMargins(0, Constants.PTImgHeight-dimensCircleValue,70,0);
+        imageView.setLayoutParams(params);
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -238,7 +250,8 @@ public class GuideDialog {
                 dialog.dismiss();
             }
         });
-        view.findViewById(R.id.indicator_tap).setOnClickListener(new View.OnClickListener() {
+        MImageView imageView = (MImageView)view.findViewById(R.id.indicator_tap);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -246,6 +259,11 @@ public class GuideDialog {
                 doCallBack(7);
             }
         });
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
+        int dimensCircleValue = (int)context.getResources().getDimension(R.dimen.guide_img_circle);
+        int dimensImgSizeValue = (int)context.getResources().getDimension(R.dimen.img_size_comm);
+        params.setMargins(dimensImgSizeValue+20, Constants.PTImgHeight+dimensCircleValue,0,0);
+        imageView.setLayoutParams(params);
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -271,7 +289,8 @@ public class GuideDialog {
                 dialog.dismiss();
             }
         });
-        view.findViewById(R.id.indicator_tap).setOnClickListener(new View.OnClickListener() {
+        MImageView imageView = (MImageView)view.findViewById(R.id.indicator_tap);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -279,6 +298,10 @@ public class GuideDialog {
                 doCallBack(8);
             }
         });
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
+        int dimensCircleValue = (int)context.getResources().getDimension(R.dimen.guide_img_circle);
+        params.setMargins(0, Constants.PTImgHeight+(dimensCircleValue/3),0,0);
+        imageView.setLayoutParams(params);
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -305,7 +328,8 @@ public class GuideDialog {
                 dialog.dismiss();
             }
         });
-        view.findViewById(R.id.indicator_tap).setOnClickListener(new View.OnClickListener() {
+        MImageView imageView = (MImageView)view.findViewById(R.id.indicator_tap);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -313,6 +337,10 @@ public class GuideDialog {
                 doCallBack(9);
             }
         });
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
+        int dimensCircleValue = (int)context.getResources().getDimension(R.dimen.guide_img_circle);
+        params.setMargins(20, Constants.PTImgHeight+dimensCircleValue,0,0);
+        imageView.setLayoutParams(params);
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {

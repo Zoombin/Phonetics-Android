@@ -10,8 +10,9 @@
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_small"
         android:background="@drawable/layout_eitem_selecter"
-        android:padding="6dp" />
+        android:padding="@dimen/padding_small" />
 
     <View
         android:layout_width="match_parent"

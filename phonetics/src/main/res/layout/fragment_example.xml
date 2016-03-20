@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/padding_comm">
 
     <TextView
         android:id="@+id/tv_example_name"
@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:text="example"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="@dimen/text_size_comm" />
 
 
     <!--<android.support.v7.widget.RecyclerView
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:orientation="horizontal"></phonetics.android.widget.HorizontalLinearLayout>
 
     <ListView

@@ -23,6 +23,7 @@ import cn.sharesdk.framework.ShareSDK;
 import phonetics.android.entity.CurrentPhonetics;
 import phonetics.android.tools.StorageUtils;
 import phonetics.android.utils.ClickUtil;
+import phonetics.android.utils.DensityUtil;
 import phonetics.android.utils.MediaPlayerUtil;
 
 /**
@@ -69,10 +70,17 @@ public class BaseApplication extends Application {
                 setSystemAudioManager();//设置系统音频参数
             }
         }.start();
+
+        initStaticValues();
     }
 
     public static Application instance() {
         return app;
+    }
+
+    public void initStaticValues(){
+        int screenHeight = DensityUtil.screenHeightInPx(app);
+        Constants.PTImgHeight = (int)(screenHeight * 1.2/3);
     }
 
     /***

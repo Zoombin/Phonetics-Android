@@ -8,14 +8,14 @@
 
     <ImageView
         android:id="@+id/iv_img"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/text_hitem_height_comm"
+        android:layout_height="@dimen/text_hitem_height_comm"
         android:layout_centerInParent="true"
         android:background="@drawable/recycler_hitem_bg" />
 
     <View
-        android:layout_width="6dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/margin_small"
+        android:layout_height="@dimen/text_hitem_height_comm"
         android:layout_toRightOf="@id/iv_img"
         android:background="#00000000"></View>
 </RelativeLayout>

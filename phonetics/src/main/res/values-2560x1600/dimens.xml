@@ -1,0 +1,50 @@
+<resources>
+    <!-- text-->
+    <dimen name="text_size_small">28sp</dimen>
+    <dimen name="text_size_comm">34sp</dimen>
+    <dimen name="text_size_large">40sp</dimen>
+
+    <!-- margin-->
+    <dimen name="margin_small">12dp</dimen>
+    <dimen name="margin_comm">24dp</dimen>
+
+    <!-- padding-->
+    <dimen name="padding_small">12dp</dimen>
+    <dimen name="padding_comm">24dp</dimen>
+
+
+    <!-- 首页菜单-->
+    <dimen name="img_menu_size_comm">72dp</dimen>
+    <dimen name="menu_minwidth">520dp</dimen>
+    <!--图标-->
+    <dimen name="img_size_comm">120dp</dimen>
+    <dimen name="img_size_small">60dp</dimen>
+    <!-- 图标按钮/返回/上/下-->
+    <dimen name="img_bt_size_comm">90dp</dimen>
+    <!--男女切换-->
+    <dimen name="img_bt_voice">150dp</dimen>
+    <!-- 单步发声-->
+    <dimen name="img_step_icon">70dp</dimen>
+
+    <!--首页音标 行高-->
+    <dimen name="text_item_height_comm">100dp</dimen>
+    <!--首页音标 每一个-->
+    <dimen name="text_hitem_height_comm">90dp</dimen>
+
+
+    <!-- 新手引导配置 START-->
+    <!-- 新手引导圈-->
+    <dimen name="guide_step_conentview_padding">50dp</dimen>
+    <dimen name="guide_step_conentview_width">560dp</dimen>
+    <dimen name="guide_step_conentview_minheight">300dp</dimen>
+    <dimen name="guide_step_view_dir">100dp</dimen>
+    <dimen name="guide_step_contendata_dir">40dp</dimen>
+    <dimen name="guide_img_circle">160dp</dimen>
+    <dimen name="guide_view_holder">500dp</dimen>
+    <dimen name="guide_view_margin_comm">20dp</dimen>
+
+    <dimen name="guide_step1_margin_left">80dp</dimen>
+    <dimen name="guide_step1_margin_top">280dp</dimen>
+
+    <dimen name="guide_step4_margin_bottom">150dp</dimen>
+</resources>

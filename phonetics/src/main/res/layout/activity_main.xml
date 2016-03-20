@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/iv_menu"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="@dimen/img_menu_size_comm"
+            android:layout_height="@dimen/img_menu_size_comm"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_menu_selector" />
 
@@ -25,7 +25,7 @@
         android:layout_height="match_parent"
         android:background="@color/gray_level3"
         android:orientation="vertical"
-        android:paddingTop="12dp">
+        android:paddingTop="@dimen/padding_comm">
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,14 +33,14 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/phonetics_title"
             android:textColor="@color/black"
-            android:textSize="19sp" />
+            android:textSize="@dimen/text_size_large" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
             android:background="@color/gray_level3"
             android:orientation="horizontal">
 
@@ -49,26 +49,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtleft_selector"
-                android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="6dp"
+                android:paddingBottom="@dimen/padding_small"
+                android:paddingLeft="@dimen/padding_comm"
+                android:paddingRight="@dimen/padding_comm"
+                android:paddingTop="@dimen/padding_small"
                 android:text="@string/bt_left_txt"
                 android:textColor="@drawable/bt_txt_color"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_size_small" />
 
             <TextView
                 android:id="@+id/bt_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bt_txtright_selector"
-                android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="6dp"
+                android:paddingBottom="@dimen/padding_small"
+                android:paddingLeft="@dimen/padding_comm"
+                android:paddingRight="@dimen/padding_comm"
+                android:paddingTop="@dimen/padding_small"
                 android:text="@string/bt_right_txt"
                 android:textColor="@drawable/bt_txt_color"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
 

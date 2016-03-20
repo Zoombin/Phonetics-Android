@@ -6,21 +6,15 @@
     android:orientation="vertical">
 
 
-    <View
-        android:id="@+id/hoder_veiw"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"></View>
-
-
     <LinearLayout
-        android:layout_width="280dp"
+        android:layout_width="@dimen/guide_step_conentview_width"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/guide_view_margin_comm"
         android:background="@drawable/ic_tutorial_dlg_bg"
-        android:minHeight="150dp"
+        android:minHeight="@dimen/guide_step_conentview_minheight"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/guide_step_conentview_padding">
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,39 +22,30 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/guide_step7_text"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="@dimen/text_size_small" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/guide_step_contendata_dir"
             android:src="@drawable/ic_tutorial_icon_tap" />
 
         <TextView
             android:id="@+id/tv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="@dimen/padding_comm"
             android:text="@string/tv_close"
             android:textColor="@color/blue"
-            android:textSize="17sp" />
+            android:textSize="@dimen/text_size_comm" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/hoder_veiw"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp">
 
-        <phonetics.android.widget.MImageView
-            android:id="@+id/indicator_tap"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="50dp"
-            android:src="@drawable/ic_tutorial_indicator_tap" />
-    </LinearLayout>
-
+    <phonetics.android.widget.MImageView
+        android:id="@+id/indicator_tap"
+        android:layout_width="@dimen/guide_img_circle"
+        android:layout_height="@dimen/guide_img_circle"
+        android:src="@drawable/ic_tutorial_indicator_tap" />
 
 </RelativeLayout>
