@@ -50,7 +50,9 @@ public class ClickUtil {
      * @return
      */
     public static boolean basicClick(Context context){
-        int day = new DB_Click(context).getBasicVoiceClick();
+        return true;
+        //去掉次数限制
+        /*int day = new DB_Click(context).getBasicVoiceClick();
         Calendar calendar = Calendar.getInstance();
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
@@ -66,7 +68,7 @@ public class ClickUtil {
                 new DB_Click(context).setBasicVoiceClickCount(count + 1);
                 return true;
             }
-        }
+        }*/
     }
 
     /***
@@ -75,7 +77,9 @@ public class ClickUtil {
      * @return
      */
     public static boolean advancedClick(Context context){
-        int day = new DB_Click(context).getAdvancedVoiceClick();
+        return true;
+        //去掉次数限制
+        /*int day = new DB_Click(context).getAdvancedVoiceClick();
         Calendar calendar = Calendar.getInstance();
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
@@ -91,7 +95,7 @@ public class ClickUtil {
                 new DB_Click(context).setAdvancedVoiceClickCount(count + 1);
                 return true;
             }
-        }
+        }*/
     }
 
 
@@ -101,7 +105,9 @@ public class ClickUtil {
      * @return
      */
     public static boolean compareClick(Context context){
-        int day = new DB_Click(context).getCompareClick();
+        return true;
+        //去掉次数限制
+        /*int day = new DB_Click(context).getCompareClick();
         Calendar calendar = Calendar.getInstance();
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
@@ -117,7 +123,7 @@ public class ClickUtil {
                 new DB_Click(context).setCompareClickCount(count + 1);
                 return true;
             }
-        }
+        }*/
     }
 
     /***
@@ -126,7 +132,9 @@ public class ClickUtil {
      * @return
      */
     public static boolean compareTopSelectClick(Context context){
-        int day = new DB_Click(context).getCompareTopSelectClick();
+        return true;
+        //去掉次数限制
+        /*int day = new DB_Click(context).getCompareTopSelectClick();
         Calendar calendar = Calendar.getInstance();
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
@@ -142,7 +150,7 @@ public class ClickUtil {
                 new DB_Click(context).setCompareTopSelectClickCount(count + 1);
                 return true;
             }
-        }
+        }*/
     }
 
     /***
@@ -151,7 +159,9 @@ public class ClickUtil {
      * @return
      */
     public static boolean compareBottomSelectClick(Context context){
-        int day = new DB_Click(context).getCompareBottomSelectClick();
+        return true;
+        //去掉次数限制
+        /*int day = new DB_Click(context).getCompareBottomSelectClick();
         Calendar calendar = Calendar.getInstance();
         int curDay = calendar.get(Calendar.DAY_OF_MONTH);
         if(day != curDay){
@@ -167,7 +177,7 @@ public class ClickUtil {
                 new DB_Click(context).setCompareBottomSelectClickCount(count + 1);
                 return true;
             }
-        }
+        }*/
     }
 
     /**

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">金版音标图谱</string>
+    <string name="app_name">《金版音标图谱-快速学习英语口型》</string>
     <string name="phonetics_title">英语音标</string>
     <string name="action_settings">设置</string>
     <string name="bt_left_txt">基础技巧</string>

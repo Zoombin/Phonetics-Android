@@ -94,11 +94,12 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 adapter.setData(entity.getBasics());
                 break;
             case R.id.bt_right:
-                //去掉强制分享
-                /*if (!new DB_Share(mActivity).getShareResult()) {
+                //限制一次
+                if (!new DB_Share(mActivity).getShareResult()) {
                     showShare();
+                    new DB_Share(mActivity).setShareResult(true);
                     return;
-                }*/
+                }
                 bt_left.setSelected(false);
                 bt_right.setSelected(true);
                 CurrentPhonetics.instance().voiceType = CurrentPhonetics.VoiceType.ADVANCE;//当前类型 高级
