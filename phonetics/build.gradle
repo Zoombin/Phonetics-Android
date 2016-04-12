@@ -8,8 +8,8 @@ android {
         applicationId "phonetics.android"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 105
-        versionName "1.0.5"
+        versionCode 200
+        versionName "2.0"
     }
 
     signingConfigs {
