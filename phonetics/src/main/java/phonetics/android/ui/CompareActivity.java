@@ -204,6 +204,8 @@ public class CompareActivity extends BaseActivity implements View.OnClickListene
 
         topVoiceEty = null;
         bottomVoiceEty = null;
+        topFirstPic = "";
+        bottomFirstPic = "";
     }
 
 

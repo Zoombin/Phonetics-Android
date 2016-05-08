@@ -48,7 +48,8 @@ public class PickSymbolActivity extends BaseActivity implements View.OnClickList
             }
             if ("ʊ".equals(voice.getName())){
                 jpVoice.add(changeVoice("ウ","symbol_JPU1",voice));
-
+            }
+            if ("ɔː".equals(voice.getName())){
                 jpVoice.add(changeVoice("オ","symbol_JPU2",voice));
             }
             if ("æ".equals(voice.getName())){

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">음성기호 도감</string>
+    <string name="phonetics_title">영어 발음</string>
+    <string name="action_settings">설치</string>
+    <string name="bt_left_txt">기본</string>
+    <string name="bt_right_txt">고급</string>
+    <string name="tv_name">영어 발음</string>
+    <string name="tv_ver">ver.2.1</string>
+    <string name="tv_item_compare">발음비교</string>
+    <string name="tv_item_share">나눔</string>
+    <string name="tv_item_guide">안내</string>
+    <string name="tv_item_call">교류</string>
+    <string name="tv_close">닫기</string>
+    <string name="bt_txt_front">정면</string>
+    <string name="bt_txt_side">측면</string>
+    <string name="bt_txt_base">기본</string>
+    <string name="bt_txt_typejp">일본식</string>
+    <string name="bt_txt_describe">묘사</string>
+    <string name="bt_txt_example">예제</string>
+    <string name="bt_txt_similar">근접</string>
+
+    <string name="share_dlg_circle_of_friends">나눔</string>
+    <string name="cancel">취소</string>
+    <string name="click_here">클릭</string>
+
+    <string name="guide_step1_text">버튼의 파란동그라미를 클릭해주세요</string>
+    <string name="guide_step2_text">이 화면은 3D모형을 이용해 여러분에게 발음하는 방법을 알려드립니다.</string>
+    <string name="guide_step3_text">1.혀의 위치\n2.숨\n3.성대의 진동(파란 팔각형=진동)</string>
+    <string name="guide_step4_text">다음순서로는 단어를 살펴보겠습니다. 아래의 "예제"를 클릭해주세요</string>
+    <string name="guide_step5_text">모형을 클릭해 발음을 들어보십시오.</string>
+    <string name="guide_step6_text">"정면"혹은 "측면"의 버튼을 클릭하여 각도를 바꾸실수있습니다.</string>
+    <string name="guide_step7_text">단어를 클릭해 발음을 들어보십시오.</string>
+    <string name="guide_step8_text">"영어 발음"버튼을 클릭하여 발음을 들어보십시오.</string>
+    <string name="guide_step9_text">"SLOW"를 클릭하면 발음속도를 늦추실수있습니다.</string>
+    <string name="guide_step10_text">왼쪽 아래 버튼을 클릭하시면 다시 메뉴화면으로 돌아가실수있습니다.</string>
+    <string name="guide_step11_text">듀토리얼 종료</string>
+    <string name="guide_step_next">다음 순서</string>
+
+    <string name="share_title">음성기호 도감</string>
+    <string name="share_success">성공</string>
+    <string name="share_fail">실패</string>
+    <string name="share_cancel">취소</string>
+    <string name="alter_title">힌트</string>
+    <string name="share_weichat_uninstalled">您未安装微信，请下载安装！</string>
+    <string name="share_content">我很喜欢这个软件：【花华组】基于国外著名大学研究成果，结合世界级美工特效，打造出的全球最精细的音标学习软件。下载地址：http://url.cn/cxFZ8s贴吧地址：http://url.cn/Scmk8i关注官方公众号：hanakagumi</string>
+    <string name="alter_beta_content">当前版本各项功能每天限定使用10次,请明天再来使用哦。或者您可以推荐给朋友，并用对方机器继续查阅。</string>
+</resources>

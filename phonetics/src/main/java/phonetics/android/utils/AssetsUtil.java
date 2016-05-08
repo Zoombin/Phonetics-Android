@@ -1,6 +1,8 @@
 package phonetics.android.utils;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import phonetics.android.entity.PhoneticsEntity;
@@ -32,16 +35,24 @@ public class AssetsUtil {
     public static PhoneticsEntity readAssets(Context context) {
         PhoneticsEntity entity = null;
         try {
-           InputStream inputStream =  context.getAssets().open("voiceinfo.json");
-            byte[] buffer = new byte[1024*30];
+            String locale = Locale.getDefault().toString();
+            Log.d("Tag",locale);
+            String asstesName = "";
+            if("ko_KR".equals(locale)){
+                asstesName = "voiceinfo_rKR.json";
+            }else{
+                asstesName = "voiceinfo.json";
+            }
+            InputStream inputStream = context.getAssets().open(asstesName);
+            byte[] buffer = new byte[1024 * 30];
             StringBuffer sBuffer = new StringBuffer();
-            int len =0;
-            while (-1 != (len = inputStream.read(buffer))){
-                String string = new String(buffer,0,len);
+            int len = 0;
+            while (-1 != (len = inputStream.read(buffer))) {
+                String string = new String(buffer, 0, len);
                 sBuffer.append(string);
             }
             Gson gson = new Gson();
-            entity = gson.fromJson(sBuffer.toString().trim(),PhoneticsEntity.class);
+            entity = gson.fromJson(sBuffer.toString().trim(), PhoneticsEntity.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
