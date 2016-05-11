@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">share</string>
-    <string name="weibo_oauth_regiseter">weibo_oauth_regiseter</string>
+    <string name="weibo_oauth_regiseter">应用授权</string>
     <string name="website">http://www.mob.com</string>
-    <string name="weibo_upload_content">weibo_upload_content</string>
-    <string name="wechat_client_inavailable">wechat_client_inavailable</string>
-    <string name="google_plus_client_inavailable">google_plus_client_inavailable</string>
-    <string name="qq_client_inavailable">qq_client_inavailable</string>
+    <string name="weibo_upload_content">分享图片</string>
+    <string name="wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
+    <string name="google_plus_client_inavailable">Google+ 版本过低或者没有安装，需要升级或安装Google+才能使用！</string>
+    <string name="qq_client_inavailable">QQ 版本过低或者没有安装，需要升级或安装QQ才能使用！</string>
     <string name="pinterest_client_inavailable">Pinterest版本过低或者没有安装，需要升级或安装Pinterest才能使用！</string>
     <string name="instagram_client_inavailable">Instagram版本过低或者没有安装，需要升级或安装Instagram才能使用！</string>
     <string name="yixin_client_inavailable">目前您的易信版本过低或未安装，需要安装易信才能使用</string>
@@ -20,7 +20,7 @@
     <string name="tencentweibo">腾讯微博</string>
     <string name="qzone">QQ空间</string>
     <string name="wechat">微信好友</string>
-    <string name="wechatmoments">wechatmoments</string>
+    <string name="wechatmoments">微信朋友圈</string>
     <string name="wechatfavorite">微信收藏</string>
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
@@ -72,21 +72,21 @@
     <string name="share_to_qzone_default">来自%s的分享</string>
     <string name="use_login_button">请改用“登录”按钮</string>
 
-    <string name="cancel">cancel</string>
-    <string name="finish">finish</string>
-    <string name="sharing">sharing…</string>
-    <string name="share_to">share_to</string>
-    <string name="share">share</string>
-    <string name="multi_share">multi_share</string>
-    <string name="share_completed">share_completed</string>
-    <string name="share_canceled">share_canceled</string>
-    <string name="select_one_plat_at_least">select_one_plat_at_least</string>
-    <string name="list_friends">%slist_friends</string>
-    <string name="share_failed">share_failed</string>
-    <string name="pull_to_refresh">pull_to_refresh</string>
-    <string name="release_to_refresh">release_to_refresh</string>
-    <string name="refreshing">refreshing…</string>
-    <string name="shake2share">shake2share！</string>
-    <string name="select_a_friend">select_a_friend</string>
+    <string name="cancel">取消</string>
+    <string name="finish">完成</string>
+    <string name="sharing">分享操作正在后台进行…</string>
+    <string name="share_to">分享到</string>
+    <string name="share">分享</string>
+    <string name="multi_share">图文分享</string>
+    <string name="share_completed">分享成功</string>
+    <string name="share_canceled">分享已取消</string>
+    <string name="select_one_plat_at_least">请选择一个目标平台</string>
+    <string name="list_friends">%s的朋友</string>
+    <string name="share_failed">分享失败</string>
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">松开刷新</string>
+    <string name="refreshing">刷新中…</string>
+    <string name="shake2share">摇晃手机！</string>
+    <string name="select_a_friend">请选择一个朋友</string>
 
 </resources>
