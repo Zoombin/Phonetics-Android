@@ -8,8 +8,8 @@ android {
         applicationId "phonetics.android"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 210
-        versionName "2.1"
+        versionCode 211
+        versionName "2.1.1"
     }
 
     signingConfigs {
@@ -34,10 +34,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig  signingConfigs.release
         }
-//        debug {
-//            minifyEnabled false
-//            signingConfig  signingConfigs.debug
-//        }
+        debug {
+            minifyEnabled false
+            signingConfig  signingConfigs.debug
+        }
     }
 
     sourceSets {

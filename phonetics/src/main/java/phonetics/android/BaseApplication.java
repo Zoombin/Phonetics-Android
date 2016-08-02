@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.provider.Settings;
-import android.util.DisplayMetrics;
 
 import com.baidu.mobstat.SendStrategyEnum;
 import com.baidu.mobstat.StatService;
@@ -40,10 +39,6 @@ public class BaseApplication extends Application {
         CurrentPhonetics.instance().loadData(this);//加载配置文件
         ClickUtil.clean(this);//是否需要清除数据
 
-        //有米初始化
-        //AdManager.getInstance(this).init("7903c4ec230be820", "d6d134031fa3f5bd", Constants.DEBUG);
-
-
         //百度统计
         if(Constants.DEBUG){
             // 测试时，可以使用1秒钟session过期，这样不断的间隔1S启动退出会产生大量日志。
@@ -54,8 +49,6 @@ public class BaseApplication extends Application {
         //日志发送策略
         StatService.setSendLogStrategy(this, SendStrategyEnum.SET_TIME_INTERVAL, 1, false);
         StatService.setDebugOn(Constants.DEBUG);
-
-
 
         //ShareSDK初始化
         ShareSDK.initSDK(this);
